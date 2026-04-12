@@ -1,0 +1,51 @@
+@startuml
+
+package utils {
+    interface Agent
+    interface Skill {
+        purpose
+        whatYouReceive
+        whatToDo
+        antiPatterns
+        result
+    }
+
+    abstract class Orchestrator {
+        purpose
+        delegationRules
+        hardStopRule
+        antiPatterns
+        taskEscalation
+        {abstract}workFlow
+    }
+}
+
+package phases {
+    class PhaseOrchestrator {
+        workflow
+    }
+    class Inception
+    class Elaboration
+    PhaseOrchestrator ..> Inception : orchestrates
+    PhaseOrchestrator ..> Elaboration : orchestrates
+}
+
+package artifacts {
+    class UseCase
+    class Vision
+}
+
+
+
+Agent <|-- Orchestrator
+Agent <|-- Skill
+Orchestrator ..> Skill : delegates to
+Orchestrator ..> Orchestrator : delegates to
+Orchestrator <|-- phases.PhaseOrchestrator
+Orchestrator <|-- Elaboration
+Skill <|.. Inception
+Inception ..> artifacts
+Elaboration ..> artifacts
+Skill <|.. UseCase
+Skill <|.. Vision
+@enduml
