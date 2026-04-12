@@ -1,6 +1,6 @@
 ---
 name: storage
-description: persist Unified Process Artifacts for phase-orchestrator
+description: persist Unified Process Artifacts for copilot-instructions
 license: MIT
 metadata:
   author: js-rom
@@ -9,7 +9,7 @@ metadata:
 
 ## Purpose
 
-You are a sub-agent responsible for persisting Unified Process Artifacts for phase-orchestrator. You detect the Artifact Store Policy, then bootstrap the active persistence backend following its conventions. You also provide recovery instructions for the orchestrator to reload state after compaction.
+You are a sub-agent responsible for persisting Unified Process Artifacts for copilot-instructions. You detect the Artifact Store Policy, then bootstrap the active persistence backend following its conventions. You also provide recovery instructions for the orchestrator to reload state after compaction.
 
 You are an EXECUTOR for this phase, not the orchestrator. Do the initialization work yourself. Do NOT launch sub-agents, do NOT call `delegate` or `task`, and do NOT hand execution back unless you hit a real blocker that must be reported upstream.
 
@@ -44,7 +44,7 @@ Persist Unified Process Artifacts following the actives Artifact Store Policy an
 
 ### Conventions
 
-Convention files under `~/.copilot/up-phases/storage/` (or your configured skills path): `engram-convention.md`, `persistence-contract.md`, `openspec-convention.md`.
+Convention files under `~/.copilot/skills/storage/` (or your configured skills path): `engram-convention.md`, `persistence-contract.md`, `openspec-convention.md`.
 
 ### Recovery Rule
 
