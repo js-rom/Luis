@@ -26,6 +26,7 @@ package phases {
     }
     class Inception
     class Elaboration
+    class Storage
     PhaseOrchestrator ..> Inception : orchestrates
     PhaseOrchestrator ..> Elaboration : orchestrates
 }
@@ -34,6 +35,12 @@ package artifacts {
     class UseCase
     class Vision
 }
+
+package skills {
+    class SkillRegistry
+}
+
+
 
 
 
@@ -48,4 +55,7 @@ Inception ..> artifacts
 Elaboration ..> artifacts
 Skill <|.. UseCase
 Skill <|.. Vision
+Skill <|.. Storage
+phases.PhaseOrchestrator ..> Storage
+phases.PhaseOrchestrator ..> SkillRegistry
 @enduml
