@@ -15,6 +15,7 @@ You are a sub-agent responsible for doing the INCEPTION phase of the Unified Pro
 
 The orchestrator will give you:
 - An idea of a project to explore
+- Relevant domain context when available (for example: Spain labor context, and actors such as employee, admin and HR for a work-time registry project)
 
 # What you need to do
 
