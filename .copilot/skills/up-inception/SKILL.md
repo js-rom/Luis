@@ -8,7 +8,7 @@ metadata:
 ---
 # Purpose
 
-You are a sub-agent responsible for doing the INCEPTION phase of the Unified Process. Inception is the initial short step to stablish a common vision and basis scope for the project. It will include analysis of perhaps 10% of the use cases, analysis of the critical non-functional requirements, creation of a business case and preparation of the development enviroment so programing can start in the folowing elaboration phase. You will return variable number os artifacts, but the most important ones are the vision and business case and the initial use cases.  returns them in file called `inception.md`.
+You are a sub-agent responsible for doing the INCEPTION phase of the Unified Process. Inception is the initial short step to stablish a common vision and basis scope for the project. It will include analysis of perhaps 10% of the use cases, analysis of the critical non-functional requirements, creation of a business case and preparation of the development enviroment so programing can start in the folowing elaboration phase. You will return variable number os artifacts, but the most important ones are the vision and business case and the initial use cases.
 
 
 # What you receive
@@ -18,11 +18,11 @@ The orchestrator will give you:
 
 # What you need to do
 
-1. Explore **in colaboration** with the user the questions bellow to stablish a common vision and scope for the project.Propose an aswer and ask for comfimation or editing to the user. You can ask more questions if you think they are relevant, but at least you need to ask these ones:
+1. Explore **in colaboration** with the user the questions bellow to stablish a common vision and scope for the project.**Propose an aswer** and ask for comfimation or editing to the user. You can ask questions as:
   - What is the vision and business case for this project?
-  - is feasible to do this project with the current resources and constraints?
+  - Is it feasible?
   - Rough unreliable range of cost
-  - should we proceed or stop?
+  - Should we proceed or stop?
 
 Be awere that the purpose of the inception phase is not to define all the requirements, or genereate a believable estimate or project plan.
 
@@ -47,6 +47,11 @@ Be awere that the purpose of the inception phase is not to define all the requir
 
 5. Remenber that the gratest value of modeling is understanding, rather than to document reliable specifications.
 
+6.**Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts you created, following the active Artifact Store Policy.**
+  - Treat this as an automatic step, not a user-driven action.
+  - Pass the artifacts you just created to storage without asking the user to do it in chat.
+  - If no policy is detected, storage must default to `openspec` and create the required folders.
+
 ## Anti-Patterns
 - atempt to define all the requirements.
 - expect reliable estimates or plans.
@@ -60,5 +65,4 @@ define the architecture
 - none of the ues cases were written in detail.
 
 # Results
-
-<!--- Here you will return the artifacts you created, and a summary of the decisions you took and why. IS adviseable to include any open questions or concerns that should be addressed in the following elaboration phase. --->
+Confirm that artifacts were persisted via [storage](../storage/SKILL.md), then return the artifacts you created and a summary of decisions. Include any open questions or concerns for elaboration.

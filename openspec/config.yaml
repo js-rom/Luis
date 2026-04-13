@@ -1,0 +1,27 @@
+schema: spec-driven
+
+context: |
+  Tech stack: TBD
+  Architecture: TBD
+  Testing: TBD
+  Style: TBD
+
+rules:
+  proposal: []
+  specs:
+    - Use Cockburn use-case structure: Title, Goal, Scope, Level, Actors, Preconditions, Trigger, Main Success Scenario, Extensions, Postconditions, Business Rules.
+    - Write in English.
+    - Main Success Scenario should have 10-20 numbered steps.
+    - Extensions should be listed as alternate step sequences (no Given/When/Then).
+    - Include explicit validation and error handling steps where applicable.
+    - Use the template at openspec/iterations/inception-2026-04-13/use-cases/UC00 Template.md.
+  design: []
+  tasks: []
+  apply:
+    tdd: false
+    test_command: ""
+  verify:
+    test_command: ""
+    build_command: ""
+    coverage_threshold: 0
+  archive: []

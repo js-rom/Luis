@@ -2,7 +2,7 @@
 
 ## Itialization (do only once at beginning)
 
-**This file must always follow and apply the  content and behaviour in: [abstract-orchestrator](./utils/abstract-orchestrator.md)**
+**This file must always follow and apply the  content and behaviour in: [abstract-orchestrator](./skills/utils/abstract-orchestrator.md)**
 
 **This file must always follow and apply the  content and behaviour in: [storage, backend](./skills/storage/SKILL.md)**
 
