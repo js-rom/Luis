@@ -19,7 +19,7 @@ Unified Process Artifacts to persist
 
 # What you need to do
 
-## Step 2: Persist Unified Process Artifacts
+## Step 1: Persist Unified Process Artifacts
 
 Persist Unified Process Artifacts following the actives Artifact Store Policy and Conventions. If no policy is detected, default to `openspec` mode. If the policy is `none`, return results inline only and recommend enabling a persistence mode for better artifact management. **Only if** necessary file system paths do not exist, create them following applicable conventions. 
 

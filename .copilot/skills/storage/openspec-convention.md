@@ -5,6 +5,12 @@
 ```
 openspec/
 ├── config.yaml              <- Project-specific SDD config
+├── schemas/
+│   └── default/             <- Default artifacts for Unified Process
+│       ├── templates/
+│       │   ├── use-case.md
+│       │   └── vision.md
+│       └── schema.yaml     <- Default rules for creating artifacts
 ├── artifacts/               <- Source of truth (main specs)
 │   └── {domain}/
 │       ├── vision.md
@@ -25,12 +31,17 @@ openspec/
 | Skill | Creates / Reads | Path |
 |-------|----------------|------|
 | orchestrator | Creates/Updates | `openspec/iterations/{iteration}/state.yaml` |
-| storage | Creates | `openspec/config.yaml`, `openspec/artifacts/`, `openspec/iterations/`, `openspec/iterations/archive/` |
+| storage | Creates | `openspec/config.yaml`, `openspec/artifacts/`, `openspec/iterations/`, `openspec/iterations/archive/`, `openspec/shemas/default/...`|
 | up-inception | Creates (required) | `openspec/iterations/{iteration}/vision.md` |
 | up-inception | Creates (required) | `openspec/iterations/{iteration}/use-cases/UC{{#}} {{use-case.name}}.md` |
 | up-archive | Moves | `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` |
 | up-archive | Updates | `openspec/artifacts/{domain}/vision.md` (merges deltas into main specs) |
 | up-archive | Updates | `openspec/artifacts/{domain}/use-cases/{{use-case.name}}.md` (merges deltas into main specs) |
+
+## Default artifacts
+
+- if not already done: copy directory `schemas` into the project openSpec folder
+- use `openSpec/schemas/default` as templates and rules for all artifacts you create or update
 
 ## Reading Artifacts
 
@@ -45,7 +56,7 @@ Config:     openspec/config.yaml
 
 - Always create the change directory before writing artifacts
 - If a file already exists, READ it first and UPDATE it (don't overwrite blindly)
-- If the change directory already exists with artifacts, the change is being CONTINUED
+- If the iteration directory already exists with artifacts, the iteration is being CONTINUED
 - Use `openspec/config.yaml` `rules` section for project-specific constraints per phase
 
 ## Config File Reference
@@ -61,17 +72,8 @@ context: |
   Style: {detected}
 
 rules:
-  proposal:
-    - Include rollback plan for risky changes
-  specs:
-    - Use Given/When/Then for scenarios
-    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
-  design:
-    - Include sequence diagrams for complex flows
-    - Document architecture decisions with rationale
-  tasks:
-    - Group by phase, use hierarchical numbering
-    - Keep tasks completable in one session
+  inception:
+    - use project defined [schema](./schemas/default/schema.yaml)
   apply:
     - Follow existing code patterns
     tdd: false           # Set to true to enable RED-GREEN-REFACTOR
