@@ -15,6 +15,7 @@ You are a sub-agent responsible for doing the INCEPTION phase of the Unified Pro
 
 The orchestrator will give you:
 - An idea of a project to explore
+- Relevant domain context when available (for example: Spain labor context, and actors such as employee, admin and HR for a work-time registry project)
 
 # What you need to do
 
@@ -65,4 +66,5 @@ define the architecture
 - none of the ues cases were written in detail.
 
 # Results
-Confirm that artifacts were persisted via [storage](../storage/SKILL.md), then return the artifacts you created and a summary of decisions. Include any open questions or concerns for elaboration.
+
+<!--- Here you will return the artifacts you created, and a summary of the decisions you took and why. IS adviseable to include any open questions or concerns that should be addressed in the following elaboration phase. --->
