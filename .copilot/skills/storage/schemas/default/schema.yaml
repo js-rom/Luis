@@ -8,15 +8,15 @@ artifacts:
     template: vision.md
     instruction: >
     requires: []
-  - id: Use Case Model
+  - id: Use Case fully dressed
     generates: UC{{#}}.md
-    description: Describe the functional requirements.
-    template: use-case.md
-    instruction: >
-    - Use Cockburn use-case structure: Title, Goal, Scope, Level, Actors, Preconditions, Trigger, Main Success Scenario, Extensions, Postconditions, Business Rules.
-    - Write in English.
-    - Main Success Scenario should have 10-20 numbered steps.
-    - Extensions should be listed as alternate step sequences (no Given/When/Then).
-    - Include explicit validation and error handling steps where applicable.
-    - Use the template at openspec/iterations/inception-2026-04-13/use-cases/UC00 Template.md.
-    requires: [vision.md]
+    description: Describe the functional requirements in fully dressed format.
+    template: use-case-fully-dressed.md
+    instruction: INVOKE this link -> "./instructions/Use Case Model.md"
+    requires: [vision]
+  - id: Use Case brief
+    generates: UC{{#}}.md
+    description: Describe the functional requirements in brief format.
+    template: use-case-brief.md
+    instruction: INVOKE this link -> "./instructions/Use Case Model.md"
+    requires: [vision]
