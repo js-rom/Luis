@@ -28,17 +28,10 @@
 <What must be true on successfull completion, and worth telling the reader>
 
 ## Main Success Scenario 
-<!-- A typical, unconditional happy path scenario of success -->
-1. <step>
-2. <step>
-3. <step>
-4. <step>
-5. <step>
-6. <step>
-7. <step>
-8. <step>
-9. <step>
-10. <step>
+<!-- A typical, unconditional happy path scenario of success, approximately 5 to 10 steps -->
+{for step in steps}
+{{#}}. {{step}}
+{end step}
 
 ## Extensions (or Alternate flows)
 
