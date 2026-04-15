@@ -6,10 +6,11 @@
 openspec/
 ├── config.yaml              <- Project-specific SDD config
 ├── schemas/
-│   └── default/             <- Default artifacts for Unified Process
-│       ├── templates/
+│   └── default/             
+│       ├── templates/       <- Default artifacts for Unified Process
 │       │   ├── use-case.md
 │       │   └── vision.md
+│       ├── instructions/   <- Default instructions for creating artifacts
 │       └── schema.yaml     <- Default rules for creating artifacts
 ├── artifacts/               <- Source of truth (main specs)
 │   └── {domain}/
@@ -25,13 +26,17 @@ openspec/
                 └── use-cases/ <- Delta
 
 ```
+## Intialization **VERY IMPORTANT**
+
+1. first create openspec/ directory structure at project root.
+2. inmediately after,  **assure** that all directories and children files are created into openspec/ directory.
 
 ## Artifact File Paths
 
 | Skill | Creates / Reads | Path |
 |-------|----------------|------|
 | orchestrator | Creates/Updates | `openspec/iterations/{iteration}/state.yaml` |
-| storage | Creates | `openspec/config.yaml`, `openspec/artifacts/`, `openspec/iterations/`, `openspec/iterations/archive/`, `openspec/shemas/default/...`|
+| storage | Creates (required) | `openspec/config.yaml`, `openspec/artifacts/`, `openspec/iterations/`, `openspec/iterations/archive/`, `openspec/shemas/default/templates/`, `openspec/shemas/default/instructions/`|
 | up-inception | Creates (required) | `openspec/iterations/{iteration}/vision.md` |
 | up-inception | Creates (required) | `openspec/iterations/{iteration}/use-cases/UC{{#}} {{use-case.name}}.md` |
 | up-archive | Moves | `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` |
