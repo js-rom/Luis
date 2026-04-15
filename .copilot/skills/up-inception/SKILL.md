@@ -31,13 +31,15 @@ Be awere that the purpose of the inception phase is not to define all the requir
 
 3. Create a list os non-detailed uses-cases and ask the user for comfirmation, additions or modifications. Ask the user which ones to detail, and then detail them. Ask for comfirmation or editing to the user.
 
+4. choose **in colaboration** with the user which 10% of use cases are the most architecturally significant, risky and of high business value,  explain the reasons why you chose them, and then analyze them in a fully dressed format. Ask for comfirmation or editing to the user.
 
-4. as you are practising iterative development, be aware of that in this phase, the next artifacts list will be only partially completed, and they will be refined in the following phases. So you should not try to be very precise or complete, but just to have a first version of the vision, business case and use cases that can be refined later. Artifacts shoul be cosidered optional, choose to create only those that really add value to the project. 
+
+5. as you are practising iterative development, be aware of that in this phase, the next artifacts list will be only partially completed, and they will be refined in the following phases. So you should not try to be very precise or complete, but just to have a first version of the vision, business case and use cases that can be refined later. Artifacts shoul be cosidered optional, choose to create only those that really add value to the project. 
 
 | Artifact | Comment |
 |----------|------|
 | Vision and Business Case | provides an executive summary. Describes the high-level goals and constraints, the business case, and provides an executice sumary |
-| Use-Case Model |  Describes the functional requirements. During inception, the most use cases will be identified and perhaps 10% of the use cases will be analyzed in detail. |
+| Use-Case Model |  Describes the functional requirements. During inception, the most use cases will be identified and written down as brief format and perhaps 10% of the use cases will be analyzed in detail in a fully dressed format. |
 |Supplementary Specification|Describes other requirements, mostly non-functional. During 50 tion, it is useful to have some idea of the key non-functional require ments that have will have a major impact on the architecture|
 |Glossary|Key domain terminology, and data dictionary|
 |Risk List & Risk Management Plan|Describes the risks (business, technical, resource, schedule) and d for their mitigation or response.|
@@ -46,9 +48,9 @@ Be awere that the purpose of the inception phase is not to define all the requir
 |Phase Plan & Software Development Plan|Low-precision guess for elaboration phase duration and effort. Tool people, education, and other resources.|
 |Development Case|A description of the customized UP steps and artifacts for this project In the UP, one always customizes it for the project|
 
-5. Remenber that the gratest value of modeling is understanding, rather than to document reliable specifications.
+6. Remenber that the gratest value of modeling is understanding, rather than to document reliable specifications.
 
-6.**Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts you created, following the active Artifact Store Policy.**
+7. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts you created, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass the artifacts you just created to storage without asking the user to do it in chat.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
@@ -67,4 +69,4 @@ define the architecture
 
 # Results
 
-<!--- Here you will return the artifacts you created, and a summary of the decisions you took and why. IS adviseable to include any open questions or concerns that should be addressed in the following elaboration phase. --->
+Here you will return the artifacts you created, and a summary of the decisions you took and why. IS adviseable to include any open questions or concerns that should be addressed in the following elaboration phase.

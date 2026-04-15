@@ -332,6 +332,7 @@ Cashier is identified and authenticated.
     - step 2. Cashier replaces paper.
     - step 3. Cashier requests another receipt.
 ```
+
 ### Special Requirements
 
 if a non-functional requirement, queality attribute, or constraint relates specifically to a use case, record it with the use case.
@@ -341,4 +342,87 @@ if a non-functional requirement, queality attribute, or constraint relates speci
 - it is skillfull to avoid premature design decisions, but some times they are obvious or unavoidable, especially concerning input/output technologies.
 
 ## Guidelines
+
+### Esential UI-Free Style
+
+In a essential writing style, the narrative is expressed at the level of the user's **intentions** ans system's **responsabilities** rather than their concrete actions. They remain free of technology and mechanism details, especially those related to the UI.
+
+## Write Terse Use Cases
+
+Write terse use cases. Delete "noise" words.
+
+## Write Black-Box Use Cases
+
+Black-box use cases do not describe the internal workings of the system, its components, or design. Rather, the system is describes as having responsabilities, which is a comon unifying metaphorical thee in object-oriented thinking-software elements have responsabilities and collaborate with other elements that have responsabilities.
+
+You must define what the system must do without deciding how it will do it.
+
+## Take an Actor and Actor-Goal Perspective.
+
+- Write requirements focusing on the users or actors of a system, asking about their goals and typical situations.
+- Focus on understanding what the actor considers a valuable result.
+
+## How to Find Uses Cases
+
+The procedure is:
+
+### Step 1: Choose the system Boundary
+
+If the definition of the boundary of the system under design  is not clear, it can be clarirified by further definition of what is outside.
+
+### Step 2 and 3: Find primary actors and goalss
+
+- Brainstorm the primary actors first, as this sets up the framework for further investigation. 
+- In addition to the obvious primary actors and goals, this questions can help identify others that may be missed:
+    - Who starts ans stops the system?
+    - Who does user and security management?
+    - Who does system administration?
+    - is "time" an actor because the system does soething in response to a time event?
+    - Is there a monitoring process that restarts the system if it fails?
+    - How are software updates handled? Push or pull update?
+    - In addtion to human primary actors, are there any external software or robotic systems that call upon services of the system?
+    - Who evaluates system activity or performace?
+    - Who evaluates logs? Are they remotely retrieved?
+    - Who gets notified when there are errors or failures?
+- Write an actor-goal list first to the vision artifact, review and refine in pairs with the user, then draw the use case diagram.
+- The viewpoint of use case modeling is to find actors and their goals, and create solutions that produce a result of value. Rather than asking "What are the tasks?" start by asking "Who uses the system and what are their goals?"
+- The primary actor depends on the system boundary of the system under design, and who we are primarily designing the system for.
+
+### Step 4: Defin Use Cases
+
+- In general, define one use case for each user goal.
+- Name the use use case similar to the user goal.
+- Start the name of use cases with a verb.
+- A common exception to one use case per goal is to collapse CRUD separate goals into one CRUD use case, idiomaatically called Manage <X>
+
+## Finding Useful Use Cases
+
+There are several rules of thub to find useful level to express use case for application requirement analysis:
+
+### The Boss Test
+
+Use cases must achieve results of measurable value. For example, if you are all day loggin in, your boss wouldn't be happy,; they are not results of measurable value to your boss.
+
+## The EBP Test
+
+Focus in use cases that reflects Elementary Business Process (EBP).
+
+Elementary Business Process (EBP): A task performed by one person in one place at one tie, in response to a businnes event, which adds easurable business value and leaves the data in a consistent state, e.g., Approve Credit or Price Order.
+
+## The Size Test
+
+A use case is very seldom a single action or step.
+
+## Use case Diagrams
+
+- Draw a simple use case diagram in conjuction with an actor-goal list.
+- show computer system actors with alternaste notatio to human actors, use the class box.
+- For a use case context diagram, limit the use cases to user-goal level use cases.
+- primary actors on the left
+- supporting actors on the right.
+
+## When Not to use Use Cases
+
+Use cases are not a natural fit for application servers, database productos, and other middleware or back-end systems need to be primarily considered and evolve in terms of features (e.g., "we need Web Services support in the next release"). Use features insted. 
+
 

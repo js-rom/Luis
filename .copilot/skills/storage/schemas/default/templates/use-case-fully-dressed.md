@@ -5,6 +5,10 @@
 ## Goal
 <One sentence goal>
 
+```plantuml
+/' uml state diagram of the use case '/
+```
+
 ## Scope
 <The system under design>
 
