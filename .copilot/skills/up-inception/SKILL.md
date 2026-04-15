@@ -17,24 +17,12 @@ The orchestrator will give you:
 - An idea of a project to explore
 - Relevant domain context when available (for example: Spain labor context, and actors such as employee, admin and HR for a work-time registry project)
 
-# What you need to do
+# Guidelines
 
-1. Explore **in colaboration** with the user the questions bellow to stablish a common vision and scope for the project.**Propose an aswer** and ask for comfimation or editing to the user. You can ask questions as:
-  - What is the vision and business case for this project?
-  - Is it feasible?
-  - Rough unreliable range of cost
-  - Should we proceed or stop?
-
-Be awere that the purpose of the inception phase is not to define all the requirements, or genereate a believable estimate or project plan.
-
-2. Do just enough investigation **in colaboration** with the user to form a rational, justifiable opinion of the overall purpose and feasibility of the potential new system, and decide if it is worthwhile to invest in deeper esploration (elaboration phase purpose)
-
-3. Create a list os non-detailed uses-cases and ask the user for comfirmation, additions or modifications. Ask the user which ones to detail, and then detail them. Ask for comfirmation or editing to the user.
-
-4. choose **in colaboration** with the user which 10% of use cases are the most architecturally significant, risky and of high business value,  explain the reasons why you chose them, and then analyze them in a fully dressed format. Ask for comfirmation or editing to the user.
-
-
-5. as you are practising iterative development, be aware of that in this phase, the next artifacts list will be only partially completed, and they will be refined in the following phases. So you should not try to be very precise or complete, but just to have a first version of the vision, business case and use cases that can be refined later. Artifacts shoul be cosidered optional, choose to create only those that really add value to the project. 
+- **Work in Pair Programming with the user. You take the role of the driver**. Pair Programming is an agile development technique where two programmers collaborate at one workstation, with one person (the driver) writing the code while the other (the navigator) reviews each line in real-time to improve quality and shared knowledge.
+- UML diagrams must be written in plantuml grammar.
+- Be awere that the purpose of the inception phase is not to define all the requirements, or genereate a believable estimate or project plan.
+- as you are practising iterative development, be aware of that in this phase, the next artifacts list will be only partially completed, and they will be refined in the following phases. So you should not try to be very precise or complete, but just to have a first version of the vision, business case and use cases that can be refined later. Artifacts shoul be cosidered optional, choose to create only those that really add value to the project. 
 
 | Artifact | Comment |
 |----------|------|
@@ -48,8 +36,14 @@ Be awere that the purpose of the inception phase is not to define all the requir
 |Phase Plan & Software Development Plan|Low-precision guess for elaboration phase duration and effort. Tool people, education, and other resources.|
 |Development Case|A description of the customized UP steps and artifacts for this project In the UP, one always customizes it for the project|
 
-6. Remenber that the gratest value of modeling is understanding, rather than to document reliable specifications.
+# What you need to do (Pair Programming workflow)
 
+1. Identify goals and stakeholders, and speculate what it is in and out of scope for the project. refine it in collaboration with the user.
+2. An actor-goal-use case table is written to the chat window. refine it in collaboration with the user.
+3. write a use case context diagram and use case list to the chat window. refine it in collaboration with the user.
+4. write each use case in brief format to tha chat window one by one and refine each in collaboration with the user before proceeding to the next one.
+5. After this, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
+6. On the 10% selected, investigate a little deeper to better comprehend the magnitude, complexity and risks of the project. write it to the chat window and refine it in collaboration with the user.
 7. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts you created, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass the artifacts you just created to storage without asking the user to do it in chat.
