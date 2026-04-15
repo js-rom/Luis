@@ -1,6 +1,6 @@
 # UC00 <Title, starts with a verb>
 
-[Use Case Model](./Use Case Model.md)
+[Use Case Model](./Use%20Case%20Model.md)
 
 ## Goal
 <One sentence goal>
