@@ -3,7 +3,7 @@ name: skill-registry
 description: Create or update the skill registry for the current project. Scans user skills and project conventions, writes .atl/skill-registry.md, and saves to engram if available. Trigger: When user says "update skills", "skill registry", "actualizar skills", "update registry", or after installing/removing skills.
 license: MIT
 metadata:
-  author: gentleman-programming
+  author: js-rom
   version: "1.0"
 ---
 

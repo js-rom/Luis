@@ -48,6 +48,10 @@ The orchestrator will give you:
   - Treat this as an automatic step, not a user-driven action.
   - Pass the artifacts you just created to storage without asking the user to do it in chat.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
+8. **Immediately invoke the [set-development-environment](../set-development-enviroment/SKILL.md) skill to set up the development environment for the project.**
+  - Treat this as an automatic step, not a user-driven action.
+  - Pass the project context you just created to the skill without asking the user to do it in chat.
+  - If no context is detected, the skill must default to a standard setup.
 
 ## Anti-Patterns
 - atempt to define all the requirements.

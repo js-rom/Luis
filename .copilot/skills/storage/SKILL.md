@@ -23,15 +23,6 @@ Unified Process Artifacts to persist
 
 Persist Unified Process Artifacts following the actives Artifact Store Policy and Conventions. If no policy is detected, default to `openspec` mode. If the policy is `none`, return results inline only and recommend enabling a persistence mode for better artifact management. **Only if** necessary file system paths do not exist, create them following applicable conventions. 
 
-
-## Anti-Patterns
-
-```md
-{{ for santi_pattern in santi_patterns }}
-- {{ santi_pattern_description }}
-{{ end santi_pattern }}
-```
-
 # Results
 
 ### Artifact Store Policy

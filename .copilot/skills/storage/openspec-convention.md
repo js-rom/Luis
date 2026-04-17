@@ -26,10 +26,6 @@ openspec/
                 └── use-cases/ <- Delta
 
 ```
-## Intialization **VERY IMPORTANT**
-
-1. first create openspec/ directory structure at project root.
-2. inmediately after,  **assure** that all directories and children files are created into openspec/ directory.
 
 ## Artifact File Paths
 
@@ -45,7 +41,6 @@ openspec/
 
 ## Default artifacts
 
-- if not already done: copy directory `schemas` into the project openSpec folder
 - use `openSpec/schemas/default` as templates and rules for all artifacts you create or update
 
 ## Reading Artifacts
@@ -63,33 +58,6 @@ Config:     openspec/config.yaml
 - If a file already exists, READ it first and UPDATE it (don't overwrite blindly)
 - If the iteration directory already exists with artifacts, the iteration is being CONTINUED
 - Use `openspec/config.yaml` `rules` section for project-specific constraints per phase
-
-## Config File Reference
-
-```yaml
-# openspec/config.yaml
-schema: spec-driven
-
-context: |
-  Tech stack: {detected}
-  Architecture: {detected}
-  Testing: {detected}
-  Style: {detected}
-
-rules:
-  inception:
-    - use project defined [schema](./schemas/default/schema.yaml)
-  apply:
-    - Follow existing code patterns
-    tdd: false           # Set to true to enable RED-GREEN-REFACTOR
-    test_command: ""
-  verify:
-    test_command: ""
-    build_command: ""
-    coverage_threshold: 0
-  archive:
-    - Warn before merging destructive deltas
-```
 
 ## Archive Structure
 
