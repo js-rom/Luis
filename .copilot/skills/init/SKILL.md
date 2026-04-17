@@ -63,13 +63,8 @@ Return a structured summary for `openspec`:
 **Stack**: {detected stack}
 **Persistence**: openspec
 
-### Structure Created
-- openspec/config.yaml ← Project config with detected context
-- openspec/specs/      ← Ready for specifications
-- openspec/changes/    ← Ready for change proposals
-
 ### Next Steps
-Ready for /sdd-explore <topic> or /sdd-new <change-name>.
+Ready for /up-inception <topic>.
 ```
 
 ## Rules
