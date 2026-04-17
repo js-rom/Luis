@@ -24,6 +24,23 @@ The orchestrator will give you:
 - Be awere that the purpose of the inception phase is not to define all the requirements, or genereate a believable estimate or project plan.
 - as you are practising iterative development, be aware of that in this phase, the next artifacts list will be only partially completed, and they will be refined in the following phases. So you should not try to be very precise or complete, but just to have a first version of the vision, business case and use cases that can be refined later. Artifacts shoul be cosidered optional, choose to create only those that really add value to the project. 
 
+## Pair Programming Contract (MANDATORY)
+
+- Driver/Navigator mode is mandatory for the whole skill execution.
+- You must work in chat-first mode and co-edit each section with the user.
+- Do not write files while exploring and refining scope.
+- Before every phase change, ask for explicit approval from the user.
+- Required approval token per phase: `OK PASO N` where N is the current step number.
+- If approval is missing, continue refining in chat and do not advance.
+- Persist artifacts only after steps 1-6 are approved.
+
+## Write Gating Rules (MANDATORY)
+
+- During steps 1-6: no create/update file operations.
+- Allowed output during steps 1-6: chat content only (tables, diagrams, brief and fully dressed use cases).
+- After user approval of step 6 (`OK PASO 6`): persist artifacts using storage skill.
+- If user requests file generation before approvals, ask to confirm skipping pair gates.
+
 | Artifact | Comment |
 |----------|------|
 | Vision and Business Case | provides an executive summary. Describes the high-level goals and constraints, the business case, and provides an executice sumary |
@@ -39,21 +56,39 @@ The orchestrator will give you:
 # What you need to do (Pair Programming workflow)
 
 1. Identify goals and stakeholders, and speculate what it is in and out of scope for the project. refine it in collaboration with the user.
+  - Stop and request `OK PASO 1` before continuing.
 2. An actor-goal-use case table is written to the chat window. refine it in collaboration with the user.
+  - Stop and request `OK PASO 2` before continuing.
 3. write a use case context diagram and use case list to the chat window. refine it in collaboration with the user.
+  - Stop and request `OK PASO 3` before continuing.
 4. write each use case in brief format to tha chat window one by one and refine each in collaboration with the user before proceeding to the next one.
+  - Stop and request `OK PASO 4` before continuing.
 5. After this, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
+  - Stop and request `OK PASO 5` before continuing.
 6. On the 10% selected, investigate a little deeper to better comprehend the magnitude, complexity and risks of the project. write it to the chat window and refine it in collaboration with the user.
-7. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts you created, following the active Artifact Store Policy.**
+  - Stop and request `OK PASO 6` before persisting artifacts.
+7. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-6, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
-  - Pass the artifacts you just created to storage without asking the user to do it in chat.
+  - Pass only approved artifacts to storage.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
 8. **Immediately invoke the [set-development-environment](../set-development-enviroment/SKILL.md) skill to set up the development environment for the project.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass the project context you just created to the skill without asking the user to do it in chat.
   - If no context is detected, the skill must default to a standard setup.
 
+## Required Turn Template
+
+For each step, always respond in this order:
+1. Proposed draft for the current step (short and reviewable).
+2. Open questions or assumptions.
+3. Explicit approval request: `Escribe OK PASO N para continuar`.
+
+Do not include content for later steps until approval is received.
+
 ## Anti-Patterns
+- generating complete artifact files before user approvals in steps 1-6.
+- skipping explicit approval checkpoints between steps.
+- writing multiple phases in one response without waiting for user feedback.
 - atempt to define all the requirements.
 - expect reliable estimates or plans.
 define the architecture
