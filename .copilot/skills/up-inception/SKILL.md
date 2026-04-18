@@ -54,9 +54,9 @@ The orchestrator will give you:
 
 ## Write Gating Rules (MANDATORY)
 
-- During steps 1-6: no create/update file operations.
-- Allowed output during steps 1-6: chat content only (tables, diagrams, brief and fully dressed use cases).
-- After user approval of step 6 (`OK PASO 6`): persist artifacts using storage skill.
+- During steps 1-9: no create/update file operations.
+- Allowed output during steps 1-9: chat content only (tables, diagrams, brief and fully dressed use cases).
+- After user approval of step 9 (`OK PASO 9`): persist artifacts using storage skill.
 - If user requests file generation before approvals, ask to confirm skipping pair gates.
 
 | Artifact | Comment |
@@ -91,15 +91,15 @@ The orchestrator will give you:
   - Stop and request `OK PASO 8` before persisting artifacts.
 9. Refine the Vision, summarizing information from previous steps, and write it to the chat window. refine it in collaboration with the user.
   - Stop and request `OK PASO 9` before proceeding to storage.
-10. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-6, following the active Artifact Store Policy.**
+10. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-9, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass only approved artifacts to storage.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
-10. **Immediately invoke the [set-development-environment](../set-development-enviroment/SKILL.md) skill to set up the development environment for the project.**
+11. **Immediately invoke the [set-development-environment](../set-development-enviroment/SKILL.md) skill to set up the development environment for the project.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass the project context you just created to the skill without asking the user to do it in chat.
   - If no context is detected, the skill must default to a standard setup.
-11. Ask the user whether to archive the inception iteration.
+12. Ask the user whether to archive the inception iteration.
   - Treat this as an automatic step, not a user-driven action.
   - On confirmation, execute ALL of the following sub-steps in order — do NOT skip any:
     a. Move `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
