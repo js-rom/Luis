@@ -21,7 +21,18 @@ Unified Process Artifacts to persist
 
 ## Step 1: Persist Unified Process Artifacts
 
-Persist Unified Process Artifacts following the actives Artifact Store Policy and Conventions. If no policy is detected, default to `openspec` mode. If the policy is `none`, return results inline only and recommend enabling a persistence mode for better artifact management. **Only if** necessary file system paths do not exist, create them following applicable conventions. 
+Persist Unified Process Artifacts following the actives Artifact Store Policy and Conventions. If no policy is detected, default to `openspec` mode. If the policy is `none`, return results inline only and recommend enabling a persistence mode for better artifact management. **Only if** necessary file system paths do not exist, create them following applicable conventions.
+
+## Step 2: Archive (only when requested by orchestrator)
+
+When archiving an iteration, execute both sub-steps atomically — archiving is NOT complete until both are done:
+
+1. **Move** `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
+2. **Merge deltas** into master specs:
+   - For each file in `archive/.../artifacts/`: copy/update the corresponding file under `openspec/artifacts/{domain}/`.
+   - If the master file does not exist, create it.
+   - If it exists, read it first and update it with the delta content — do NOT overwrite blindly.
+3. Report both steps as done, listing every file merged. Do NOT declare archiving complete if the merge was skipped.
 
 # Results
 

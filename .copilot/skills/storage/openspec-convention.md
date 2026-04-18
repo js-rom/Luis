@@ -16,7 +16,7 @@ openspec/
 │   └── {domain}/
 │       ├── vision.md
 │       └── use-cases/
-└── iterations/                 <- Active iteration
+└── iterations/              <- Active iteration
     ├── archive/             <- Completed changes (YYYY-MM-DD-{iteration}/)
     └── {iteration}/         <- Active iteration folder
         ├── state.yaml       <- DAG state (survives compaction)
@@ -33,11 +33,11 @@ openspec/
 |-------|----------------|------|
 | orchestrator | Creates/Updates | `openspec/iterations/{iteration}/state.yaml` |
 | storage | Creates (required) | `openspec/config.yaml`, `openspec/artifacts/`, `openspec/iterations/`, `openspec/iterations/archive/`, `openspec/shemas/default/templates/`, `openspec/shemas/default/instructions/`|
-| up-inception | Creates (required) | `openspec/iterations/{iteration}/vision.md` |
-| up-inception | Creates (required) | `openspec/iterations/{iteration}/use-cases/UC{{#}} {{use-case.name}}.md` |
-| up-archive | Moves | `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` |
-| up-archive | Updates | `openspec/artifacts/{domain}/vision.md` (merges deltas into main specs) |
-| up-archive | Updates | `openspec/artifacts/{domain}/use-cases/{{use-case.name}}.md` (merges deltas into main specs) |
+| storage | Creates (required) | `openspec/iterations/{iteration}/vision.md` |
+| storage | Creates (required) | `openspec/iterations/{iteration}/use-cases/UC{{#}} {{use-case.name}}.md` |
+| storage | Moves | `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` |
+| storage | Updates | `openspec/artifacts/{domain}/vision.md` (merges deltas into main specs) |
+| storage | Updates | `openspec/artifacts/{domain}/use-cases/{{use-case.name}}.md` (merges deltas into main specs) |
 
 ## Default artifacts
 
@@ -65,5 +65,9 @@ When archiving, the change folder moves to:
 ```
 openspec/changes/archive/YYYY-MM-DD-{iteration}/
 ```
+and merges iteration deltas into main specs>
+ ```
+openspec/artifacts/{domain}/
+ ```
 
 Use today's date in ISO format. The archive is an AUDIT TRAIL — never delete or modify archived changes.

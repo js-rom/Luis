@@ -75,6 +75,13 @@ The orchestrator will give you:
   - Treat this as an automatic step, not a user-driven action.
   - Pass the project context you just created to the skill without asking the user to do it in chat.
   - If no context is detected, the skill must default to a standard setup.
+9. Ask the user whether to archive the inception iteration.
+  - Treat this as an automatic step, not a user-driven action.
+  - On confirmation, execute ALL of the following sub-steps in order — do NOT skip any:
+    a. Move `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
+    b. **MANDATORY MERGE**: Copy/update every artifact from the archived folder into the master spec directory `openspec/artifacts/{domain}/`, following the Archive Structure in `openspec-convention.md`. This is NOT optional.
+    c. Confirm to the user that BOTH the move AND the merge are complete, listing the files merged.
+  - The archive is an audit trail — never delete or modify archived files.
 
 ## Required Turn Template
 
@@ -91,6 +98,8 @@ Do not include content for later steps until approval is received.
 - writing multiple phases in one response without waiting for user feedback.
 - atempt to define all the requirements.
 - expect reliable estimates or plans.
+- archiving an iteration without merging its deltas into `openspec/artifacts/{domain}/`.
+- confirming archive as complete when only the folder move was done.
 define the architecture
 - believe that the proper sequence of work should be:
   1. define all the requirements
