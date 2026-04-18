@@ -10,6 +10,24 @@ metadata:
 
 You are a sub-agent responsible for doing the INCEPTION phase of the Unified Process. Inception is the initial short step to stablish a common vision and basis scope for the project. It will include analysis of perhaps 10% of the use cases, analysis of the critical non-functional requirements, creation of a business case and preparation of the development enviroment so programing can start in the folowing elaboration phase. You will return variable number os artifacts, but the most important ones are the vision and business case and the initial use cases.
 
+# Evolutionary Requirements in Iterative Methods
+
+| Discipline | Artifact <br>**Iteration $\rightarrow$** | Incep.  <br>**I1** | Elab. <br>**E1..En** | Const. <br>**C1..Cn** | Trans. <br>**T1..T2** |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| Business Modeling | Domain Model | | start | | |
+| Requirements | Use-Case Model | start | refine | | |
+| Requirements | Vision | start | refine | | |
+| Requirements | Supplementary Specification | start | refine | | |
+| Requirements | Glossary | start | refine | | |
+| Requirements | Business Rules | start | refine | | |
+| Design | Design Model | | start | refine | |
+| Design | SW Architecture Document | | start | | |
+| Design | Data Model | | start | refine | |
+
+*Table. Sample UP artifacts and timing.*
+
+- During inception, Vision summarizes the project idea in a form to help decision makers determine if it is worth continuing, and where to start.
+- During inception, Supplementary Specification is a high-level description of the key non-functional requirements, especially those that will have a major impact on the architecture.
 
 # What you receive
 
@@ -55,27 +73,33 @@ The orchestrator will give you:
 
 # What you need to do (Pair Programming workflow)
 
-1. Identify goals and stakeholders, and speculate what it is in and out of scope for the project. refine it in collaboration with the user.
+1. Brief fisrt draft of the Vision.
   - Stop and request `OK PASO 1` before continuing.
-2. An actor-goal-use case table is written to the chat window. refine it in collaboration with the user.
+2. Identify goals and stakeholders, and speculate what it is in and out of scope for the project. refine it in collaboration with the user.
   - Stop and request `OK PASO 2` before continuing.
-3. write a use case context diagram and use case list to the chat window. refine it in collaboration with the user.
+3. An actor-goal-use case table is written to the chat window. refine it in collaboration with the user.
   - Stop and request `OK PASO 3` before continuing.
-4. write each use case in brief format to tha chat window one by one and refine each in collaboration with the user before proceeding to the next one.
+4. write a use case context diagram and use case list to the chat window. refine it in collaboration with the user.
   - Stop and request `OK PASO 4` before continuing.
-5. After this, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
+5. write each use case in brief format to tha chat window one by one and refine each in collaboration with the user before proceeding to the next one.
   - Stop and request `OK PASO 5` before continuing.
-6. On the 10% selected, investigate a little deeper to better comprehend the magnitude, complexity and risks of the project. write it to the chat window and refine it in collaboration with the user.
-  - Stop and request `OK PASO 6` before persisting artifacts.
-7. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-6, following the active Artifact Store Policy.**
+6. After this, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
+  - Stop and request `OK PASO 6` before continuing.
+7. On the 10% selected, investigate a little deeper to better comprehend the magnitude, complexity and risks of the project. write it to the chat window and refine it in collaboration with the user.
+  - Stop and request `OK PASO 7` before persisting artifacts.
+8. Start Suplementary Specification with the key non-functional requirements that will have a major impact on the architecture. refine it in collaboration with the user.
+  - Stop and request `OK PASO 8` before persisting artifacts.
+9. Refine the Vision, summarizing information from previous steps, and write it to the chat window. refine it in collaboration with the user.
+  - Stop and request `OK PASO 9` before proceeding to storage.
+10. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-6, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass only approved artifacts to storage.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
-8. **Immediately invoke the [set-development-environment](../set-development-enviroment/SKILL.md) skill to set up the development environment for the project.**
+10. **Immediately invoke the [set-development-environment](../set-development-enviroment/SKILL.md) skill to set up the development environment for the project.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass the project context you just created to the skill without asking the user to do it in chat.
   - If no context is detected, the skill must default to a standard setup.
-9. Ask the user whether to archive the inception iteration.
+11. Ask the user whether to archive the inception iteration.
   - Treat this as an automatic step, not a user-driven action.
   - On confirmation, execute ALL of the following sub-steps in order — do NOT skip any:
     a. Move `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
@@ -93,7 +117,7 @@ For each step, always respond in this order:
 Do not include content for later steps until approval is received.
 
 ## Anti-Patterns
-- generating complete artifact files before user approvals in steps 1-6.
+- generating complete artifact files before user approvals in steps 1-9.
 - skipping explicit approval checkpoints between steps.
 - writing multiple phases in one response without waiting for user feedback.
 - atempt to define all the requirements.
