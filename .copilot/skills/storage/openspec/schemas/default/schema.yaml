@@ -6,7 +6,7 @@ artifacts:
     generates: vision.md
     description: Stored under 02 Requirements; describes the high-level goals and constraints, the business case, and provides an executive summary.
     template: vision.md
-    instruction: >
+    instruction: INVOKE this link -> "./instructions/Vision.md"
     requires: []
   - id: Supplementary Specification
     generates: supplementary-specification.md
@@ -32,6 +32,12 @@ artifacts:
     template: use-case-model.md
     instruction: INVOKE this link -> "./instructions/use-case-model.md"
     requires: [vision]
+  - id: Requirements Ranking
+    generates: requirements-ranking.md
+    description: Stored under 02 Requirements; ranks use cases or features by risk, coverage, and business criticality to guide iteration focus.
+    template: requirements-ranking.md
+    instruction: INVOKE this link -> "./instructions/requirements-ranking.md"
+    requires: [vision, use-case-model]
   - id: Use Case fully dressed
     generates: UC{{#}}.md
     description: Stored under 02 Requirements/use-cases; describes the functional requirements in fully dressed format.

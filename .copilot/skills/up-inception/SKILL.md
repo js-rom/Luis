@@ -35,6 +35,21 @@ The orchestrator will give you:
 - An idea of a project to explore
 - Relevant domain context when available (for example: Spain labor context, and actors such as employee, admin and HR for a work-time registry project)
 
+## Schema Bootstrap Contract (MANDATORY)
+
+- Before drafting anything for `PASO 1`, detect the active OpenSpec schema from `openspec/config.yaml`.
+- Resolve schema assets in this order:
+  1. `openspec/schemas/{schema}/...`
+  2. `.copilot/skills/storage/openspec/schemas/{schema}/...`
+- Read `schema.yaml` from the active schema and build a working map of `artifact -> instruction -> template`.
+- If a schema entry is incomplete but the matching file exists in the active schema folders, use the file that exists and keep going. Do not ignore existing instructions or templates just because the schema metadata is incomplete.
+- Before each step, load every instruction and template required for that step and treat them as the contract for headings, tables, diagrams, and minimum content.
+- When an instruction and a template overlap, apply this precedence:
+  1. Instruction for content rules and decision criteria.
+  2. Template for section names, order, and placeholder structure.
+- If a required section cannot be completed yet, keep the section and mark it as `TBD` or `pendiente de refinar`; never silently omit it.
+- Use the exact artifact names defined by the active schema when handing approved content to storage.
+
 # Guidelines
 
 - **Work in Pair Programming with the user. You take the role of the driver**. Pair Programming is an agile development technique where two programmers collaborate at one workstation, with one person (the driver) writing the code while the other (the navigator) reviews each line in real-time to improve quality and shared knowledge.
@@ -50,7 +65,7 @@ The orchestrator will give you:
 - Before every phase change, ask for explicit approval from the user.
 - Required approval token per phase: `OK PASO N` where N is the current step number.
 - If approval is missing, continue refining in chat and do not advance.
-- Persist artifacts only after steps 1-6 are approved.
+- Persist artifacts only after steps 1-9 are approved.
 
 ## Write Gating Rules (MANDATORY)
 
@@ -74,22 +89,46 @@ The orchestrator will give you:
 # What you need to do (Pair Programming workflow)
 
 1. Brief fisrt draft of the Vision.
+  - Artifact in progress: `Vision and Business Case`.
+  - Before drafting, load the active schema instruction for Vision and the active schema template `vision.md`.
+  - Even though this is a brief first draft, structure the response using the Vision headings required by the loaded instruction/template. Leave unresolved parts as `TBD` or `pendiente de refinar`.
   - Stop and request `OK PASO 1` before continuing.
 2. Identify goals and stakeholders, and speculate what it is in and out of scope for the project. refine it in collaboration with the user.
+  - Continue the `Vision and Business Case` artifact using the same Vision instruction/template loaded in `PASO 1`.
+  - Update stakeholder goals, user environment, scope boundaries, assumptions, and business framing using the structure required by the Vision artifact.
   - Stop and request `OK PASO 2` before continuing.
 3. An actor-goal-use case table is written to the chat window. refine it in collaboration with the user.
+  - Artifact in progress: `Use Case Model`.
+  - Before drafting, load the active schema instruction for use cases and the active schema template `use-case-model.md`.
+  - The actor-goal-use case table is a preparatory view for the Use Case Model and must stay consistent with the use case names that will appear later in the model.
   - Stop and request `OK PASO 3` before continuing.
 4. write a use case context diagram and use case list to the chat window. refine it in collaboration with the user.
+  - Continue the `Use Case Model` artifact using the same instruction/template loaded in `PASO 3`.
+  - The diagram must be written in plantuml grammar, and the use case list must be compatible with the `use-case-model.md` template.
   - Stop and request `OK PASO 4` before continuing.
 5. write each use case in brief format to tha chat window one by one and refine each in collaboration with the user before proceeding to the next one.
+  - Artifact in progress: `Use Case brief`.
+  - Before drafting each brief, load the active schema instruction for use cases and the active schema template `use-case-brief.md`.
+  - Keep each brief aligned with the use case names agreed in `PASO 3` and `PASO 4`; do not improvise a different naming scheme or format.
   - Stop and request `OK PASO 5` before continuing.
 6. After this, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
+  - Artifacts in progress: `Requirements Ranking` and `Use Case fully dressed`.
+  - Before choosing the 10%, load the active schema instruction/template for `Requirements Ranking` and produce an explicit ranking based on risk, coverage, and criticality.
+  - The 10% selection must be justified from that ranking; do not choose deep-dive use cases ad hoc.
+  - Before drafting each detailed case, load the active schema instruction for use cases and the active schema template `use-case-fully-dressed.md`.
   - Stop and request `OK PASO 6` before continuing.
 7. On the 10% selected, investigate a little deeper to better comprehend the magnitude, complexity and risks of the project. write it to the chat window and refine it in collaboration with the user.
+  - Continue working from the selected `Requirements Ranking` and `Use Case fully dressed` artifacts.
+  - Tie the deeper investigation back to the ranking criteria, the fully dressed special requirements, open issues, risks, and implementation uncertainty already surfaced.
   - Stop and request `OK PASO 7` before persisting artifacts.
 8. Start Suplementary Specification with the key non-functional requirements that will have a major impact on the architecture. refine it in collaboration with the user.
+  - Artifact in progress: `Supplementary Specification`.
+  - Before drafting, load the active schema instruction and template `suplementary-specification.md`.
+  - Organize the draft following the loaded FURPS+ structure and keep missing details explicit as `TBD` instead of skipping sections.
   - Stop and request `OK PASO 8` before persisting artifacts.
 9. Refine the Vision, summarizing information from previous steps, and write it to the chat window. refine it in collaboration with the user.
+  - Return to the `Vision and Business Case` artifact and reload the active schema instruction/template for Vision before drafting the refined version.
+  - The final Vision must conform to the same artifact structure used in `PASO 1` and `PASO 2`, enriched with validated information from the Use Case Model, Requirements Ranking, and Supplementary Specification.
   - Stop and request `OK PASO 9` before proceeding to storage.
 10. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-9, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
@@ -117,7 +156,23 @@ For each step, always respond in this order:
 
 Do not include content for later steps until approval is received.
 
+## Pre-Approval Validation (MANDATORY)
+
+Before asking for `OK PASO N`, verify internally that:
+
+- The step loaded the correct instruction and template files from the active schema or valid fallback.
+- The response uses section names and order compatible with the artifact in progress.
+- Mandatory tables are present when required by the instruction/template.
+- Required PlantUML blocks are present when the artifact calls for a diagram.
+- `PASO 6` explicitly applies risk, coverage, and criticality before selecting the 10% to deepen.
+- Missing information is marked as `TBD` or `pendiente de refinar`, not omitted.
+- The response does not leak content from later steps.
+
 ## Anti-Patterns
+- skipping the schema bootstrap or drafting without loading the relevant instruction/template files first.
+- ignoring available files in `openspec/schemas/...` or `.copilot/skills/storage/openspec/schemas/...` and improvising the structure.
+- using ad hoc headings that conflict with the active template for the current artifact.
+- selecting the 10% deep-dive use cases without an explicit ranking by risk, coverage, and criticality.
 - generating complete artifact files before user approvals in steps 1-9.
 - skipping explicit approval checkpoints between steps.
 - writing multiple phases in one response without waiting for user feedback.
