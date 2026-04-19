@@ -25,6 +25,8 @@ Persist Unified Process Artifacts following the active Artifact Store Policy and
 
 For `openspec` mode, store artifacts under `openspec/iterations/{iteration}/artifacts/{domain}/{discipline}/...` and ensure each `{domain}` uses the Unified Process discipline folders defined in `openspec-convention.md`. Create empty discipline folders only when necessary and keep them versioned with placeholder files when they do not contain artifacts yet.
 
+- Persist `Requirements Ranking` specifically under `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
+
 ## Step 2: Archive (only when requested by orchestrator)
 
 When archiving an iteration, execute both sub-steps atomically — archiving is NOT complete until both are done:
@@ -32,6 +34,7 @@ When archiving an iteration, execute both sub-steps atomically — archiving is 
 1. **Move** `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
 2. **Merge deltas** into master specs:
   - For each file in `archive/.../artifacts/{domain}/`: copy/update the corresponding file under `openspec/artifacts/{domain}/`, preserving the full discipline-relative path such as `02 Requirements/use-cases/UC01 ...`.
+  - This includes project-management artifacts such as `08 Project Management/Requirements Ranking.md`; do not remap them into `02 Requirements`.
    - If the master file does not exist, create it.
    - If it exists, read it first and update it with the delta content — do NOT overwrite blindly.
 3. Report both steps as done, listing every file merged. Do NOT declare archiving complete if the merge was skipped.

@@ -133,7 +133,7 @@ The orchestrator will give you:
 10. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-9, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass only approved artifacts to storage.
-  - Persist approved inception artifacts under the discipline directories defined in `openspec-convention.md`, typically `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/`.
+  - Persist approved inception artifacts under the discipline directories defined in `openspec-convention.md`; most inception artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/`, while `Requirements Ranking` must be stored as `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
 11. **Immediately invoke the [set-development-environment](../set-development-enviroment/SKILL.md) skill to set up the development environment for the project.**
   - Treat this as an automatic step, not a user-driven action.
