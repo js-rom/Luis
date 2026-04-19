@@ -21,7 +21,9 @@ Unified Process Artifacts to persist
 
 ## Step 1: Persist Unified Process Artifacts
 
-Persist Unified Process Artifacts following the actives Artifact Store Policy and Conventions. If no policy is detected, default to `openspec` mode. If the policy is `none`, return results inline only and recommend enabling a persistence mode for better artifact management. **Only if** necessary file system paths do not exist, create them following applicable conventions.
+Persist Unified Process Artifacts following the active Artifact Store Policy and Conventions. If no policy is detected, default to `openspec` mode. If the policy is `none`, return results inline only and recommend enabling a persistence mode for better artifact management. **Only if** necessary file system paths do not exist, create them following applicable conventions.
+
+For `openspec` mode, store artifacts under `openspec/iterations/{iteration}/artifacts/{domain}/{discipline}/...` and ensure each `{domain}` uses the Unified Process discipline folders defined in `openspec-convention.md`. Create empty discipline folders only when necessary and keep them versioned with placeholder files when they do not contain artifacts yet.
 
 ## Step 2: Archive (only when requested by orchestrator)
 
@@ -29,7 +31,7 @@ When archiving an iteration, execute both sub-steps atomically — archiving is 
 
 1. **Move** `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
 2. **Merge deltas** into master specs:
-   - For each file in `archive/.../artifacts/`: copy/update the corresponding file under `openspec/artifacts/{domain}/`.
+  - For each file in `archive/.../artifacts/{domain}/`: copy/update the corresponding file under `openspec/artifacts/{domain}/`, preserving the full discipline-relative path such as `02 Requirements/use-cases/UC01 ...`.
    - If the master file does not exist, create it.
    - If it exists, read it first and update it with the delta content — do NOT overwrite blindly.
 3. Report both steps as done, listing every file merged. Do NOT declare archiving complete if the merge was skipped.
@@ -54,5 +56,5 @@ Do only for enabled modes.
 
 | Mode | Recovery |
 |------|----------|
-| `openspec` | read `openspec/changes/*/state.yaml` |
+| `openspec` | read `openspec/iterations/{iteration}/state.yaml` or `openspec/iterations/archive/YYYY-MM-DD-{iteration}/state.yaml` |
 | `none` | State not persisted — explain to user |

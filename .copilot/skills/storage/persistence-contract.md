@@ -13,7 +13,7 @@ The orchestrator persists DAG state after each phase transition to enable SDD re
 
 | Mode | Persist State | Recover State |
 |------|--------------|---------------|
-| `openspec` | Write `openspec/changes/{change-name}/state.yaml` | Read `openspec/changes/{change-name}/state.yaml` |
+| `openspec` | Write `openspec/iterations/{iteration}/state.yaml` | Read `openspec/iterations/{iteration}/state.yaml` or `openspec/iterations/archive/YYYY-MM-DD-{iteration}/state.yaml` |
 | `none` | Not possible — warn user | Not possible |
 
 ## Common Rules

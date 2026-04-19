@@ -94,6 +94,7 @@ The orchestrator will give you:
 10. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-9, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass only approved artifacts to storage.
+  - Persist approved inception artifacts under the discipline directories defined in `openspec-convention.md`, typically `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/`.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
 11. **Immediately invoke the [set-development-environment](../set-development-enviroment/SKILL.md) skill to set up the development environment for the project.**
   - Treat this as an automatic step, not a user-driven action.
@@ -103,7 +104,7 @@ The orchestrator will give you:
   - Treat this as an automatic step, not a user-driven action.
   - On confirmation, execute ALL of the following sub-steps in order — do NOT skip any:
     a. Move `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
-    b. **MANDATORY MERGE**: Copy/update every artifact from the archived folder into the master spec directory `openspec/artifacts/{domain}/`, following the Archive Structure in `openspec-convention.md`. This is NOT optional.
+    b. **MANDATORY MERGE**: Copy/update every artifact from the archived folder into the master spec directory `openspec/artifacts/{domain}/`, preserving the discipline-relative path defined in `openspec-convention.md`. This is NOT optional.
     c. Confirm to the user that BOTH the move AND the merge are complete, listing the files merged.
   - The archive is an audit trail — never delete or modify archived files.
 
@@ -122,7 +123,7 @@ Do not include content for later steps until approval is received.
 - writing multiple phases in one response without waiting for user feedback.
 - atempt to define all the requirements.
 - expect reliable estimates or plans.
-- archiving an iteration without merging its deltas into `openspec/artifacts/{domain}/`.
+- archiving an iteration without merging its deltas into the matching discipline path under `openspec/artifacts/{domain}/`.
 - confirming archive as complete when only the folder move was done.
 define the architecture
 - believe that the proper sequence of work should be:

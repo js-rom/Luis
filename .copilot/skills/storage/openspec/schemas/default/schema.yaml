@@ -1,22 +1,46 @@
 name: my-workflow
 version: 1
-description: Default OpenSpec workflow - vision → use-case
+description: Default OpenSpec workflow - requirements-first inception artifacts
 artifacts:
   - id: Vision and Business Case
     generates: vision.md
-    description: Describes the high-level goals and constraints, the business case, and provides an executive summary.
+    description: Stored under 02 Requirements; describes the high-level goals and constraints, the business case, and provides an executive summary.
     template: vision.md
     instruction: >
     requires: []
+  - id: Supplementary Specification
+    generates: supplementary-specification.md
+    description: Stored under 02 Requirements; captures non-functional, cross-cutting, and constraint-oriented requirements.
+    template: suplementary-specification.md
+    instruction: INVOKE this link -> "./instructions/suplementary-specification.md"
+    requires: [vision]
+  - id: Glossary
+    generates: glosary.md
+    description: Stored under 02 Requirements; captures key domain terminology and data dictionary entries.
+    template: glosary.md
+    instruction: INVOKE this link -> "./instructions/glosary.md"
+    requires: [vision]
+  - id: Domain Rules
+    generates: domain-rules.md
+    description: Stored under 02 Requirements; captures long-lived domain and policy rules.
+    template: domain-rules.md
+    instruction: INVOKE this link -> "./instructions/domain-rules.md"
+    requires: [vision]
+  - id: Use Case Model
+    generates: Use Case Model.md
+    description: Stored under 02 Requirements; captures the use case diagram and catalog.
+    template: use-case-model.md
+    instruction: INVOKE this link -> "./instructions/use-case-model.md"
+    requires: [vision]
   - id: Use Case fully dressed
     generates: UC{{#}}.md
-    description: Describe the functional requirements in fully dressed format.
+    description: Stored under 02 Requirements/use-cases; describes the functional requirements in fully dressed format.
     template: use-case-fully-dressed.md
-    instruction: INVOKE this link -> "./instructions/Use Case Model.md"
+    instruction: INVOKE this link -> "./instructions/use-case-model.md"
     requires: [vision]
   - id: Use Case brief
     generates: UC{{#}}.md
-    description: Describe the functional requirements in brief format.
+    description: Stored under 02 Requirements/use-cases; describes the functional requirements in brief format.
     template: use-case-brief.md
-    instruction: INVOKE this link -> "./instructions/Use Case Model.md"
+    instruction: INVOKE this link -> "./instructions/use-case-model.md"
     requires: [vision]

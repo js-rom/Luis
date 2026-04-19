@@ -53,8 +53,9 @@ When creating or updating OpenSpec artifacts:
 2. Ensure iteration folder exists before writing artifacts.
 3. If iteration folder already has artifacts, continue that iteration (do not reinitialize).
 4. Use schema templates and instructions from openspec/schemas/default/.
-5. Write iteration deltas under openspec/iterations/{iteration}/artifacts/.
-6. Merge to openspec/artifacts/{domain}/ only via archive flow, preserving audit trail.
+5. Write iteration deltas under openspec/iterations/{iteration}/artifacts/{domain}/.
+6. Organize each `{domain}` by the Unified Process discipline directories `01 Business Modeling` through `09 Enviroment`.
+7. Merge to openspec/artifacts/{domain}/ only via archive flow, preserving the discipline-relative path and audit trail.
 
 ### Sub-Agent Context Protocol
 
