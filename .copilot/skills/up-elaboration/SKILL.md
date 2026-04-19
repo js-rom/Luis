@@ -115,22 +115,22 @@ The orchestrator will give you:
 
 ...
 
-98. Refine  Requirements Ranking based on  iteration feedback if any (new features or use cases, defects, changes in priorities). Refine it in collaboration with the user.
+10. Refine  Requirements Ranking based on  iteration feedback if any (new features or use cases, defects, changes in priorities). Refine it in collaboration with the user.
   - Artifacts in progress: `Requirements Ranking`
   - Before refining, load the active schema instruction for use cases and the active schema template `requirements-ranking.md`.
   - Stop and request `OK PASO 1` before continuing.
-99. based on the Requirements Ranking, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
+11. based on the Requirements Ranking, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
   - Artifacts in progress: `Requirements Ranking` and `Use Case fully dressed`.
   - Before choosing the 10%, load the active schema instruction/template for `Requirements Ranking` and produce an explicit ranking based on risk, coverage, and criticality.
   - The 10% selection must be justified from that ranking; do not choose deep-dive use cases ad hoc.
   - Before drafting each detailed case, load the active schema instruction for use cases and the active schema template `use-case-fully-dressed.md`.
   - Stop and request `OK PASO 6` before continuing.
-10. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-9, following the active Artifact Store Policy.**
+12. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-9, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass only approved artifacts to storage.
   - Persist approved inception artifacts under the discipline directories defined in `openspec-convention.md`; requirement artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/`, design artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/`, Business Modeling artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/01 Business Modeling/`, while `Requirements Ranking` and `Iteration Plan` must be stored as `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
-12. Ask the user whether to archive the inception iteration.
+13. Ask the user whether to archive the inception iteration.
   - Treat this as an automatic step, not a user-driven action.
   - On confirmation, execute ALL of the following sub-steps in order — do NOT skip any:
     a. Move `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
@@ -138,7 +138,7 @@ The orchestrator will give you:
     c. Confirm to the user that BOTH the move AND the merge are complete, listing the files merged.
   - The archive is an audit trail — never delete or modify archived files.
 
-99. repeat step 1 to 98 for each iteration.
+14. repeat step 1 to 13 for each iteration until all requirements are addressed.
 
 
 
