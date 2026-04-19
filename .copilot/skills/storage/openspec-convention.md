@@ -35,6 +35,8 @@ openspec/
 │       ├── 07 Configuration & CM/
 │       │   └── .gitkeep
 │       ├── 08 Project Management/
+│       │   ├── use-cases/
+│       │   │   └── {iteration} Plan.md
 │       │   └── Requirements Ranking.md
 │       └── 09 Enviroment/
 │           └── .gitkeep
@@ -63,7 +65,7 @@ openspec/
 | `05 Test` | Test artifacts | Reserved |
 | `06 Deployment` | Deployment artifacts | Reserved |
 | `07 Configuration & CM` | Configuration and change-management artifacts | Reserved |
-| `08 Project Management` | Project planning and tracking artifacts | `Requirements Ranking.md` |
+| `08 Project Management` | Project planning and tracking artifacts | `Requirements Ranking.md`, `Iteration Plan` |
 | `09 Enviroment` | Environment setup and support artifacts | Reserved |
 
 ## Artifact File Paths
@@ -82,7 +84,7 @@ openspec/
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Design Model.md` |
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md` |
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Data Model.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md` |
+| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`, `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Iteration Plan.md` |
 | storage | Moves | `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` |
 | storage | Updates | `openspec/artifacts/{domain}/{discipline}/...` (merges deltas into main specs while preserving the discipline-relative path) |
 
@@ -104,6 +106,7 @@ design model: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Desig
 SW architecture document: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md
 data model: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Data Model.md
 requirements-ranking: openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md
+Iteration Plan: openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Iteration Plan.md
 artifacts: openspec/iterations/{iteration}/artifacts/{domain}/  (all discipline subdirectories)
 config: openspec/config.yaml
 ```

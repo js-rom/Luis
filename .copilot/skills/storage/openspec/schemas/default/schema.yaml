@@ -38,6 +38,12 @@ artifacts:
     template: requirements-ranking.md
     instruction: INVOKE this link -> "./instructions/requirements-ranking.md"
     requires: [vision, use-case-model]
+  - id: Iteration Plan
+    generates: Iteration Plan.md
+    description: Stored under 08 Project Management; captures the time-boxed iteration goal, team capacity, selected scope, task breakdown, estimates, risks, and exit criteria.
+    template: iteration-plan.md
+    instruction: INVOKE this link -> "./instructions/iteration-plan.md"
+    requires: [requirements-ranking, use-case-model]
   - id: Use Case fully dressed
     generates: UC{{#}}.md
     description: Stored under 02 Requirements/use-cases; describes the functional requirements in fully dressed format.

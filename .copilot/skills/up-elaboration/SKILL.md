@@ -45,12 +45,26 @@ The orchestrator will give you:
 - The project files, which you can analyze to detect the tech stack and code patterns.
 - The project configuration from `openspec/config.yaml`, which may include specific rules for elaboration
 
+## Schema Bootstrap Contract (MANDATORY)
+
+- Before drafting anything for `PASO 1`, detect the active OpenSpec schema from `openspec/config.yaml`.
+- Resolve schema assets in this order:
+  1. `openspec/schemas/{schema}/...`
+  2. `.copilot/skills/storage/openspec/schemas/{schema}/...`
+- Read `schema.yaml` from the active schema and build a working map of `artifact -> instruction -> template`.
+- If a schema entry is incomplete but the matching file exists in the active schema folders, use the file that exists and keep going. Do not ignore existing instructions or templates just because the schema metadata is incomplete.
+- Before each step, load every instruction and template required for that step and treat them as the contract for headings, tables, diagrams, and minimum content.
+- When an instruction and a template overlap, apply this precedence:
+  1. Instruction for content rules and decision criteria.
+  2. Template for section names, order, and placeholder structure.
+- If a required section cannot be completed yet, keep the section and mark it as `TBD` or `pendiente de refinar`; never silently omit it.
+- Use the exact artifact names defined by the active schema when handing approved content to storage.
+
 # Guidelines
 
 - **Work in Pair Programming with the user. You take the role of the driver**. Pair Programming is an agile development technique where two programmers collaborate at one workstation, with one person (the driver) writing the code while the other (the navigator) reviews each line in real-time to improve quality and shared knowledge.
 - UML diagrams must be written in plantuml grammar.
-- Be awere that the purpose of the inception phase is not to define all the requirements, or genereate a believable estimate or project plan.
-- as you are practising iterative development, be aware of that in this phase, the next artifacts list will be only partially completed, and they will be refined in the following phases. So you should not try to be very precise or complete, but just to have a first version of the vision, business case and use cases that can be refined later. Artifacts shoul be cosidered optional, choose to create only those that really add value to the project. 
+- Be aware that the purpose of the Elaboration phase is to refine the vision, iteratively implement the core architecture, resolve high risks, identify most requirements and scope, and provide more realistic estimates.
 
 ## Pair Programming Contract (MANDATORY)
 
@@ -85,38 +99,37 @@ The orchestrator will give you:
 |Software Architecture Document|A learning aid that summarizes the key architecturl issues and their resolution in the design. It is a summary of the outstanding design ideas and their motivation in the system|
 |Data Model|This includes the database schemas, and tha mapping strategy between objects and non-object representations|
 |Use-Case Storyboards, UI Prototypes|A description of the user interface, paths of navigation, usability models, and so forth|
+|Requirements Ranking|A prioritized list of requirements based on risk, coverage, and criticality|
 
 # What you need to do (Pair Programming workflow)
 
-1. Select the most architecturally significant, risky, and high business value use case and consider a subset of its most critical scenarios to be implemented in this iteration. It is common to work on varying scenarios of the same use case over severall iterations and gradually extend the system.
+
+1. Plan the iteration based on the Requirements Ranking, selecting the most risky, valuable and least covered use cases, use case scenarios or features (10% chosen in previous iterations from inception or elaboration). Refine it in collaboration with the user.
+  - Artifacts in progress: `Requirements Ranking` and `Iteration Plan`
+  - Before planning, load the active schema instruction Iteration Plan and the active schema template `Iteration Plan.md`.
   - Stop and request `OK PASO 1` before continuing.
-
-
-
-2. Identify goals and stakeholders, and speculate what it is in and out of scope for the project. refine it in collaboration with the user.
+2. Elaborate Domain Model.
+  - Artifacts in progress: `Domain Model`
+  - Before elaborating, load the active schema instruction for domain models and the active schema template `domain-model.md`.
   - Stop and request `OK PASO 2` before continuing.
-3. An actor-goal-use case table is written to the chat window. refine it in collaboration with the user.
-  - Stop and request `OK PASO 3` before continuing.
-4. write a use case context diagram and use case list to the chat window. refine it in collaboration with the user.
-  - Stop and request `OK PASO 4` before continuing.
-5. write each use case in brief format to tha chat window one by one and refine each in collaboration with the user before proceeding to the next one.
-  - Stop and request `OK PASO 5` before continuing.
-6. After this, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
+
+...
+
+98. Refine  Requirements Ranking based on  iteration feedback if any (new features or use cases, defects, changes in priorities). Refine it in collaboration with the user.
+  - Artifacts in progress: `Requirements Ranking`
+  - Before refining, load the active schema instruction for use cases and the active schema template `requirements-ranking.md`.
+  - Stop and request `OK PASO 1` before continuing.
+99. based on the Requirements Ranking, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
+  - Artifacts in progress: `Requirements Ranking` and `Use Case fully dressed`.
+  - Before choosing the 10%, load the active schema instruction/template for `Requirements Ranking` and produce an explicit ranking based on risk, coverage, and criticality.
+  - The 10% selection must be justified from that ranking; do not choose deep-dive use cases ad hoc.
+  - Before drafting each detailed case, load the active schema instruction for use cases and the active schema template `use-case-fully-dressed.md`.
   - Stop and request `OK PASO 6` before continuing.
-7. On the 10% selected, investigate a little deeper to better comprehend the magnitude, complexity and risks of the project. write it to the chat window and refine it in collaboration with the user.
-  - Stop and request `OK PASO 7` before persisting artifacts.
-8. Start Suplementary Specification with the key non-functional requirements that will have a major impact on the architecture. refine it in collaboration with the user.
-  - Stop and request `OK PASO 8` before persisting artifacts.
-9. Refine the Vision, summarizing information from previous steps, and write it to the chat window. refine it in collaboration with the user.
-  - Stop and request `OK PASO 9` before proceeding to storage.
 10. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-9, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass only approved artifacts to storage.
+  - Persist approved inception artifacts under the discipline directories defined in `openspec-convention.md`; requirement artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/`, design artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/`, Business Modeling artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/01 Business Modeling/`, while `Requirements Ranking` and `Iteration Plan` must be stored as `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
-11. **Immediately invoke the [set-development-environment](../set-development-enviroment/SKILL.md) skill to set up the development environment for the project.**
-  - Treat this as an automatic step, not a user-driven action.
-  - Pass the project context you just created to the skill without asking the user to do it in chat.
-  - If no context is detected, the skill must default to a standard setup.
 12. Ask the user whether to archive the inception iteration.
   - Treat this as an automatic step, not a user-driven action.
   - On confirmation, execute ALL of the following sub-steps in order — do NOT skip any:
@@ -124,6 +137,11 @@ The orchestrator will give you:
     b. **MANDATORY MERGE**: Copy/update every artifact from the archived folder into the master spec directory `openspec/artifacts/{domain}/`, preserving the discipline-relative path defined in `openspec-convention.md`. This is NOT optional.
     c. Confirm to the user that BOTH the move AND the merge are complete, listing the files merged.
   - The archive is an audit trail — never delete or modify archived files.
+
+99. repeat step 1 to 98 for each iteration.
+
+
+
 
 ## Required Turn Template
 
