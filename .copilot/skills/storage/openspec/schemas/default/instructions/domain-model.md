@@ -35,6 +35,7 @@
 
 ## Domain Model antin-patterns
 - models diagrams describig software classes, the domain layer of a software architecture, or software objects with responsabilities instead of real-situation objects without operations.
+- use associations as an statemen about data flows, database foreign key relationship, instace variables or objects connection in a software solution.
 
 ## Workflow (mandatory pair programming)
 Bounded by he curent iteration requirements under design:
@@ -70,5 +71,50 @@ Make a list of candidate conceptual classes. The table below contains many commo
 
 use linguistic analysis to identify the nouns and noun phrases in textual descriptions of a domain, and cosider them as candidate conceptual classes or attributes. The fully dressed use cases are an excelent description to draw from for this analysis.
 
-## Associations
+## Associations Guidelines
+
+An association is a relationship between instances of classes and usually imply to be preserved for some duration.
+
+- Considere including the following asociations in a domain model>
+    - Associations for which knowledge of the relationship needs to be preserved for some duration ("need-to-remeber" association).
+    - Associations derived from the common Associations List.
+- Avoid adding too many associations, focus on "need-to-remeber" associations.
+- in a domain model an association is an statement that a relationship is meaninful in a purely conceptual perspective. That said, many of this relationships **will** be implemented in software as paths of navigation a visibility, but not in the domain model.
+
+### Notation
+- An association is represented as a line between classes qieth a capitalized association name.
+- The end of an association may contain a multiplicity expression indicating the numerical relationship between instances of classes. It comunicates how many instances can be validly associated with another at a particular moment. for exmpample:
+    - zero: 0
+    - zero or one: 0..1
+    - one: 1
+    - many: *
+    - zero or many: 0..*
+    - one or many: 1..*
+    - a concrete number, for emxaple: 3
+    - one to forty: 1..40
+    - exactcly three, five or eight: 3, 5, 8
+- The association is inherently bidirectional, meaning that from instances od either class, logicl¡al traversal to the other is possible. This traversal is purely abstract; it is not a statement about connections between software entities.
+- Name an association based on a ClassName-VerbPhrase-ClassName format where the verb phrase creates a sequence that is readable and meaninful. Simple associations names such as "Has" or "Uses" are usually poor, as they seldom enhance our understanding of the domain. For example:
+    - prefer "Sale Paid-by CashPayment" over "Sale Uses CashPayment"
+    - prefer "Player Is-on Squeare" over "Player Has Square"
+- Association names must star with a capital letter.
+- multiplicity communicates a domain constraint that will be (or could be) reflected in software.
+- two classes may have multiple associations between them. for example the class Flight and Airport hava Flies-to and Flies-From associations.
+
+### how to find associations with a common Associations List
+
+| Category | Examples |
+|---|---|
+| A is a transaction related to another transaction B | CashPayment - Sale<br>Cancellation - Reservation |
+| A is a line item of a transaction B | SalesLineItem - Sale |
+| A is a product or service for a transaction (or line item) B | Item - SalesLineItem (or Sale)<br>Flight - Reservation |
+| A is a role related to a transaction B | Customer - Payment<br>Passenger - Ticket |
+| A is a physical or logical part of B | Drawer - Register<br>Square - Board<br>Seat - Airplane |
+| A is physically or logically contained in/on B | Register—Store, Item—Shelf<br>Square—Board<br>Passenger—Airplane |
+| A is a description for B | ProductDescription—Item<br>FlightDescription—Flight |
+| A is known/logged/recorded/reported/captured in B | Sale—Register<br>Piece—Square<br>Reservation—FlightManifest |
+| A is a member of B | Cashier—Store<br>Player—MonopolyGame<br>Pilot—Airline |
+| A is an organizational subunit of B | Department—Store<br>Maintenance—Airline |
+| A uses or manages or owns B | Cashier—Register<br>Player—Piece<br>Pilot—Airplane |
+| A is next to B | SalesLineItem—SalesLineItem<br>Square—Square<br>City—City |
 
