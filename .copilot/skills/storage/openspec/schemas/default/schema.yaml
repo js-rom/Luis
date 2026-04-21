@@ -62,3 +62,9 @@ artifacts:
     template: system-sequence-diagram.md
     instruction: INVOKE this link -> "./instructions/system-sequence-diagram.md"
     requires: [use-case-model]
+  - id: Operation Contracts
+    generates: Contract CO{{#}} UC{{#}} {{use-case.name}}.md
+    description: Stored under 02 Requirements/Operation Contracts; defines postconditions for system operations identified from SSDs.
+    template: operation-contracts.md
+    instruction: INVOKE this link -> "./instructions/operation-contracts.md"
+    requires: [use-case-model]
