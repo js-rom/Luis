@@ -14,6 +14,6 @@
         {end ssd}
     - Operation Contracts:
         {for operation-contract in use-case-related-operation-contracts}
-        - [{{operation-contract name}}](./operation-contracts/{{relative path to operation-contract `%20` for empty espaces}})
+        - [{{operation-contract name}}](./Operation%20Contracts/{{relative path to operation-contract `%20` for empty espaces}})
         {end operation-contract}
 {end use-case}
