@@ -56,3 +56,9 @@ artifacts:
     template: use-case-brief.md
     instruction: INVOKE this link -> "./instructions/use-case-model.md"
     requires: [vision]
+  - id: System Sequence Diagram
+    generates: SSD UC{{#}} {{use-case.name}}.md
+    description: Stored under 02 Requirements/SSDs; captures actor-system message flow for a use case scenario.
+    template: system-sequence-diagram.md
+    instruction: INVOKE this link -> "./instructions/system-sequence-diagram.md"
+    requires: [use-case-model]

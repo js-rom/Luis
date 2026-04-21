@@ -20,12 +20,14 @@ openspec/
 │       │   ├── glosary.md
 │       │   ├── domain-rules.md
 │       │   ├── Use Case Model.md
-│       │   └── use-cases/
-│       │       └── UC{{#}} {{use-case.name}}.md
+│       │   ├── use-cases/
+│       │   │   └── UC{{#}} {{use-case.name}}.md
+│       │   └── SSDs/
+│       │       └── SSD UC{{#}} {{use-case.name}}.md
 │       ├── 03 Design/
 │       │   ├── Design Model.md
 │       │   ├── SW Architecture Document.md
-│       │   └── Data Model.md
+│       │   ├── Data Model.md
 │       ├── 04 Implementation/
 │       │   └── .gitkeep
 │       ├── 05 Test/
@@ -59,7 +61,7 @@ openspec/
 | Directory | Purpose | Current artifact allocation |
 |-----------|---------|----------------------------|
 | `01 Business Modeling` | Domain-level business concepts and relationships | `Domain Model.md` |
-| `02 Requirements` | Vision, use cases, supplementary requirements, glossary, and domain rules | `vision.md`, `supplementary-specification.md`, `glosary.md`, `domain-rules.md`, `Use Case Model.md`, `use-cases/` |
+| `02 Requirements` | Vision, use cases, supplementary requirements, glossary, and domain rules | `vision.md`, `supplementary-specification.md`, `glosary.md`, `domain-rules.md`, `Use Case Model.md`, `use-cases/`, `SSDs/SSD UC{{#}} {{use-case.name}}.md` |
 | `03 Design` | Logical design and architecture artifacts | `Design Model.md`, `SW Architecture Document.md`, `Data Model.md` |
 | `04 Implementation` | Implementation-level artifacts | Reserved |
 | `05 Test` | Test artifacts | Reserved |
@@ -81,6 +83,7 @@ openspec/
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/domain-rules.md` |
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/Use Case Model.md` |
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/use-cases/UC{{#}} {{use-case.name}}.md` |
+| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/SSDs/SSD UC{{#}} {{use-case.name}}.md` |
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Design Model.md` |
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md` |
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Data Model.md` |
@@ -101,6 +104,7 @@ glosary: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/glos
 domain rules: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/domain-rules.md
 use case model: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/Use Case Model.md
 use case: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/use-cases/UC{{#}} {{use-case.name}}.md
+system sequence diagram: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/SSDs/SSD UC{{#}} {{use-case.name}}.md
 domain model: openspec/iterations/{iteration}/artifacts/{domain}/01 Business Modeling/Domain Model.md
 design model: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Design Model.md
 SW architecture document: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md

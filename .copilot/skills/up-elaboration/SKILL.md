@@ -103,16 +103,20 @@ The orchestrator will give you:
 
 # What you need to do (Pair Programming workflow)
 
-
+0. At any step, suggest to add relevant domain conepts to the Glossary.
+ - Before starting step 1, load the active schema instruction for glossary and the active schema template `glossary.md` to check if there are any specific rules or structure to follow.
 1. Plan the iteration based on the Requirements Ranking, selecting the most risky, valuable and least covered use cases, use case scenarios or features (10% chosen in previous iterations from inception or elaboration). Refine it in collaboration with the user.
   - Artifacts in progress: `Requirements Ranking` and `Iteration Plan`
   - Before planning, load the active schema instruction Iteration Plan and the active schema template `Iteration Plan.md`.
   - Stop and request `OK PASO 1` before continuing.
-2. Elaborate Domain Model.
+2. Elaborate Domain Model for the current iteration.
   - Artifacts in progress: `Domain Model`
   - Before elaborating, load the active schema instruction for domain models and the active schema template `domain-model.md`.
   - Stop and request `OK PASO 2` before continuing.
-
+3. Elaborate Syste Sequence Diagrams for the use cases in scope for the iteration.
+  - Artifacts in progress: `System Sequence Diagrams`
+  - Before elaborating, load the active schema instruction for sequence diagrams and the active schema template `sequence-diagram.md`.
+  - Stop and request `OK PASO 3` before continuing.
 ...
 
 10. Refine  Requirements Ranking based on  iteration feedback if any (new features or use cases, defects, changes in priorities). Refine it in collaboration with the user.
