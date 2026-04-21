@@ -23,7 +23,7 @@ key ideas:
 
 | Discipline | Artifact <br>**Iteration $\rightarrow$** | Incep.  <br>**I1** | Elab. <br>**E1..En** | Const. <br>**C1..Cn** | Trans. <br>**T1..T2** |
 | :--- | :--- | :---: | :---: | :---: | :---: |
-| Business Modeling | Domain Model | | start | | |
+| Business Modeling | Domain Model | | start or refine | | |
 | Requirements | Use-Case Model | start | refine | | |
 | Requirements | Vision | start | refine | | |
 | Requirements | Supplementary Specification | start | refine | | |
