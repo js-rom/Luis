@@ -109,14 +109,28 @@ The orchestrator will give you:
   - Artifacts in progress: `Requirements Ranking` and `Iteration Plan`
   - Before planning, load the active schema instruction Iteration Plan and the active schema template `Iteration Plan.md`.
   - Stop and request `OK PASO 1` before continuing.
+  - After approval, store the `Iteration Plan` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Iteration Plan.md`.
 2. Elaborate Domain Model for the current iteration.
   - Artifacts in progress: `Domain Model`
   - Before elaborating, load the active schema instruction for domain models and the active schema template `domain-model.md`.
   - Stop and request `OK PASO 2` before continuing.
+  - After approval, store the `Domain Model` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/01 Business Modeling/Domain Model.md`.
 3. Elaborate Syste Sequence Diagrams for the use cases in scope for the iteration.
   - Artifacts in progress: `System Sequence Diagrams`
   - Before elaborating, load the active schema instruction for sequence diagrams and the active schema template `sequence-diagram.md`.
   - Stop and request `OK PASO 3` before continuing.
+  - After approval, store the `System Sequence Diagrams` artifacts using the storage skill, following the active Artifact Store Policy. They should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/SSDs/SSD UC{{#}} {{use-case.name}}.md`.
+4. Elaborate Operation Contracts for the use cases in scope for the iteration.
+  - Artifacts in progress: `Operation Contracts`
+  - Before elaborating, load the active schema instruction for operation contracts and the active schema template `operation-contract.md`.
+  - If new discoveries during elaboration require changes to the vision, use-case model, supplementary specification, glossary, or risk list, update them in collaboration with the user and load the updated artifacts to storage before proceeding.
+  - Stop and request `OK PASO 4` before continuing.
+  - After approval, store the `Operation Contracts` artifacts using the storage skill, following the active Artifact Store Policy. They should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/Operation Contracts/Contract CO{#} UC{{#}} {{use-case.name}}.md`.
+5. Elaborate the SW Architecture Document, describing the key architectural decisions, patterns, and rationale for the current iteration.
+  - Artifacts in progress: `SW Architecture Document`
+  - Before elaborating, load the active schema instruction for architecture documents and the active schema template `sw-architecture-document.md`.
+  - Stop and request `OK PASO 5` before continuing.
+  - After approval, store the `SW Architecture Document` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md`.
 ...
 
 10. Refine  Requirements Ranking based on  iteration feedback if any (new features or use cases, defects, changes in priorities). Refine it in collaboration with the user.
@@ -142,7 +156,7 @@ The orchestrator will give you:
     c. Confirm to the user that BOTH the move AND the merge are complete, listing the files merged.
   - The archive is an audit trail — never delete or modify archived files.
 
-14. repeat step 1 to 13 for each iteration until all requirements are addressed.
+14. repeat step 1 to 13 for each iteration until 80% of requirements are addressed.
 
 
 

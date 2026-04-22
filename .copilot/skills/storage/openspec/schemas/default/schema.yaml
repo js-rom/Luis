@@ -68,3 +68,9 @@ artifacts:
     template: operation-contracts.md
     instruction: INVOKE this link -> "./instructions/operation-contracts.md"
     requires: [use-case-model]
+  - id: SW Architecture Document
+    generates: SW Architecture Document.md
+    description: Stored under 03 Design; documents architecture drivers, significant decisions, 4+1 views, quality scenarios, and evolution strategy.
+    template: SW Architecture Document.md
+    instruction: INVOKE this link -> "./instructions/SW Architecture Document.md"
+    requires: [vision, supplementary-specification, use-case-model, domain-model]
