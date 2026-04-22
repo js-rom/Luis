@@ -22,13 +22,15 @@
 
 ### Preconditions (optional)
 
-- {{operation.precondition-1}}
+{for precondition in operation.preconditions}
+- {{operation.precondition-#}}
+{end precondition}
 
 ### Postconditions
 
-- {{operation.postcondition-1}}
-- {{operation.postcondition-2}}
-- {{operation.postcondition-3}}
+{for postcondition in operation.postconditions}
+- {{operation.postcondition-#}}
+{end postcondition}
 
 {end operation}
 
