@@ -8,6 +8,7 @@ This instruction is derived from the source material in:
 - `3-disenyo/1-disenyo/index.html`
 - `3-disenyo/2-disenyoModular/index.html`
 - `3-disenyo/3-disenyoOrientadoObjetos/index.html`
+- `3-disenyo/4-patronesDisenyo/index.html`
 
 Key source areas include:
 - behavior-driven object analysis,
@@ -25,6 +26,10 @@ Key source areas include:
 - Law of Demeter and message-chain control,
 - inversion of control and dependency injection,
 - double dispatch as a type-checking alternative,
+- GoF design-pattern families (creational, structural, behavioral),
+- pattern application protocol (problem, solution, implementation, consequences),
+- redesign-oriented evidence using coupling/granularity comparisons,
+- pattern relationships and composition strategies,
 - separation of view and controller responsibilities,
 - indirection and pure fabrication for decoupling,
 - readability and naming,
@@ -39,6 +44,7 @@ Key source areas include:
 - Package/module structure and dependency graph (if available).
 - Public interfaces/contracts of modules and components.
 - Class hierarchies and variation points (if available).
+- Hotspots with concrete evidence (complex conditionals, duplicated creation logic, incompatible interfaces, excessive coupling, large classes, etc.).
 - Existing code and naming conventions.
 
 ## Core Principles (MUST)
@@ -231,6 +237,73 @@ Key source areas include:
 - MUST avoid designs that ignore OO mechanisms such as polymorphic behavior where needed.
 - MUST avoid architecture that forces technology changes to ripple into domain classes.
 
+### 22. Pattern-Oriented Design (GoF Families)
+
+- MUST evaluate pattern candidates using the three GoF families:
+	- creational: Abstract Factory, Builder, Factory Method, Prototype, Singleton,
+	- structural: Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy,
+	- behavioral: Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor.
+- MUST select patterns by intent and consequences, not by naming similarity.
+- MUST keep principles first: a pattern is valid only if it improves cohesion/coupling/encapsulation relative to the baseline.
+
+### 23. Pattern Selection Heuristics (MUST)
+
+- MUST prefer Factory Method when creation varies by subtype and caller should not know concrete classes.
+- SHOULD consider Prototype when runtime registration/cloning reduces creator hierarchy and supports dynamic type loading.
+- MUST restrict Singleton to true unique shared resources with explicit access/lifecycle rationale.
+- MUST use Adapter when collaborating interfaces are incompatible.
+	- class adapter: tighter adaptation to one adaptee hierarchy,
+	- object adapter: broader adaptation across adaptee variants.
+- SHOULD use Bridge when abstraction and implementation must evolve independently.
+- MUST use Composite for part-whole trees requiring uniform treatment of leaf and composite nodes.
+- SHOULD use Decorator for runtime responsibility composition without subclass explosion.
+- SHOULD use Facade to provide a unified subsystem entry point and reduce inter-layer coupling.
+- SHOULD use Flyweight when many fine-grained objects can share intrinsic state and externalize extrinsic state.
+- SHOULD use Proxy to control access (virtual, remote, protection, smart reference).
+- SHOULD use Chain of Responsibility to decouple request senders from concrete receivers and enable handler pipelines.
+- SHOULD use Command for request objects, queuing, auditing, undo/redo, and macro operations.
+- SHOULD use Interpreter only for small/stable grammars; for complex grammars prefer parser/compiler tooling.
+- SHOULD use Iterator to decouple traversal from aggregate representation.
+- SHOULD use Mediator to centralize dense colleague interactions while monitoring mediator complexity.
+- SHOULD use Memento to snapshot/restore state without exposing internals.
+- SHOULD use Observer for one-to-many change propagation.
+- SHOULD use State to replace state-dependent conditionals with explicit state objects.
+- SHOULD use Strategy for interchangeable algorithms with stable context contracts.
+- SHOULD use Template Method for stable algorithm skeleton with overridable steps.
+- SHOULD use Visitor to add operations over stable element structures, typically with double dispatch.
+
+### 24. Pattern Application Protocol (MANDATORY)
+
+- MUST apply this protocol for each adopted pattern:
+	1. problem evidence: show the concrete pain point in current design,
+	2. intent fit: explain why this pattern intent matches the problem,
+	3. participant mapping: map pattern roles to project classes/components,
+	4. implementation notes: lifecycle, ownership, injection, traversal, or state handling details,
+	5. consequences: explicit benefits and known trade-offs,
+	6. redesign evidence: before/after impact on coupling, cohesion, and granularity (qualitative at minimum; quantitative when available).
+- MUST document why alternative candidate patterns were rejected.
+
+### 25. Pattern Composition and Relationships
+
+- SHOULD combine patterns when composition reduces complexity and preserves intent boundaries.
+- SHOULD consider explicit relationships highlighted by source material:
+	- Bridge + Abstract Factory for selecting implementors without coupling abstractions to concrete implementations,
+	- Interpreter + Visitor to add operations over grammar trees without modifying grammar classes,
+	- Interpreter + Flyweight for shared intrinsic grammar/token state,
+	- Visitor + Composite/Iterator for structured traversal plus operation extension,
+	- Command + MacroCommand for transactional command grouping and reversible execution flows.
+
+### 26. Pattern Misuse Risks (MUST monitor)
+
+- MUST avoid pattern overuse that increases accidental complexity without measurable design gain.
+- MUST monitor known trade-offs:
+	- too many small objects (Decorator/Flyweight-heavy designs),
+	- mediator monolith risk (Mediator),
+	- over-generalization and weak constraints (Composite),
+	- hidden latency assumptions (remote Proxy),
+	- brittle hierarchy expansion (Visitor when element types change frequently).
+- MUST rollback or simplify pattern use when the consequence profile becomes net negative.
+
 ## Agent Workflow (MANDATORY)
 
 1. Read scenario and domain context.
@@ -246,11 +319,13 @@ Key source areas include:
 11. Select reuse mechanism per hotspot: inheritance, composition/delegation, or parameterization.
 12. Apply Demeter constraints and remove deep message chains.
 13. Apply IoC/DI and enforce dependency inversion through abstractions.
-14. Enforce View/Controller separation for external/system events.
-15. Validate naming/readability rules.
-16. Apply DRY/YAGNI and remove dead code or dead model elements.
-17. Detect design/code smells and propose concrete refactorings.
-18. Produce design rationale and evidence.
+14. Identify pattern candidates by hotspot and intent (GoF families).
+15. Apply the pattern application protocol and record participant mapping.
+16. Enforce View/Controller separation for external/system events.
+17. Validate naming/readability rules.
+18. Apply DRY/YAGNI and remove dead code or dead model elements.
+19. Detect design/code smells and propose concrete refactorings.
+20. Produce design rationale and evidence.
 
 ## Output Contract (MUST)
 
@@ -267,6 +342,10 @@ The agent output MUST include:
 - A reuse strategy map: where inheritance vs composition/delegation vs parameterization was selected and why.
 - A dependency inversion map: high-level policies, abstraction boundaries, and injection points.
 - A Demeter compliance note for methods with collaboration-heavy logic.
+- A pattern decision matrix: problem -> candidate patterns -> selected pattern -> rejected alternatives -> rationale.
+- A pattern participant map: pattern roles -> concrete project elements.
+- A consequences ledger: expected gains, trade-offs, and mitigation actions per applied pattern.
+- A redesign delta note: before/after coupling/cohesion/granularity evidence.
 - A naming audit with fixes applied or proposed.
 - A compact checklist showing DRY/YAGNI/dead-code/smell validation.
 
@@ -286,8 +365,12 @@ The agent output MUST include:
 12. Are composition/delegation preferred where flexibility or encapsulation requires it?
 13. Is Demeter respected (no avoidable message chains)?
 14. Are high-level modules depending on abstractions (DIP) with explicit injection points?
-15. Is View/Controller separation preserved for system events?
-16. Do names reveal intent and follow conventions?
-17. Is dead code removed?
-18. Are DRY and YAGNI explicitly verified?
-19. Were major design/code smells checked and addressed?
+15. Was at least one pattern selection matrix produced for each major hotspot?
+16. Are selected patterns justified by intent and consequence evidence?
+17. Are pattern participants mapped to concrete project elements?
+18. Are rejected pattern alternatives explicitly justified?
+19. Is View/Controller separation preserved for system events?
+20. Do names reveal intent and follow conventions?
+21. Is dead code removed?
+22. Are DRY and YAGNI explicitly verified?
+23. Were major design/code smells checked and addressed?
