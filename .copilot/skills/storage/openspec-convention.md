@@ -30,6 +30,8 @@ openspec/
 │       │   ├── Design Model.md
 │       │   ├── SW Architecture Document.md
 │       │   ├── Data Model.md
+│       │   └── Use Case Realization/
+│       │       └── UCR UC{{#}} {{use-case.name}}.md
 │       ├── 04 Implementation/
 │       │   └── .gitkeep
 │       ├── 05 Test/
@@ -64,7 +66,7 @@ openspec/
 |-----------|---------|----------------------------|
 | `01 Business Modeling` | Domain-level business concepts and relationships | `Domain Model.md` |
 | `02 Requirements` | Vision, use cases, supplementary requirements, glossary, and domain rules | `vision.md`, `supplementary-specification.md`, `glosary.md`, `domain-rules.md`, `Use Case Model.md`, `use-cases/`, `SSDs/SSD UC{{#}} {{use-case.name}}.md`, `Operation Contracts/Contract CO{#} UC{{#}} {{use-case.name}}.md` |
-| `03 Design` | Logical design and architecture artifacts | `Design Model.md`, `SW Architecture Document.md`, `Data Model.md` |
+| `03 Design` | Logical design and architecture artifacts | `Design Model.md`, `SW Architecture Document.md`, `Data Model.md`, `Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
 | `04 Implementation` | Implementation-level artifacts | Reserved |
 | `05 Test` | Test artifacts | Reserved |
 | `06 Deployment` | Deployment artifacts | Reserved |
@@ -90,6 +92,7 @@ openspec/
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Design Model.md` |
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md` |
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Data Model.md` |
+| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
 | storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`, `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Iteration Plan.md` |
 | storage | Moves | `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` |
 | storage | Updates | `openspec/artifacts/{domain}/{discipline}/...` (merges deltas into main specs while preserving the discipline-relative path) |
@@ -113,6 +116,7 @@ domain model: openspec/iterations/{iteration}/artifacts/{domain}/01 Business Mod
 design model: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Design Model.md
 SW architecture document: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md
 data model: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Data Model.md
+use case realization: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md
 requirements-ranking: openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md
 Iteration Plan: openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Iteration Plan.md
 artifacts: openspec/iterations/{iteration}/artifacts/{domain}/  (all discipline subdirectories)

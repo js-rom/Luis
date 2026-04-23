@@ -74,7 +74,7 @@ The orchestrator will give you:
 - Before every phase change, ask for explicit approval from the user.
 - Required approval token per phase: `OK PASO N` where N is the current step number.
 - If approval is missing, continue refining in chat and do not advance.
-- Persist artifacts only after steps 1-6 are approved.
+- Persist artifacts only after steps 1-9 are approved.
 
 ## Write Gating Rules (MANDATORY)
 
@@ -98,6 +98,7 @@ The orchestrator will give you:
 |Design Model|This is the set of diagrams that describes the logical design. This includes software class diagrams, object interaction diagrams, package diagrams, and other design artifacts|
 |Software Architecture Document|A learning aid that summarizes the key architecturl issues and their resolution in the design. It is a summary of the outstanding design ideas and their motivation in the system|
 |Data Model|This includes the database schemas, and tha mapping strategy between objects and non-object representations|
+|Use Case Realization|One document per use case that maps each scenario to object design using design sequence diagrams and design class diagrams|
 |Use-Case Storyboards, UI Prototypes|A description of the user interface, paths of navigation, usability models, and so forth|
 |Requirements Ranking|A prioritized list of requirements based on risk, coverage, and criticality|
 
@@ -131,22 +132,32 @@ The orchestrator will give you:
   - Before elaborating, load the active schema instruction for architecture documents and the active schema template `sw-architecture-document.md`.
   - Stop and request `OK PASO 5` before continuing.
   - After approval, store the `SW Architecture Document` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md`.
+6. Elaborate Use Case Realization for each use case in scope for the iteration.
+  - Artifacts in progress: `Use Case Realization`
+  - Before elaborating, load the active schema instruction `use-case-realization.md` and the active schema template `use-case-realization.md`.
+  - Build one realization document per use case, and within that document map every selected scenario from Use Case text + SSD + Operation Contracts to object design.
+  - Use Business Modeling as inspiration for software domain object names.
+  - Ensure operation contracts are treated as starting events and postconditions to satisfy in the design.
+  - Ensure Supplementary Specification constraints and Glossary terminology are explicitly reflected in each scenario mapping.
+  - Stop and request `OK PASO 6` before continuing.
+  - After approval, store each `Use Case Realization` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md`.
 ...
 
 10. Refine  Requirements Ranking based on  iteration feedback if any (new features or use cases, defects, changes in priorities). Refine it in collaboration with the user.
   - Artifacts in progress: `Requirements Ranking`
   - Before refining, load the active schema instruction for use cases and the active schema template `requirements-ranking.md`.
-  - Stop and request `OK PASO 1` before continuing.
+  - Stop and request `OK PASO 10` before continuing.
 11. based on the Requirements Ranking, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
   - Artifacts in progress: `Requirements Ranking` and `Use Case fully dressed`.
   - Before choosing the 10%, load the active schema instruction/template for `Requirements Ranking` and produce an explicit ranking based on risk, coverage, and criticality.
   - The 10% selection must be justified from that ranking; do not choose deep-dive use cases ad hoc.
   - Before drafting each detailed case, load the active schema instruction for use cases and the active schema template `use-case-fully-dressed.md`.
-  - Stop and request `OK PASO 6` before continuing.
+  - Stop and request `OK PASO 11` before continuing.
 12. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-9, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass only approved artifacts to storage.
   - Persist approved inception artifacts under the discipline directories defined in `openspec-convention.md`; requirement artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/`, design artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/`, Business Modeling artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/01 Business Modeling/`, while `Requirements Ranking` and `Iteration Plan` must be stored as `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
+  - Include approved `Use Case Realization` files under `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Use Case Realization/`.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
 13. Ask the user whether to archive the inception iteration.
   - Treat this as an automatic step, not a user-driven action.

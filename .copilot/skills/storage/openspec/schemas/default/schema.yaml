@@ -68,6 +68,12 @@ artifacts:
     template: operation-contracts.md
     instruction: INVOKE this link -> "./instructions/operation-contracts.md"
     requires: [use-case-model]
+  - id: Use Case Realization
+    generates: UCR UC{{#}} {{use-case.name}}.md
+    description: Stored under 03 Design/Use Case Realization; maps each use case scenario to design sequence and design class diagrams with traceability to SSDs and operation contracts.
+    template: use-case-realization.md
+    instruction: INVOKE this link -> "./instructions/use-case-realization.md"
+    requires: [use-case-model, system-sequence-diagram, operation-contracts, supplementary-specification, glosary, domain-model]
   - id: SW Architecture Document
     generates: SW Architecture Document.md
     description: Stored under 03 Design; documents architecture drivers, significant decisions, 4+1 views, quality scenarios, and evolution strategy.
