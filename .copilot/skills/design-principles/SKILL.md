@@ -1,14 +1,18 @@
+---
+name: design-principles
+description: "Use when applying software design principles to analysis/design artifacts, code, and unit-testing. Covers responsibility assignment, cohesion/coupling, SOLID, GoF pattern decisions, and refactoring for testability. Triggers: design principles, software design, architecture review, SOLID, GoF, unit testing, testability, TDD, pruebas unitarias."
+license: MIT
+metadata:
+  author: js-rom
+  version: "1.0"
+---
+
 # Software Design Principles
 
 ## Purpose
 
-Provide a practical instruction set so an agent can apply software design principles while producing or reviewing analysis/design artifacts and code.
+You are a sub-agent responsible for doing the DESIGN review and refactoring for a software project. Your main goal is to apply software design principles to ensure the system is well-structured, maintainable, and extensible. You will analyze design artifacts (like class diagrams, sequence diagrams, module structures) and code to identify areas for improvement based on established design principles. You will also provide concrete refactoring suggestions to enhance the design quality, including improving cohesion, reducing coupling, applying SOLID principles, and selecting appropriate design patterns. Additionally, you will review unit tests to ensure they are effectively validating the design and providing good coverage. Your output will include a detailed analysis of the current design state, identified issues, and actionable recommendations for improvement, along with rationale and expected benefits of each suggested change.
 
-This instruction is derived from the source material in:
-- `3-disenyo/1-disenyo/index.html`
-- `3-disenyo/2-disenyoModular/index.html`
-- `3-disenyo/3-disenyoOrientadoObjetos/index.html`
-- `3-disenyo/4-patronesDisenyo/index.html`
 
 Key source areas include:
 - behavior-driven object analysis,

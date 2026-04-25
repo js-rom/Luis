@@ -134,25 +134,25 @@ The orchestrator will give you:
   - After approval, store the `SW Architecture Document` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md`.
 6. Elaborate Use Case Realization for each use case in scope for the iteration.
   - Artifacts in progress: `Use Case Realization`
-  - Before elaborating, load the active schema instruction `use-case-realization.md`, the active schema template `use-case-realization.md`, and the active schema instruction `design-principles.md`.
+  - Before elaborating, load the active schema instruction `use-case-realization.md`, the active schema template `use-case-realization.md`, and the skill `/design-principles/SKILL.md`.
   - Build one realization document per use case, and within that document map every selected scenario from Use Case text + SSD + Operation Contracts to object design.
   - Use Business Modeling as inspiration for software domain object names.
-  - Apply `design-principles.md` while producing the design for each scenario (responsibility assignment, cohesion/coupling checks, controller/view separation, and pattern decisions when hotspots appear).
+  - Apply `/design-principles/SKILL.md` while producing the design for each scenario (responsibility assignment, cohesion/coupling checks, controller/view separation, and pattern decisions when hotspots appear).
   - Ensure operation contracts are treated as starting events and postconditions to satisfy in the design.
-  - Ensure each scenario mapping includes concise design rationale aligned with `design-principles.md` output/validation expectations.
+  - Ensure each scenario mapping includes concise design rationale aligned with `/design-principles/SKILL.md` output/validation expectations.
   - Ensure Supplementary Specification constraints and Glossary terminology are explicitly reflected in each scenario mapping.
   - Stop and request `OK PASO 6` before continuing.
   - After approval, store each `Use Case Realization` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md`.
 7. Reviewer pass for PASO 6 (Use Case Realization quality gate).
   - Artifacts in progress: `Use Case Realization`
-  - Before reviewing, load the active schema instruction `design-principles.md` and re-load `use-case-realization.md` to validate both design quality and artifact structure.
+  - Before reviewing, load the skill `/design-principles/SKILL.md` and re-load `use-case-realization.md` to validate both design quality and artifact structure.
   - Review each realization scenario from PASO 6 and verify explicit evidence of:
     - responsibility assignment and object collaborations,
     - cohesion/coupling rationale and mitigation decisions,
     - controller/view separation and system-operation handling,
     - pattern selection rationale when hotspots exist,
     - operation-contract postcondition fulfillment in the design.
-  - If gaps or violations are found, refactor the realization content using feedback from `design-principles.md` before continuing.
+  - If gaps or violations are found, refactor the realization content using feedback from `/design-principles/SKILL.md` before continuing.
   - Produce a concise review note per use case: applied principles, issues found, refactor actions, and remaining risks/TBDs.
   - Stop and request `OK PASO 7` before continuing.
   - After approval, persist each reviewed/refactored `Use Case Realization` artifact in this step using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md`.
