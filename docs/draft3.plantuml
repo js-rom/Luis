@@ -1,61 +1,98 @@
 @startuml
+title DCD Integrado - UC03 y UC05 Gestionar Correcciones
+hide empty members
+skinparam classAttributeIconSize 0
 
-package utils {
-    interface Agent
-    interface Skill {
-        purpose
-        whatYouReceive
-        whatToDo
-        antiPatterns
-        result
+package "Dominio de Asistencia" {
+    class Empleado {
+        +empleadoId
+        +nombre
     }
 
-    abstract class Orchestrator {
-        purpose
-        delegationRules
-        hardStopRule
-        antiPatterns
-        taskEscalation
-        {abstract}workFlow
+    class JornadaDiaria {
+        +jornadaId
+        +fecha
+        +estado
+    }
+
+    class EventoFichaje {
+        +eventoId
+        +fechaHora
+        +tipo : TipoEvento
+        +origen : OrigenEvento
+    }
+
+    class EventoCorrectivo {
+        +motivo
+        +creadoDesdeSolicitudId
+    }
+
+    abstract class SolicitudCorreccion {
+        +solicitudId
+        +fechaCreacion
+        +estado : EstadoSolicitud
+        +motivo
+        +aprobar()
+        +rechazar()
+    }
+
+    class SolicitudOlvidoFichaje {
+        +tipoOlvido : TipoEvento
+        +horaDeclarada
+    }
+
+    class SolicitudAjusteFichaje {
+        +horaOriginal
+        +horaPropuesta
+    }
+
+    class ResponsableAprobacion {
+        +responsableId
+        +nombre
     }
 }
 
-package phases {
-    class PhaseOrchestrator {
-        workflow
-    }
-    class Inception
-    class Elaboration
-    class Storage
-    PhaseOrchestrator ..> Inception : orchestrates
-    PhaseOrchestrator ..> Elaboration : orchestrates
+enum EstadoSolicitud {
+    PENDIENTE
+    APROBADA
+    RECHAZADA
+    CANCELADA
 }
 
-package artifacts {
-    class UseCase
-    class Vision
+enum TipoEvento {
+    ENTRADA
+    SALIDA
 }
 
-package skills {
-    class SkillRegistry
+enum OrigenEvento {
+    ORIGINAL
+    CORRECTIVO
 }
 
+Empleado "1" -- "0..*" JornadaDiaria : registra >
+JornadaDiaria "1" *-- "0..*" EventoFichaje : contiene >
+JornadaDiaria "1" *-- "0..*" SolicitudCorreccion : contiene >
 
+SolicitudCorreccion <|-- SolicitudOlvidoFichaje
+SolicitudCorreccion <|-- SolicitudAjusteFichaje
+EventoCorrectivo --|> EventoFichaje
 
+SolicitudCorreccion "1" --> "0..1" EventoFichaje : eventoObjetivo >
+SolicitudCorreccion "1" --> "0..1" EventoCorrectivo : eventoGenerado >
+ResponsableAprobacion "1" --> "0..*" SolicitudCorreccion : aprueba/rechaza >
 
+note right of JornadaDiaria
+Aggregate Root:
+JornadaDiaria contiene
+eventos y solicitudes
+de correccion.
+end note
 
-Agent <|-- Orchestrator
-Agent <|-- Skill
-Orchestrator ..> Skill : delegates to
-Orchestrator ..> Orchestrator : delegates to
-Orchestrator <|-- phases.PhaseOrchestrator
-Orchestrator <|-- Elaboration
-Skill <|.. Inception
-Inception ..> artifacts
-Elaboration ..> artifacts
-Skill <|.. UseCase
-Skill <|.. Vision
-Skill <|.. Storage
-phases.PhaseOrchestrator ..> Storage
-phases.PhaseOrchestrator ..> SkillRegistry
+note right of SolicitudCorreccion
+Regla:
+si una solicitud queda APROBADA,
+siempre se crea un EventoCorrectivo
+asociado en la JornadaDiaria.
+end note
+
 @enduml
