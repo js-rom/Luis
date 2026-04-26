@@ -14,6 +14,9 @@ Apply these rules in every task in this repository, even if the prompt does not 
 3. Never overwrite existing artifacts blindly:
 	- If a target file exists, read it first and update it.
 4. Never delete or modify archived iteration content in openspec/iterations/archive/.
+5. Code language policy:
+	- All source code, tests, identifiers, and code comments MUST be written in English.
+	- User-facing product text may follow explicit artifact or business language requirements.
 
 ## Workflow
 
