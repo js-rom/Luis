@@ -138,7 +138,7 @@ The orchestrator will give you:
   - After approval, store the `SW Architecture Document` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md`.
 6. Elaborate Use Case Realization for each use case in scope for the iteration.
   - Artifacts in progress: `Use Case Realization`
-  - Before elaborating, load the active schema instruction `use-case-realization.md`, the active schema template `use-case-realization.md`, and the skill `/design-principles/SKILL.md`.
+  - Before elaborating, load the active schema instruction `use-case-realization.md`, the active schema template `use-case-realization.md`, the skill `/design-principles/SKILL.md` and the instructions `class-diagram.md`.
   - Build one realization document per use case, and within that document map every selected scenario from Use Case text + SSD + Operation Contracts to object design.
   - Use Business Modeling as inspiration for software domain object names.
   - Apply `/design-principles/SKILL.md` while producing the design for each scenario (responsibility assignment, cohesion/coupling checks, controller/view separation, and pattern decisions when hotspots appear).
