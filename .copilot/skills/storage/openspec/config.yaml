@@ -7,13 +7,13 @@ context: |
   Style: {detected}
 
 rules:
+  chat language: Spanish
+  artifacts language: Spanish, except for domain objects, source code, tests, identifiers, and code comments which MUST be in English.
   inception:
     - use project defined [schema](./schemas/default/schema.yaml)
-  apply:
-    - Follow existing code patterns
-    tdd: false           # Set to true to enable RED-GREEN-REFACTOR
-    test_command: ""
-  verify:
+  elaboration:
+    - use project defined [schema](./schemas/default/schema.yaml)
+  tdd:
     test_command: ""
     build_command: ""
     coverage_threshold: 0
