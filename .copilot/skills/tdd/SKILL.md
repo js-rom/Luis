@@ -30,10 +30,17 @@ Do not use this skill as a rule to write all tests upfront.
 
 1. Create and maintain a **Test List invoking [test-cases skill](../test-cases/SKILL.md)**.
   - Before elaborating, load the artifact in progress: `Use Case Realization` for the selected scenario and other relevant artifacts.
-	- List behavior scenarios and relevant variants.
-	- Include regression concerns when relevant.
-	- Focus on behavior, not implementation internals.
-2. Pick exactly one item from the list and **write one concrete automated test**.
+	- Build the Test List collaboratively with the user, using test-cases skill strategies:
+		- factor identification,
+		- equivalence classes (valid/invalid),
+		- boundary value analysis,
+		- combinatorial reduction (orthogonal/pairwise) when needed,
+		- white-box paths only when risk justifies them.
+	- Expose only the proposed next case slice (not the whole exhaustive catalog by default).
+	- For each proposed slice, report rationale and trade-offs, then request explicit feedback using:
+		- `Escribe OK CASOS N para continuar`.
+	- Do not proceed to RED/GREEN for a case without explicit user approval.
+2. Pick exactly one approved item from the list and **write one concrete automated test**.
 	- The test MUST include setup, invocation, and assertions.
 	- The test code MUST be written in English.
 	- Prefer starting from assertions and working backwards when useful.
@@ -57,10 +64,12 @@ Do not use this skill as a rule to write all tests upfront.
 ## Strict Sequencing Rules (MANDATORY)
 
 - Exactly one Test List item may be active at a time.
+- Case agreement MUST happen before coding the test for that item.
 - One cycle MUST be completed in this exact order: `RED -> GREEN -> REFACTOR`.
 - Do NOT start the next Test List item until the current item has post-refactor GREEN evidence and is marked done.
 - Do NOT batch multiple new tests in one cycle.
 - Do NOT batch broad production implementation ahead of RED evidence.
+- Do NOT execute RED for a new case without explicit user approval of that case.
 
 ## Interface vs Implementation Split (MANDATORY)
 
@@ -73,6 +82,9 @@ Do not use this skill as a rule to write all tests upfront.
 ## Anti-Patterns to Avoid (MUST)
 
 - Writing all tests from the Test List before running any passing cycle.
+- Selecting cases without explicit factor/equivalence/boundary reasoning.
+- Ignoring combinatorial control when factors explode (pairwise/orthogonal alternatives).
+- Advancing to implementation without explicit case approval from user.
 - Implementing production code before obtaining RED evidence for the active test.
 - Moving to the next Test List item without finishing post-refactor GREEN for the current item.
 - Merging multiple Test List items into one combined RED/GREEN step.
@@ -86,6 +98,7 @@ Do not use this skill as a rule to write all tests upfront.
 ## Heuristics (SHOULD)
 
 - Choose the next test to maximize learning and reduce risk early.
+- Prioritize cases that cover new equivalence classes, critical boundaries, or high-risk factor interactions.
 - Prefer starting implementation from the class or component with lower efferent coupling (fewer outgoing dependencies) to minimize ripple effects and simplify isolated tests.
 - When blocked by test order, reconsider sequencing.
 - If a discovered scenario invalidates the current approach, prefer restarting from a better order over compounding complexity.
@@ -94,7 +107,10 @@ Do not use this skill as a rule to write all tests upfront.
 ## Working Protocol (Agent Behavior)
 
 For each cycle, the agent MUST report:
-- current Test List,
+- proposed case slice derived from factors/equivalence classes/boundaries,
+- rationale for selecting that slice now,
+- explicit approval request and user response,
+- current Test List (or compact active+pending view),
 - selected next test and why,
 - failing test evidence (RED) captured before production code changes,
 - minimal change made to pass,
@@ -108,6 +124,7 @@ The agent MUST NOT claim progress without executable test evidence.
 ## Output Contract (MUST)
 
 When finishing a task, output:
+- case-selection summary based on test-cases skill (factors, equivalence classes, boundaries, and reduction strategy),
 - final Test List with all items status,
 - cycle-by-cycle RED -> GREEN -> REFACTOR evidence summary,
 - list of tests added/updated,
