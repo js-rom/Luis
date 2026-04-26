@@ -1,6 +1,6 @@
 ---
 name: java-junit
-description: 'Get best practices for JUnit 5 unit testing, including data-driven tests'
+description: 'Get best practices for JUnit 5 unit testing, including data-driven tests. Triggers: junit, junit5, unit tests.'
 ---
 
 # JUnit 5+ Best Practices
@@ -42,8 +42,8 @@ Your goal is to help me write effective unit tests with JUnit 5, covering both s
 
 ## Assertions
 
-- Use the static methods from `org.junit.jupiter.api.Assertions` (e.g., `assertEquals`, `assertTrue`, `assertNotNull`).
-- For more fluent and readable assertions, consider using a library like AssertJ (`assertThat(...).is...`).
+- Prefer Hamcrest-style assertions with `assertThat` for readability (e.g., `assertThat(actual, is(expected))`).
+- Import `assertThat` from `org.hamcrest.MatcherAssert` and matchers from `org.hamcrest.Matchers` (e.g., `is`, `equalTo`, `notNullValue`, `containsString`).
 - Use `assertThrows` or `assertDoesNotThrow` to test for exceptions.
 - Group related assertions with `assertAll` to ensure all assertions are checked before the test fails.
 - Use descriptive messages in assertions to provide clarity on failure.
