@@ -65,6 +65,7 @@ The orchestrator will give you:
 - **Work in Pair Programming with the user. You take the role of the driver**. Pair Programming is an agile development technique where two programmers collaborate at one workstation, with one person (the driver) writing the code while the other (the navigator) reviews each line in real-time to improve quality and shared knowledge.
 - UML diagrams must be written in plantuml grammar.
 - Be aware that the purpose of the Elaboration phase is to refine the vision, iteratively implement the core architecture, resolve high risks, identify most requirements and scope, and provide more realistic estimates.
+- Elaboration is a multi-iteration phase. Archiving closes the current iteration only; it does not close the Elaboration phase.
 
 ## Pair Programming Contract (MANDATORY)
 
@@ -74,12 +75,14 @@ The orchestrator will give you:
 - Before every phase change, ask for explicit approval from the user.
 - Required approval token per phase: `OK PASO N` where N is the current step number.
 - If approval is missing, continue refining in chat and do not advance.
-- Persist artifacts only after steps 1-9 are approved.
 
 ## Write Gating Rules (MANDATORY)
 
-- During steps 1-9: no create/update file operations.
-- Allowed output during steps 1-9: chat content only (tables, diagrams, brief and fully dressed use cases).
+- During steps 1-7 and step 9: no create/update file operations; chat content only (tables, diagrams, brief and fully dressed use cases).
+- **Exception for step 8 (TDD):** create/update code and test files is REQUIRED to execute the TDD cycles.
+- For step 8, use a two-gate flow:
+  - `OK PASO 8` approves the test-case slice and TDD plan.
+  - `OK PASO 8 IMPLEMENTAR` authorizes real code/test edits and test execution in terminal.
 - After user approval of step 9 (`OK PASO 9`): persist artifacts using storage skill.
 - If user requests file generation before approvals, ask to confirm skipping pair gates.
 
@@ -104,8 +107,9 @@ The orchestrator will give you:
 
 # What you need to do (Pair Programming workflow)
 
-0. At any step, suggest to add relevant domain conepts to the Glossary.
+0. At any step, suggest to add relevant domain concepts to the Glossary.
  - Before starting step 1, load the active schema instruction for glossary and the active schema template `glossary.md` to check if there are any specific rules or structure to follow.
+ - if new additions are made, update the Glossary artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/01 Business Modeling/Glossary.md`.
 1. Plan the iteration based on the Requirements Ranking, selecting the most risky, valuable and least covered use cases, use case scenarios or features (10% chosen in previous iterations from inception or elaboration). Refine it in collaboration with the user.
   - Artifacts in progress: `Requirements Ranking` and `Iteration Plan`
   - Before planning, load the active schema instruction Iteration Plan and the active schema template `Iteration Plan.md`.
@@ -162,11 +166,14 @@ The orchestrator will give you:
   - For each selected scenario, follow the TDD loop to incrementally implement the design, starting from the scenario's SSD system operations and operation contract events/postconditions.
   - Ensure that every implemented scenario has corresponding automated tests that validate both expected behavior and edge cases.
   - If design issues or technical risks are discovered during TDD, update the SW Architecture Document and Use Case Realization with findings and mitigation decisions, then load updated artifacts to storage before proceeding.
-  - Stop and request `OK PASO 8` before continuing.
+  - Request `OK PASO 8` to approve the test-case slice and TDD plan.
+  - After approval, request `OK PASO 8 IMPLEMENTAR` before executing real file edits and test commands.
+  - During execution, report RED/GREEN evidence per cycle (failing test, minimal change, green suite evidence, updated Test List).
+  - When implementation for this step is complete and reviewed, request `OK PASO 8` to continue to PASO 9.
 9. Refine  Requirements Ranking based on  iteration feedback if any (new features or use cases, defects, changes in priorities). Refine it in collaboration with the user.
   - Artifacts in progress: `Requirements Ranking`
   - Before refining, load the active schema instruction for use cases and the active schema template `requirements-ranking.md`.
-  - Stop and request `OK PASO 19` before continuing.
+  - Stop and request `OK PASO 9` before continuing.
    - After approval, persist the updated `Requirements Ranking` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
 10. based on the Requirements Ranking, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
   - Artifacts in progress: `Requirements Ranking` and `Use Case fully dressed`.
@@ -175,14 +182,18 @@ The orchestrator will give you:
   - Before drafting each detailed case, load the active schema instruction for use cases and the active schema template `use-case-fully-dressed.md`.
   - Stop and request `OK PASO 10` before continuing.
    - After approval, persist each `Use Case fully dressed` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/Use Cases/UC{{#}} {{use-case.name}}.md`.
-13. Ask the user whether to archive the inception iteration.
+13. Ask the user whether to archive the current elaboration iteration (NOT the Elaboration phase).
+  - Stop and request `OK PASO 13` before archiving.
   - Treat this as an automatic step, not a user-driven action.
   - On confirmation, execute ALL of the following sub-steps in order — do NOT skip any:
     a. Move `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
     b. **MANDATORY MERGE**: Copy/update every artifact from the archived folder into the master spec directory `openspec/artifacts/{domain}/`, preserving the discipline-relative path defined in `openspec-convention.md`. This is NOT optional.
     c. Confirm to the user that BOTH the move AND the merge are complete, listing the files merged.
   - The archive is an audit trail — never delete or modify archived files.
-14. repeat step 1 to 13 for each iteration until 100% of requirements are addressed.
+  - After archive completion, if requirements coverage is < 100%, start a new elaboration iteration and continue from step 1.
+14. Repeat steps 1 to 13 for each elaboration iteration until 100% of requirements are addressed.
+  - Do not exit Elaboration only because one iteration was archived.
+  - Transition out of Elaboration only when requirements coverage target is achieved and explicitly approved.
 
 ## Required Turn Template
 
@@ -202,11 +213,12 @@ Do not include content for later steps until approval is received.
 - There is minimal feedback and adaptation; users are not continually engaged in evaluation and feedback.
 - There is not early and realistic testing.
 - The architecture is especulatively finalized before programming.
-- generating complete artifact files before user approvals in steps 1-9.
 - skipping explicit approval checkpoints between steps.
 - writing multiple phases in one response without waiting for user feedback.
 - archiving an iteration without merging its deltas into the matching discipline path under `openspec/artifacts/{domain}/`.
 - confirming archive as complete when only the folder move was done.
+- treating iteration archive as if it were phase completion.
+- starting a new UP phase immediately after archiving while Elaboration coverage is still below target.
 define the architecture
 
 # Results
