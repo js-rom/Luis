@@ -182,7 +182,7 @@ The orchestrator will give you:
   - Before drafting each detailed case, load the active schema instruction for use cases and the active schema template `use-case-fully-dressed.md`.
   - Stop and request `OK PASO 10` before continuing.
    - After approval, persist each `Use Case fully dressed` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/Use Cases/UC{{#}} {{use-case.name}}.md`.
-13. Ask the user whether to archive the current elaboration iteration (NOT the Elaboration phase).
+11. Ask the user whether to archive the current elaboration iteration (NOT the Elaboration phase).
   - Stop and request `OK PASO 13` before archiving.
   - Treat this as an automatic step, not a user-driven action.
   - On confirmation, execute ALL of the following sub-steps in order — do NOT skip any:
@@ -191,7 +191,7 @@ The orchestrator will give you:
     c. Confirm to the user that BOTH the move AND the merge are complete, listing the files merged.
   - The archive is an audit trail — never delete or modify archived files.
   - After archive completion, if requirements coverage is < 100%, start a new elaboration iteration and continue from step 1.
-14. Repeat steps 1 to 13 for each elaboration iteration until 100% of requirements are addressed.
+12. Repeat steps 1 to 11 for each elaboration iteration until 100% of requirements are addressed.
   - Do not exit Elaboration only because one iteration was archived.
   - Transition out of Elaboration only when requirements coverage target is achieved and explicitly approved.
 
