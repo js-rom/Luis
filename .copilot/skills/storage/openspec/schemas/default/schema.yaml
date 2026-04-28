@@ -74,6 +74,12 @@ artifacts:
     template: use-case-realization.md
     instruction: INVOKE this link -> "./instructions/use-case-realization.md", and load the skill "/design-principles/SKILL.md" and the instructions "class-diagram.md" before elaborating.
     requires: [use-case-model, system-sequence-diagram, operation-contracts, supplementary-specification, glosary, domain-model]
+  - id: Test Plan
+    generates: Test plan.md
+    description: Stored under 05 Test; captures the TDD Step 1 test planning output (factors, classes, boundaries, selected cases, and execution mode policy).
+    template: test-plan.md
+    instruction: INVOKE this link -> "./instructions/test-plan.md"
+    requires: [use-case-realization, iteration-plan]
   - id: SW Architecture Document
     generates: SW Architecture Document.md
     description: Stored under 03 Design; documents architecture drivers, significant decisions, 4+1 views, quality scenarios, and evolution strategy.
