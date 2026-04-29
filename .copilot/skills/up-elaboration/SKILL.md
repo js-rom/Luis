@@ -175,10 +175,11 @@ The orchestrator will give you:
   - Before refining, load the active schema instruction for use cases and the active schema template `requirements-ranking.md`.
   - Stop and request `OK PASO 9` before continuing.
    - After approval, persist the updated `Requirements Ranking` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
-10. based on the Requirements Ranking, choose 10% of the use cases with a mix of the most architecturally significant, risky and of high business value, explain the reasons why you chose them, and then analyze them in a fully dressed format. refine each in collaboration with the user before proceeding to the next one.
+10. based on the Requirements Ranking, choose 10% (at least one) of the use cases that are still in brief format (not yet converted to fully dressed). prioritize the pending candidates with the highest architectural significance, risk, and business value, explain the selection reasons, and then analyze each selected use case in fully dressed format. refine each in collaboration with the user before proceeding to the next one.
   - Artifacts in progress: `Requirements Ranking` and `Use Case fully dressed`.
   - Before choosing the 10%, load the active schema instruction/template for `Requirements Ranking` and produce an explicit ranking based on risk, coverage, and criticality.
-  - The 10% selection must be justified from that ranking; do not choose deep-dive use cases ad hoc.
+  - Build the candidate pool only from use cases that remain in brief format; exclude any use case already documented in fully dressed format.
+  - The 10% selection must come from that pending brief-format pool and be justified from the ranking; do not choose deep-dive use cases ad hoc.
   - Before drafting each detailed case, load the active schema instruction for use cases and the active schema template `use-case-fully-dressed.md`.
   - Stop and request `OK PASO 10` before continuing.
    - After approval, persist each `Use Case fully dressed` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/Use Cases/UC{{#}} {{use-case.name}}.md`.
