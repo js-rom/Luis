@@ -2,14 +2,16 @@
 
 [Use Case](../use-cases/UC{{#}}%20{{use-case.name}}.md)
 
-## Scenario
+{for scenario in scenarios}
+
+## Scenario {{#}}
 
 - Use case: `UC{{#}} {{use-case.name}}`
-- Scenario: `<Main Success Scenario | Extension X>`
+- Scenario: `{{scenario.name}}`
 
 ```plantuml
 @startuml
-title SSD - UC{{#}} {{use-case.name}} - <Scenario>
+title SSD - UC{{#}} {{use-case.name}} - {{scenario.name}}
 
 actor "{{primary-actor}}" as Actor
 participant "System" as System
@@ -34,3 +36,5 @@ end
 
 - Scenario step(s): `<list of step numbers>`
 - Notes: `<constraints, validations, timing assumptions>`
+
+{end scenario}
