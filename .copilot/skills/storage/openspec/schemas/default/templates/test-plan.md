@@ -85,7 +85,7 @@
 
 - **Approval model:**
 	- Guided mode: one-by-one implementation with explicit user approval before RED.
-	- Automatic mode: implementation of the agreed list without per-case approval.
+	- Automatic mode: one-by-one implementation of the agreed list without per-case approval; each item must complete `RED -> GREEN -> REFACTOR` before the next.
 - **Selected model for this plan:** {{Guided mode | Automatic mode}}
 - **Approval evidence:** {{chat confirmation / token / timestamp}}
 

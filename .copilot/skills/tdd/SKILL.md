@@ -41,7 +41,8 @@ Do not use this skill as a rule to write all tests upfront.
 		- `Do you want implementation one by one with prior user approval, or automatically without per-case approval?`
 	- Then ask the user to choose execution mode:
 		- `Guided mode`: implement one case at a time with explicit user approval before RED.
-		- `Automatic mode`: implement the agreed list end-to-end without per-case approval.
+		- `Automatic mode`: implement the agreed list end-to-end **one case at a time** without per-case approval.
+		- In `Automatic mode`, no per-case approval is required, but strict sequencing is still mandatory: one active case, one RED, one GREEN, one REFACTOR, then next case.
 	- Record the selected mode before starting RED/GREEN cycles.
 	- If the user does not choose explicitly, default to `Guided mode`.
 	- After closing Step 1, persist `Test plan.md` using the storage skill and active Artifact Store Policy.
@@ -85,9 +86,11 @@ Do not use this skill as a rule to write all tests upfront.
 - One cycle MUST be completed in this exact order: `RED -> GREEN -> REFACTOR`.
 - Do NOT start the next Test List item until the current item has post-refactor GREEN evidence and is marked done.
 - Do NOT batch multiple new tests in one cycle.
+- Do NOT run RED for multiple pending items before completing GREEN for the active item.
 - Do NOT batch broad production implementation ahead of RED evidence.
 - In `Guided mode`, do NOT execute RED for a new case without explicit user approval of that case.
 - In `Automatic mode`, do NOT execute RED for cases outside the previously agreed Test List.
+- In `Automatic mode`, process the Test List as a strict loop: select next agreed item, complete full `RED -> GREEN -> REFACTOR`, mark done, then continue.
 
 ## Interface vs Implementation Split (MANDATORY)
 
@@ -100,6 +103,7 @@ Do not use this skill as a rule to write all tests upfront.
 ## Anti-Patterns to Avoid (MUST)
 
 - Writing all tests from the Test List before running any passing cycle.
+- Running RED for several Test List items before finishing GREEN for the first one.
 - Selecting cases without explicit factor/equivalence/boundary reasoning.
 - Ignoring combinatorial control when factors explode (pairwise/orthogonal alternatives).
 - Advancing to implementation without respecting the selected approval policy:

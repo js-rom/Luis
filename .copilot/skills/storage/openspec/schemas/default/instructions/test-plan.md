@@ -28,7 +28,7 @@ The Test Plan captures the explicit output of Step 1 of the TDD loop before any 
 
 - Record the chosen implementation mode:
   - `Guided mode`: per-case approval before RED.
-  - `Automatic mode`: execution of the agreed list without per-case approval.
+  - `Automatic mode`: sequential execution of the agreed list (one case at a time, full `RED -> GREEN -> REFACTOR` per case) without per-case approval.
 - Record approval evidence (message, token, or equivalent confirmation).
 
 ### 5. Quality and Scope Rules
