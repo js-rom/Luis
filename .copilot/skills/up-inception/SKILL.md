@@ -133,19 +133,17 @@ The orchestrator will give you:
 10. **Immediately invoke the [storage](../storage/SKILL.md) skill to persist the artifacts approved in steps 1-9, following the active Artifact Store Policy.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass only approved artifacts to storage.
-  - Persist approved inception artifacts under the discipline directories defined in `openspec-convention.md`; most inception artifacts land in `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/`, while `Requirements Ranking` must be stored as `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
+  - Persist approved inception artifacts directly under the discipline directories defined in `openspec-convention.md`; most inception artifacts land in `openspec/artifacts/{domain}/02 Requirements/`, while `Requirements Ranking` must be stored as `openspec/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
   - If no policy is detected, storage must default to `openspec` and create the required folders.
 11. **Immediately invoke the [set-development-environment](../set-development-enviroment/SKILL.md) skill to set up the development environment for the project.**
   - Treat this as an automatic step, not a user-driven action.
   - Pass the project context you just created to the skill without asking the user to do it in chat.
   - If no context is detected, the skill must default to a standard setup.
-12. Ask the user whether to archive the inception iteration.
+12. Close inception persistence in master-only mode.
   - Treat this as an automatic step, not a user-driven action.
-  - On confirmation, execute ALL of the following sub-steps in order — do NOT skip any:
-    a. Move `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
-    b. **MANDATORY MERGE**: Copy/update every artifact from the archived folder into the master spec directory `openspec/artifacts/{domain}/`, preserving the discipline-relative path defined in `openspec-convention.md`. This is NOT optional.
-    c. Confirm to the user that BOTH the move AND the merge are complete, listing the files merged.
-  - The archive is an audit trail — never delete or modify archived files.
+  - Do NOT create, move, or archive folders under `openspec/iterations/`.
+  - Do NOT run delta merge operations.
+  - Confirm to the user that approved artifacts are already persisted directly under `openspec/artifacts/{domain}/...`.
 
 ## Required Turn Template
 
@@ -178,8 +176,8 @@ Before asking for `OK PASO N`, verify internally that:
 - writing multiple phases in one response without waiting for user feedback.
 - atempt to define all the requirements.
 - expect reliable estimates or plans.
-- archiving an iteration without merging its deltas into the matching discipline path under `openspec/artifacts/{domain}/`.
-- confirming archive as complete when only the folder move was done.
+- persisting approved artifacts into `openspec/iterations/{iteration}/...` instead of direct master paths.
+- attempting archive or delta-merge operations in master-only persistence mode.
 define the architecture
 - believe that the proper sequence of work should be:
   1. define all the requirements

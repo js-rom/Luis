@@ -16,6 +16,11 @@ rules:
   tdd:
     test_command: ""
     build_command: ""
-    coverage_threshold: 0
+    coverage_threshold: 80%
+  persistence:
+    mode: master-only
+    write_path: openspec/artifacts/{domain}/
+    archive_iterations: false
+    merge_deltas: false
   archive:
-    - Warn before merging destructive deltas
+    - Disabled in master-only mode. Do not create iterations or merge deltas.

@@ -23,21 +23,17 @@ Unified Process Artifacts to persist
 
 Persist Unified Process Artifacts following the active Artifact Store Policy and Conventions. If no policy is detected, default to `openspec` mode. If the policy is `none`, return results inline only and recommend enabling a persistence mode for better artifact management. **Only if** necessary file system paths do not exist, create them following applicable conventions.
 
-For `openspec` mode, store artifacts under `openspec/iterations/{iteration}/artifacts/{domain}/{discipline}/...` and ensure each `{domain}` uses the Unified Process discipline folders defined in `openspec-convention.md`. Create empty discipline folders only when necessary and keep them versioned with placeholder files when they do not contain artifacts yet.
+For `openspec` mode, use **master-only persistence**: store artifacts directly under `openspec/artifacts/{domain}/{discipline}/...` and ensure each `{domain}` uses the Unified Process discipline folders defined in `openspec-convention.md`. Create empty discipline folders only when necessary and keep them versioned with placeholder files when they do not contain artifacts yet.
 
-- Persist `Requirements Ranking` specifically under `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
+- Persist `Requirements Ranking` specifically under `openspec/artifacts/{domain}/08 Project Management/Requirements Ranking.md`.
 
-## Step 2: Archive (only when requested by orchestrator)
+## Step 2: Archive Requests (disabled in master-only policy)
 
-When archiving an iteration, execute both sub-steps atomically — archiving is NOT complete until both are done:
+When the orchestrator asks to archive an iteration or merge deltas, do NOT move folders and do NOT run merge logic.
 
-1. **Move** `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` (use today's date in ISO format).
-2. **Merge deltas** into master specs:
-  - For each file in `archive/.../artifacts/{domain}/`: copy/update the corresponding file under `openspec/artifacts/{domain}/`, preserving the full discipline-relative path such as `02 Requirements/use-cases/UC01 ...`.
-  - This includes project-management artifacts such as `08 Project Management/Requirements Ranking.md`; do not remap them into `02 Requirements`.
-   - If the master file does not exist, create it.
-   - If it exists, read it first and update it with the delta content — do NOT overwrite blindly.
-3. Report both steps as done, listing every file merged. Do NOT declare archiving complete if the merge was skipped.
+1. Report that the active policy is master-only and archive/merge operations are disabled.
+2. Confirm that artifacts must be written directly to `openspec/artifacts/{domain}/...`.
+3. If any artifact is pending persistence, persist it directly to master paths and list files updated.
 
 # Results
 
@@ -59,5 +55,5 @@ Do only for enabled modes.
 
 | Mode | Recovery |
 |------|----------|
-| `openspec` | read `openspec/iterations/{iteration}/state.yaml` or `openspec/iterations/archive/YYYY-MM-DD-{iteration}/state.yaml` |
+| `openspec` | read `openspec/state.yaml` |
 | `none` | State not persisted — explain to user |

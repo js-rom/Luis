@@ -9,11 +9,10 @@ Apply these rules in every task in this repository, even if the prompt does not 
 	- [storage backend skill](./skills/storage/SKILL.md)
 	- [OpenSpec convention](./skills/storage/openspec-convention.md)
 2. Treat OpenSpec artifacts as source of truth:
-	- Main specs: openspec/artifacts/
-	- Active work: openspec/iterations/{iteration}/
+	- Main specs and active work: openspec/artifacts/
 3. Never overwrite existing artifacts blindly:
 	- If a target file exists, read it first and update it.
-4. Never delete or modify archived iteration content in openspec/iterations/archive/.
+4. Use master-only persistence for OpenSpec artifacts (no iteration delta folders and no archive merge workflow).
 5. Code language policy:
 	- All source code, tests, identifiers, and code comments MUST be written in English.
 	- User-facing product text may follow explicit artifact or business language requirements.
@@ -53,12 +52,11 @@ For each sub-agent launch:
 
 When creating or updating OpenSpec artifacts:
 1. Ensure openspec/config.yaml exists and use its rules section for project constraints.
-2. Ensure iteration folder exists before writing artifacts.
-3. If iteration folder already has artifacts, continue that iteration (do not reinitialize).
-4. Use schema templates and instructions from openspec/schemas/default/.
-5. Write iteration deltas under openspec/iterations/{iteration}/artifacts/{domain}/.
-6. Organize each `{domain}` by the Unified Process discipline directories `01 Business Modeling` through `09 Enviroment`.
-7. Merge to openspec/artifacts/{domain}/ only via archive flow, preserving the discipline-relative path and audit trail.
+2. Ensure the master path `openspec/artifacts/{domain}/` exists before writing artifacts.
+3. Use schema templates and instructions from openspec/schemas/default/.
+4. Write artifacts directly under `openspec/artifacts/{domain}/{discipline}/...`.
+5. Organize each `{domain}` by the Unified Process discipline directories `01 Business Modeling` through `09 Enviroment`.
+6. Do not create or use `openspec/iterations/` for persistence; do not run archive/merge flows.
 
 ### Sub-Agent Context Protocol
 

@@ -5,6 +5,7 @@
 ```
 openspec/
 ├── config.yaml              <- Project-specific SDD config
+├── state.yaml               <- DAG state (survives compaction)
 ├── schemas/
 │   └── default/
 │       ├── templates/       <- Default artifacts for Unified Process
@@ -35,29 +36,16 @@ openspec/
 │       ├── 04 Implementation/
 │       │   └── .gitkeep
 │       ├── 05 Test/
-│       │   └── Test plan.md
+│       │   └── {{#}} {Iteration} Test plan.md
 │       ├── 06 Deployment/
 │       │   └── .gitkeep
 │       ├── 07 Configuration & CM/
 │       │   └── .gitkeep
 │       ├── 08 Project Management/
-│       │   ├── use-cases/
-│       │   │   └── {iteration} Plan.md
+│       │   ├── {{#}} {Iteration} Plan.md
 │       │   └── Requirements Ranking.md
 │       └── 09 Enviroment/
 │           └── .gitkeep
-└── iterations/              <- Active and archived iteration deltas
-    ├── archive/
-    │   └── YYYY-MM-DD-{iteration}/
-    │       ├── state.yaml
-    │       └── artifacts/
-    │           └── {domain}/
-    │               └── ...same discipline layout as master artifacts...
-    └── {iteration}/
-        ├── state.yaml       <- DAG state (survives compaction)
-        └── artifacts/
-            └── {domain}/
-                └── ...same discipline layout as master artifacts...
 ```
 
 ## Discipline Directories
@@ -78,25 +66,24 @@ openspec/
 
 | Skill | Creates / Reads | Path |
 |-------|----------------|------|
-| orchestrator | Creates/Updates | `openspec/iterations/{iteration}/state.yaml` |
-| storage | Creates (required) | `openspec/config.yaml`, `openspec/artifacts/`, `openspec/iterations/`, `openspec/iterations/archive/`, `openspec/schemas/default/templates/`, `openspec/schemas/default/instructions/` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/01 Business Modeling/Domain Model.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/vision.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/supplementary-specification.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/glosary.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/domain-rules.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/Use Case Model.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/use-cases/UC{{#}} {{use-case.name}}.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/SSDs/SSD UC{{#}} {{use-case.name}}.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/Contract CO{#} CO{#} UC{{#}} {{use-case.name}}.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Design Model.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Data Model.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/05 Test/Test plan.md` |
-| storage | Creates (required) | `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md`, `openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Iteration Plan.md` |
-| storage | Moves | `openspec/iterations/{iteration}/` → `openspec/iterations/archive/YYYY-MM-DD-{iteration}/` |
-| storage | Updates | `openspec/artifacts/{domain}/{discipline}/...` (merges deltas into main specs while preserving the discipline-relative path) |
+| orchestrator | Creates/Updates | `openspec/state.yaml` |
+| storage | Creates (required) | `openspec/config.yaml`, `openspec/state.yaml`, `openspec/artifacts/`, `openspec/schemas/default/templates/`, `openspec/schemas/default/instructions/` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/01 Business Modeling/Domain Model.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/vision.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/supplementary-specification.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/glosary.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/domain-rules.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/Use Case Model.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/use-cases/UC{{#}} {{use-case.name}}.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/SSDs/SSD UC{{#}} {{use-case.name}}.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/Operation Contracts/Contract CO{#} UC{{#}} {{use-case.name}}.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Design Model.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/SW Architecture Document.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Data Model.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/05 Test/{{#}} {Iteration} Test plan.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/08 Project Management/Requirements Ranking.md`, `openspec/artifacts/{domain}/08 Project Management/{{#}} {Iteration} Plan.md` |
+| storage | Updates | `openspec/artifacts/{domain}/{discipline}/...` (direct master update; no archive merge) |
 
 ## Default artifacts
 
@@ -105,54 +92,37 @@ openspec/
 ## Reading Artifacts
 
 ```
-vision: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/vision.md
-supplementary specification: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/supplementary-specification.md
-glosary: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/glosary.md
-domain rules: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/domain-rules.md
-use case model: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/Use Case Model.md
-use case: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/use-cases/UC{{#}} {{use-case.name}}.md
-system sequence diagram: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/SSDs/SSD UC{{#}} {{use-case.name}}.md
-operation contracts: openspec/iterations/{iteration}/artifacts/{domain}/02 Requirements/Operation Contracts/Contract CO{#} UC{{#}} {{use-case.name}}.md
-domain model: openspec/iterations/{iteration}/artifacts/{domain}/01 Business Modeling/Domain Model.md
-design model: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Design Model.md
-SW architecture document: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/SW Architecture Document.md
-data model: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Data Model.md
-use case realization: openspec/iterations/{iteration}/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md
-requirements-ranking: openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Requirements Ranking.md
-Iteration Plan: openspec/iterations/{iteration}/artifacts/{domain}/08 Project Management/Iteration Plan.md
-test plan: openspec/iterations/{iteration}/artifacts/{domain}/05 Test/Test plan.md
-artifacts: openspec/iterations/{iteration}/artifacts/{domain}/  (all discipline subdirectories)
+vision: openspec/artifacts/{domain}/02 Requirements/vision.md
+supplementary specification: openspec/artifacts/{domain}/02 Requirements/supplementary-specification.md
+glosary: openspec/artifacts/{domain}/02 Requirements/glosary.md
+domain rules: openspec/artifacts/{domain}/02 Requirements/domain-rules.md
+use case model: openspec/artifacts/{domain}/02 Requirements/Use Case Model.md
+use case: openspec/artifacts/{domain}/02 Requirements/use-cases/UC{{#}} {{use-case.name}}.md
+system sequence diagram: openspec/artifacts/{domain}/02 Requirements/SSDs/SSD UC{{#}} {{use-case.name}}.md
+operation contracts: openspec/artifacts/{domain}/02 Requirements/Operation Contracts/Contract CO{#} UC{{#}} {{use-case.name}}.md
+domain model: openspec/artifacts/{domain}/01 Business Modeling/Domain Model.md
+design model: openspec/artifacts/{domain}/03 Design/Design Model.md
+SW architecture document: openspec/artifacts/{domain}/03 Design/SW Architecture Document.md
+data model: openspec/artifacts/{domain}/03 Design/Data Model.md
+use case realization: openspec/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md
+requirements-ranking: openspec/artifacts/{domain}/08 Project Management/Requirements Ranking.md
+Iteration Plan: openspec/artifacts/{domain}/08 Project Management/{{#}} {Iteration} Plan.md
+test plan: openspec/artifacts/{domain}/05 Test/{{#}} {Iteration} Test plan.md
+artifacts: openspec/artifacts/{domain}/  (all discipline subdirectories)
 config: openspec/config.yaml
 ```
 
 ## Writing Rules
 
-- Always create the iteration directory before writing artifacts.
+- Always write directly to `openspec/artifacts/{domain}/...`.
 - If a file already exists, READ it first and UPDATE it (do not overwrite blindly).
-- If the iteration directory already exists with artifacts, the iteration is being CONTINUED.
+- Do NOT create or use `openspec/iterations/` folders for artifact persistence.
 - Within each `{domain}`, always place artifacts in the correct Unified Process discipline directory.
 - Create all nine discipline directories for each `{domain}`. If a discipline has no artifact yet, keep the directory versioned with a placeholder such as `.gitkeep`.
 - Use `openspec/config.yaml` `rules` section for project-specific constraints per phase.
 
-## Archive Structure
+## Archive Policy (Master-Only)
 
-When archiving, the iteration folder moves to:
-
-```
-openspec/iterations/archive/YYYY-MM-DD-{iteration}/
-```
-
-Then merge each archived delta into the matching master path under:
-
-```
-openspec/artifacts/{domain}/
-```
-
-The merge must preserve the full discipline-relative path. Example:
-
-```
-openspec/iterations/archive/YYYY-MM-DD-{iteration}/artifacts/registro-horario/02 Requirements/Use Case Model.md
-→ openspec/artifacts/registro-horario/02 Requirements/Use Case Model.md
-```
-
-Use today's date in ISO format. The archive is an AUDIT TRAIL — never delete or modify archived changes.
+- Do NOT create or move `openspec/iterations/{iteration}/` folders.
+- Do NOT run archive or delta-merge operations.
+- Use version control history (for example, Git commits) as the audit trail for specification changes.

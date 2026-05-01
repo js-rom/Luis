@@ -13,13 +13,14 @@ The orchestrator persists DAG state after each phase transition to enable SDD re
 
 | Mode | Persist State | Recover State |
 |------|--------------|---------------|
-| `openspec` | Write `openspec/iterations/{iteration}/state.yaml` | Read `openspec/iterations/{iteration}/state.yaml` or `openspec/iterations/archive/YYYY-MM-DD-{iteration}/state.yaml` |
+| `openspec` | Write `openspec/state.yaml` | Read `openspec/state.yaml` |
 | `none` | Not possible — warn user | Not possible |
 
 ## Common Rules
 
 - `none` → do NOT create or modify any project files; return results inline only
 - `openspec` → write files ONLY to paths defined in [openspec-convention](./openspec-convention.md)
+- `openspec` → use master-only persistence under `openspec/artifacts/{domain}/...` (no iteration delta folders, no archive merge)
 - If unsure which mode to use, default to `none`
 
 ## Sub-Agent Context Rules

@@ -46,7 +46,7 @@ Do not use this skill as a rule to write all tests upfront.
 	- Record the selected mode before starting RED/GREEN cycles.
 	- If the user does not choose explicitly, default to `Guided mode`.
 	- After closing Step 1, persist `Test plan.md` using the storage skill and active Artifact Store Policy.
-	- Persist it under: `openspec/iterations/{iteration}/artifacts/{domain}/05 Test/Test plan.md`.
+	- Persist it under: `openspec/artifacts/{domain}/05 Test/{{#}} {Iteration} Test plan.md`.
 	- Build the artifact from the active schema template `test-plan.md`.
 2. Pick exactly one item from the list and **write one concrete automated test**.
 	- In `Guided mode`, the selected item MUST be explicitly approved by the user.
