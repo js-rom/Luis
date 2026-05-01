@@ -132,9 +132,9 @@ The orchestrator will give you:
   - Stop and request `OK PASO 4` before continuing.
   - After approval, store the `Operation Contracts` artifacts using the storage skill, following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/02 Requirements/Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md`.
 
-5. (TBD) Refine or elaborate if not exist the architectural analysis.
+5. (TBD) Refine if needed or elaborate if not exist the architectural analysis.
 
-6. (TBD) Refine or elaborate if not exist the logical view applying design principles.
+6. (TBD) Refine if needed or elaborate if not exist the logical view applying design principles.
 
 7. (TBD) UI Design if there is UI scope in the iteration.
 
@@ -152,7 +152,7 @@ The orchestrator will give you:
   - Stop and request `OK PASO 6` before continuing.
   - After approval, store each `Use Case Realization` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md`.
 
-10. (TBD) Refine or elaborate if not exist the data model if there is data scope in the iteration.
+10. (TBD) Refine if needed or elaborate if not exist the data model if there is data scope in the iteration.
 
 11. Reviewer pass for PASO 6 (Logical view quality gate) and PASO 9 (Use Case Realization quality gate).
   - Artifacts in progress: `Use Case Realization`, `Logical View`
