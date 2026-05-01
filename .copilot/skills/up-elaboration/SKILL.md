@@ -152,7 +152,7 @@ The orchestrator will give you:
   - Stop and request `OK PASO 6` before continuing.
   - After approval, store each `Use Case Realization` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md`.
 
-10. (TBD) Refine or elaborate if not exist the data model.
+10. (TBD) Refine or elaborate if not exist the data model if there is data scope in the iteration.
 
 11. Reviewer pass for PASO 6 (Logical view quality gate) and PASO 9 (Use Case Realization quality gate).
   - Artifacts in progress: `Use Case Realization`, `Logical View`
