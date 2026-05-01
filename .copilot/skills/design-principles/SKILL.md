@@ -1,6 +1,6 @@
 ---
 name: design-principles
-description: "Use when applying software design principles to analysis/design artifacts, code, and unit-testing. Covers responsibility assignment, cohesion/coupling, SOLID, GoF pattern decisions, and refactoring for testability. Triggers: design principles, software design, architecture review, SOLID, GoF, unit testing, testability, TDD, pruebas unitarias."
+description: "Use when applying software design principles to analysis/design artifacts, code, and unit-testing. Covers responsibility assignment, cohesion/coupling, SOLID, GoF pattern decisions, and refactoring for testability. Triggers: design principles, software design, architecture review, SOLID, GoF, unit testing, testability, TDD, pruebas unitarias, refactor."
 license: MIT
 metadata:
   author: js-rom
