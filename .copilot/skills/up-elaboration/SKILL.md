@@ -130,7 +130,7 @@ The orchestrator will give you:
   - Before elaborating, load the active schema instruction for operation contracts and the active schema template `operation-contract.md`.
   - If new discoveries during elaboration require changes to the vision, use-case model, supplementary specification, glossary, or risk list, update them in collaboration with the user and load the updated artifacts to storage before proceeding.
   - Stop and request `OK PASO 4` before continuing.
-  - After approval, store the `Operation Contracts` artifacts using the storage skill, following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/02 Requirements/Operation Contracts/Contract CO{#} UC{{#}} {{use-case.name}}.md`.
+  - After approval, store the `Operation Contracts` artifacts using the storage skill, following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/02 Requirements/Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md`.
 5. Elaborate the SW Architecture Document, describing the key architectural decisions, patterns, and rationale for the current iteration.
   - Artifacts in progress: `SW Architecture Document`
   - Before elaborating, load the active schema instruction for architecture documents and the active schema template `sw-architecture-document.md`.

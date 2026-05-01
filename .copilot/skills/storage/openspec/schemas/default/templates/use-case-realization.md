@@ -21,7 +21,7 @@
 
 - Use Case: `UC{{#}} {{use-case.name}}`
 - System Sequence Diagrams: `<list of SSD references used for this use case>`
-- Operation Contracts: `<list of Contract CO# references used for this use case>`
+- Operation Contracts: `<UC{{#}} {{use-case.name}} - Operation Contracts reference used for this use case>`
 - Supplementary Specification constraints: `<relevant sections>`
 - Glossary terms: `<relevant terms>`
 

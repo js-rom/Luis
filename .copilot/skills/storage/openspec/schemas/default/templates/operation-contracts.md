@@ -1,4 +1,4 @@
-# Operation Contracts - UC{{#}} {{use-case.name}}
+# UC{{#}} {{use-case.name}} - Operation Contracts
 
 - [Back to Use Case](../use-cases/UC{{#}}%20{{use-case.name}}.md)
 - [back to SSD](../SSDs/SSD%20UC{{#}}%20{{use-case.name}}.md)
@@ -9,7 +9,7 @@
 - Scenario: `<Main Success Scenario | Extension X>`
 
 {for operation in system-operations}
-## Operation Contract: {{operation.name}}
+## Operation Contract: {{operation.signature}}
 
 ### Operation
 

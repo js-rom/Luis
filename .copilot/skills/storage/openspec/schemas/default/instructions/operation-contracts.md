@@ -13,7 +13,7 @@
 
 1. Select one use case scenario and its SSD.
 2. Identify system operations from actor-to-system messages.
-3. Create one operation contract per system operation.
+3. Create one operation-contract section per system operation.
 4. Validate traceability from Use Case -> SSD -> Operation Contract.
 
 ### Execution Mode (MANDATORY)
@@ -25,7 +25,7 @@
 ## Modeling Rules (MUST / MUST NOT)
 
 - MUST create contracts only for system operations.
-- MUST keep each contract tied to one specific scenario.
+- MUST keep each operation-contract section tied to one specific scenario.
 - MUST define postconditions in terms of domain state changes.
 - MUST express postconditions using Domain Model vocabulary.
 - SHOULD include preconditions only when non-obvious and relevant.
@@ -48,6 +48,7 @@
 The artifact MUST include:
 
 - Use case and scenario identification.
+- One consolidated file per use case.
 - One section per system operation.
 - For each operation:
 	- Operation name/signature (conceptual).
@@ -58,12 +59,12 @@ The artifact MUST include:
 ## Storage Convention
 
 - Persist each operation-contract artifact under:
-	`02 Requirements/Operation Contracts/Contract CO{#} UC{{#}} {{use-case.name}}.md`
+	`02 Requirements/Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md`
 
 ## Validation Checklist
 
 1. Are operations extracted from SSD system events?
-2. Is each contract tied to one specific scenario?
+2. Is each operation-contract section tied to one specific scenario?
 3. Are postconditions written in Domain Model terms?
 4. Are creations/deletions/links/attribute updates captured when applicable?
 5. Are algorithm/UI/infrastructure details excluded?
