@@ -1,8 +1,7 @@
 # Use Case Realization - UC{{#}} {{use-case.name}}
 
-- [Use Case](../../02%20Requirements/use-cases/UC{{#}}%20{{use-case.name}}.md)
-- [Use Case Model](../../02%20Requirements/Use%20Case%20Model.md)
-- [Domain Model](../../01%20Business%20Modeling/Domain%20Model.md)
+> [!info]
+> A Use Case Realization describe the design of one or more **scenarios** of a use case, each of these is a scenario realization.
 
 ## Revision History
 
@@ -19,19 +18,20 @@
 
 ## Inputs and References
 
-- Use Case: `UC{{#}} {{use-case.name}}`
-- System Sequence Diagrams: `<list of SSD references used for this use case>`
-- Operation Contracts: `<UC{{#}} {{use-case.name}} - Operation Contracts reference used for this use case>`
-- Supplementary Specification constraints: `<relevant sections>`
-- Glossary terms: `<relevant terms>`
+- [Use Case](../../02%20Requirements/use-cases/UC{{#}}%20{{use-case.name}}.md)
+- [System Sequence Diagrams](../../02%20Requirements/SSDs/SSD%20UC{{#}}%20{{use-case.name}}.md)
+- [Operation Contracts](../../02%20Requirements/SOperation%20Contracts/UC{{#}}%20{{use-case.name}}%20-%20Operation%20Contracts.md)
+- [Supplementary Specification constraints](../../02%20Requirements/supplementary-specification.md)
+- [Glossary](../../02%20Requirements/glosary.md)
+- [Domain Model](../../01%20Business%20Modeling/Domain%20Model.md)
 
 ## Scenario Mapping
 
-| Scenario | Use Case Steps | SSD Reference | Operation Contract(s) | Key Postconditions | Design Sequence Section | Design Class Section | Supplementary and Glossary Notes | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| S1 - <scenario name> | <e.g., 1-8> | <SSD link or id> | <CO1, CO2> | <main postconditions> | <anchor/ref> | <anchor/ref> | <constraints and terms> | <draft/reviewed/approved> |
-| S2 - <scenario name> | <...> | <...> | <...> | <...> | <...> | <...> | <...> | <...> |
-| ... | ... | ... | ... | ... | ... | ... | ... | ... |
+| Use Case Steps | Scenario | SSD Reference | Operation Contract(s) | Key Postconditions | Supplementary and Glossary Notes | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| <e.g., 1-8> | S1 - <scenario name> | <SSD link or id> | <CO1, CO2> | <main postconditions> | <constraints and terms> | <draft/reviewed/approved> |
+| <e.g., step 2a.> | S2 - <scenario name> | <...> | <...> | <...> | <...> | <...> |
+| ... | ... | ... | ... | ... | ... | ... |
 
 ## Scenario Realizations
 
