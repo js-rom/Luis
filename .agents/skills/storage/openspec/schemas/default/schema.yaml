@@ -84,7 +84,13 @@ artifacts:
     generates: '{{fully.qualified.package}}.packageDiagram.plantuml'
     description: Stored under 03 Design/Logical View; captures package-level logical structure and dependencies using PlantUML.
     template: plantuml.plantuml
-    instruction: 'INVOKE this link -> "./instructions/logical-view-package-diagram.md"'
+    instruction:
+    requires: [supplementary-specification, technical-memo, use-case-model, domain-model]
+  - id: Logical View Class Diagram
+    generates: '{{fully.qualified.package}}.classDiagram.plantuml'
+    description: Stored under 03 Design/Logical View; captures class-level static structure, members, and relationships using PlantUML.
+    template: plantuml.plantuml
+    instruction:
     requires: [supplementary-specification, technical-memo, use-case-model, domain-model]
   - id: Test Plan
     generates: Test plan.md
