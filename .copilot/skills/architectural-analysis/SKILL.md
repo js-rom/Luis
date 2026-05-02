@@ -1,77 +1,112 @@
-# Purpose
+---
+name: architectural-analysis
+description: Analyze architectural factors from Vision, Use Case Model, and Supplementary Specification; produce FURPS+ factor tables and technical memo recommendations through a mandatory pair-programming workflow.
+license: MIT
+metadata:
+  author: js-rom
+  version: "1.0"
+---
 
-the essence of architectural analysis is to identify factors that should influece the architecture, understand their variability and priority, and resolve them. You should ask the right questions to elicit architectural factors and choose skillful means to resolve the factors wheighing the trade-offs and rationale.
+## Purpose
 
-# Motivation
-- reduce the risk of missing something centrally important in the design of the system.
-- avoid applying excesive effort to low priority issues.
-- help align the product with business goals.
+Use architectural analysis to identify and prioritize the factors that most influence the architecture, then resolve them through explicit design decisions and rationale.
 
-# input artifacts
+## Motivation
+
+- Reduce the risk of missing architecturally significant concerns.
+- Avoid spending excessive effort on low-priority issues.
+- Align architecture with business goals and constraints.
+
+## Required Inputs
+
 - Vision
 - Use Case Model
 - Supplementary Specification
 
-# Points of change in a software system
-- variation point: Variations in the existing current system or requirements, such as multiple tax calculator interfaces that must be supported.
-- Evolution point: Speculative points of variation that may arise ub the future, but which are not present in the existing requirements.
+## Core Concepts
 
-variation points and evolution points are recurring key elements in architectural analysis, and they should be identified, documented, and resolved with appropriate design decisions.
+- Variation point: Existing variability in requirements, integrations, or deployment contexts.
+- Evolution point: Likely future variability not yet required now.
 
-# Typical architectural questions to consider
+Both must be identified, prioritized, and addressed with proportionate architectural decisions.
 
-Architectural analysus is concerned with the identification and resolution of the system's non-functional requirements and quality attributes, in the context of the functional requirements. Some typical questions to consider include:
-- how do reliability and fault tolerance requirements influence the architecture?
-- How do licensing costs of purshased subcomponents affet profitability?
-- how do the adaptability and configurabilitu requirements affect the design?
-- how soes brand name and branding affect the architecture?
+## Mandatory Pair Programming Workflow
 
-# Common steps in architectural analysis
+This skill must always run in pair-programming mode.
 
-1. identify and analyze the non-functional requirements and functional requirements in term of variability or change that have an impact on the architecture. these are the architectural factors or drivers.
-2. Make architectural decisions forthose requiremtns with a significat architectural impact, analyze alternativs and create solutions that resolve the impact.
+- Agent role: Driver.
+- User role: Navigator.
+- Cadence: The agent proposes one step, asks for confirmation/feedback, then proceeds.
+- Rule: Do not skip directly to final recommendations without step-by-step checkpoints.
 
-# Identification and analysis of architectural factors
+### Step-by-Step Execution
 
-- Architectural factors:
-  - any and all of the FURPS+ requirements may have a significan influece on the architecture of the system, ranging from reliability, to schedule, to skills and to cost contraints. However, categories of functionality, reliability, performace, suportability, implementation and interface have the strongest architectural ingfluence.
-- Quality scenarios (term promoted by the SEI):
-  - are a useful tool to identify and analyze architectural factors. They consist of a stimulus, a response, and a measure of success. For example, a quality scenario for reliability might be: "When the system receives an invalid input, it should return an error message within 1 second 99% of the time in a production environment under "average" load conditions."
-  - "average" load conditions should be defined in terms of the expected number of concurrent users, transactions per second, or other relevant metrics. A quality scenario is not really valid until it is testeable.
-- Pick your battles:
-  - select only really critical make-or-breake queality scenarios to the succes of the system.
-- Describing factors:
-  - create a factor table  that describe factors, measurs ans queality scenarios, variability, impact of factor on stakeholders and other factors, priority for success, and Difficulty or risk. group architectural factors into FURPS+ categories to help ensure a comprehensive analysis.
-- Factors and UP artifacts:
-  - Use cases, Vision, and suplementary Specification are important source of inspration when creating a factor table. In the use cases, the Special Requirements, Technology Variations, and Open Open Issues should be reviwed, and their implied or explicit architectural factors consolifated in the Suplementary Specification.
+1. Confirm scope and objectives with the user.
+2. Extract candidate architectural factors from input artifacts.
+3. Classify factors by FURPS+ categories.
+4. Define measurable quality scenarios for each relevant factor.
+5. Build and review the factor table with the user.
+6. Prioritize factors using the decision hierarchy.
+7. Propose architectural decisions and alternatives.
+8. Record rationale, trade-offs, and rejected alternatives.
+9. Identify over-engineering and under-engineering risks.
+10. Produce final outputs and request user sign-off.
 
-# Resolution of architectural factors
+## Typical Questions to Drive Analysis
 
-- The art of architecture is making skillful choices to resolvethis factors, in light of trade-offs, interdependecies, and priorities.
-- Adept architects have knowledge in a variety of areas, for example architecrual styles and patterns, technologies, products, pitfalls, and trends, and apply this to their decisions.
+- How do reliability and fault-tolerance requirements influence architecture?
+- How do licensing and third-party component costs impact feasibility and profitability?
+- How do adaptability and configurability requirements affect design boundaries?
+- Which branding, market, or compliance constraints influence architectural choices?
 
-## Recording architectural alternatives, decisions, and motivation:
-- keep a recor of alternative solutions, decisions, influential factors, and motivations for the noteworthy issues and decisions. This is called a Technical Memo.
-- Technical memos are recorded at Sofware Architecture Document.
-- An important aspect of the technical memo is the motivation or rationale.
-- explain also the rationale of rejecting the alternatives.
-- an architectural decision described in a technical memo may resolve a group of factors, not only one.
-- Priorities, there is a hierarchy of goals that guides architectural decisions:
-  1. Inflexible constraints, including safety and legal compliance.
-  2. Business goals, including profitability, market impact, and competitive advantage.
-  3. All other indirect business goals
+## Factor Identification and Analysis Rules
 
-## Priorities and evolution points: under and over-engineering
-- Avoid over-engineering by not addressing low-priority evolution points with significant effort.
-- Avoid under-engineering by not neglecting high-priority evolution points that could lead to significant future costs or risks.
-- Use architectural analysis to identify and prioritize evolution points, and make informed decisions about which ones to address in the current architecture.
-- apply basic architectural principles such as low coupling, high cohrdion, protected variation (interfaces, indirection, service lookup, etc)
-- apply separation of concerns and localization of impact. use techniques like 
-  - Modularize the concern into a separate compoent or module.
-  - USe decorators or interceptors to add behavior without modifying existing code.
-  - Use aspect-oriented programming (AOP) techniques to separate cross-cutting concerns.
-- explore architectural styles and patterns that are known to address the identified factors effectively, such as microservices for scalability and adaptability, or layered architecture for separation of concerns.
+- Analyze both functional and non-functional requirements with architectural impact.
+- Use FURPS+ categories to ensure complete coverage.
+- Focus especially on functionality, reliability, performance, supportability, implementation constraints, and interfaces.
+- Ensure quality scenarios are testable and measurable.
+- Select critical make-or-break scenarios first.
+- Trace each factor to concrete source artifacts.
 
-# Outputs
-- Architectural factor tables
-- Technical memos that record architectural decisions.
+## Required Factor Table Format
+
+Use this structure for each FURPS+ category:
+
+| Factor | Measures and Quality Scenarios | Variability | Impact on Stakeholders and Other Factors | Priority for Success | Difficulty / Risk |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| <factor> | <measure + scenario> | <variation/evolution notes> | <stakeholder + cross-factor impact> | <critical/high/medium/low> | <high/medium/low + reason> |
+
+## Decision Prioritization Hierarchy
+
+1. Inflexible constraints (safety, legal, compliance).
+2. Business goals (profitability, market impact, competitive advantage).
+3. Other indirect business goals.
+
+## Resolution Guidance
+
+- Favor decisions that balance trade-offs and interdependencies explicitly.
+- Apply foundational design principles:
+  - Low coupling and high cohesion.
+  - Protected variation (interfaces, indirection, service lookup).
+  - Separation of concerns and localization of impact.
+- Consider techniques such as modularization, decorators/interceptors, and AOP for cross-cutting concerns.
+- Evaluate styles/patterns that fit prioritized factors (for example layered architecture, microservices).
+
+## Technical Memo Rules
+
+- Record notable alternatives, decisions, and motivations as Technical Memos.
+- Include rationale for both accepted and rejected alternatives.
+- A single Technical Memo may resolve multiple related factors.
+
+## Under- vs Over-Engineering Checks
+
+- Avoid over-engineering low-priority evolution points.
+- Avoid under-engineering high-priority evolution points.
+- Match solution effort to priority and risk.
+
+## Outputs
+
+- Architectural factor tables (grouped by FURPS+).
+- Prioritized list of architecturally significant factors.
+- Proposed decisions with trade-offs and rationale.
+- Technical Memo recommendations (or drafts) for significant decisions.
