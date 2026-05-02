@@ -132,7 +132,8 @@ The orchestrator will give you:
   - Stop and request `OK PASO 4` before continuing.
   - After approval, store the `Operation Contracts` artifacts using the storage skill, following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/02 Requirements/Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md`.
 
-5. (TBD) Refine if needed or elaborate if not exist the architectural analysis.
+5. Refine if needed or elaborate if not exist the architectural analysis using the `/architectural-analysis/SKILL.md`.
+ - After approval, if new discoveries during architectural analysis require changes to supplementary specification or technical memos, update them in collaboration with the user. They should be stored under `openspec/artifacts/{domain}/02 Requirements/supplementary-specification.md` and `openspec/artifacts/{domain}/02 Requirements/Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` respectively, using the storage skill and following the active Artifact Store Policy.
 
 6. (TBD) Refine if needed or elaborate if not exist the logical view applying design principles.
 
