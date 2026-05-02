@@ -147,7 +147,7 @@ The orchestrator will give you:
 
 9. Elaborate Use Case Realization for each use case in scope for the iteration.
   - Artifacts in progress: `Use Case Realization`
-  - Before elaborating, load the active schema instruction `use-case-realization.md`, the active schema template `use-case-realization.md`, the skill `/design-principles/SKILL.md` and the instructions `class-diagram.md`.
+  - Before elaborating, load the active schema instruction `use-case-realization.md`, the active schema template `use-case-realization.md`, the skill `/design-principles/SKILL.md` and  `/class-diagram/SKILL.md`.
   - Build one realization document per use case, and within that document map every selected scenario from Use Case text + SSD + Operation Contracts to object design.
   - Use Business Modeling as inspiration for software domain object names.
   - Apply `/design-principles/SKILL.md` while producing the design for each scenario (responsibility assignment, cohesion/coupling checks, controller/view separation, and pattern decisions when hotspots appear).
@@ -159,7 +159,7 @@ The orchestrator will give you:
 
 10. (TBD) Refine if needed or elaborate if not exist the data model if there is data scope in the iteration.
 
-11. (TBD) update class diagram master files using `/class-diagram-logical-view/SKILL.md` with the incremental changes for the current iteration, using the storage skill and following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.classDiagram.plantuml`.
+11. Refine if needed or elaborate if not exist the class diagram master files using `/class-diagram-logical-view/SKILL.md` with the incremental changes for the current iteration, using the storage skill and following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.classDiagram.plantuml`.
 
 11. Reviewer pass for PASO 6 and PASO 11  (Logical view quality gate).
   - Artifacts in progress: `Logical View`
