@@ -174,9 +174,8 @@ The orchestrator will give you:
   - Stop and request `OK PASO 11` before continuing.
   - After approval, persist each reviewed/refactored `Use Case Realization` artifact in this step using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md`. (TBD: persist the Logical View.md as well if it was refactored in this step).
 12. (TBD) Refine or elaborate if not exist the data model.
-13. Elaborate the SW Architecture Document, describing the key architectural decisions, patterns, and rationale for the current iteration.
+13. Elaborate the SW Architecture Document using the `/software-architecture-document/SKILL.md`, describing the key architectural decisions, patterns, and rationale for the current iteration.
   - Artifacts in progress: `SW Architecture Document`
-  - Before elaborating, load the active schema instruction for architecture documents and the active schema template `sw-architecture-document.md`.
   - Stop and request `OK PASO 5` before continuing.
   - After approval, store the `SW Architecture Document` artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/artifacts/{domain}/03 Design/SW Architecture Document.md`.
 8. Start Skill Test-Driven Development (TDD) cycles to implement the design for the selected scenarios in the iteration scope, producing working code and automated tests as part of elaboration.

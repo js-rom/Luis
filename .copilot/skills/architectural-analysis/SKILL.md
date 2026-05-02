@@ -23,6 +23,12 @@ Use architectural analysis to identify and prioritize the factors that most infl
 - Use Case Model
 - Supplementary Specification
 
+## Design Concern Routing (MUST)
+
+- When the discussion moves from analysis to architecture design decisions, use [../architectural-design/SKILL.md](../architectural-design/SKILL.md) as the governing skill.
+- Route concerns such as style selection, modularity/package rules, dependency governance, MVC variants, quality tactics, and architecture trade-offs to [../architectural-design/SKILL.md](../architectural-design/SKILL.md).
+- Do not document 4+1 views in this skill; route 4+1 documentation concerns to [../software-architecture-document/SKILL.md](../software-architecture-document/SKILL.md).
+
 ## Core Concepts
 
 - Variation point: Existing variability in requirements, integrations, or deployment contexts.
@@ -47,7 +53,7 @@ This skill must always run in pair-programming mode.
 4. Define measurable quality scenarios for each relevant factor.
 5. Build and review the factor table with the user.
 6. Prioritize factors using the decision hierarchy.
-7. Propose architectural decisions and alternatives.
+7. Propose architectural decisions and alternatives, referencing [../architectural-design/SKILL.md](../architectural-design/SKILL.md) for design concerns.
 8. Record rationale, trade-offs, and rejected alternatives.
 9. Identify over-engineering and under-engineering risks.
 10. Produce final outputs and request user sign-off.
@@ -85,6 +91,7 @@ Use this structure for each FURPS+ category:
 ## Resolution Guidance
 
 - Favor decisions that balance trade-offs and interdependencies explicitly.
+- For architecture design concerns, follow [../architectural-design/SKILL.md](../architectural-design/SKILL.md).
 - Apply foundational design principles:
   - Low coupling and high cohesion.
   - Protected variation (interfaces, indirection, service lookup).
@@ -108,5 +115,5 @@ Use this structure for each FURPS+ category:
 
 - Architectural factor tables (grouped by FURPS+).
 - Prioritized list of architecturally significant factors.
-- Proposed decisions with trade-offs and rationale.
+- Proposed decisions with trade-offs and rationale, including design-concern references to [../architectural-design/SKILL.md](../architectural-design/SKILL.md).
 - Technical Memo recommendations (or drafts) for significant decisions.

@@ -121,10 +121,8 @@ The orchestrator will give you:
   - Continue working from the selected `Requirements Ranking` and `Use Case fully dressed` artifacts.
   - Tie the deeper investigation back to the ranking criteria, the fully dressed special requirements, open issues, risks, and implementation uncertainty already surfaced.
   - Stop and request `OK PASO 7` before persisting artifacts.
-8. Start Suplementary Specification with the key non-functional requirements that will have a major impact on the architecture. refine it in collaboration with the user.
-  - Artifact in progress: `Supplementary Specification`.
-  - Before drafting, load the active schema instruction and template `suplementary-specification.md`.
-  - Organize the draft following the loaded FURPS+ structure and keep missing details explicit as `TBD` instead of skipping sections.
+8. Start architectural analysis using the `/architectural-analysis/SKILL.md` with the key non-functional requirements that will have a major impact on the architecture. refine it in collaboration with the user.
+ - After approval, if new discoveries during architectural analysis require changes to supplementary specification or technical memos, update them in collaboration with the user. They should be stored under `openspec/artifacts/{domain}/02 Requirements/supplementary-specification.md` and `openspec/artifacts/{domain}/02 Requirements/Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` respectively, using the storage skill and following the active Artifact Store Policy.
   - Stop and request `OK PASO 8` before persisting artifacts.
 9. Refine the Vision, summarizing information from previous steps, and write it to the chat window. refine it in collaboration with the user.
   - Return to the `Vision and Business Case` artifact and reload the active schema instruction/template for Vision before drafting the refined version.
