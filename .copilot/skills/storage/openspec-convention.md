@@ -25,8 +25,10 @@ openspec/
 │       │   │   └── UC{{#}} {{use-case.name}}.md
 │       │   ├── SSDs/
 │       │   │   └── SSD UC{{#}} {{use-case.name}}.md
-│       │   └── Operation Contracts/
-│       │       └── UC{{#}} {{use-case.name}} - Operation Contracts.md
+│       │   ├── Operation Contracts/
+│       │   │   └── UC{{#}} {{use-case.name}} - Operation Contracts.md
+│       │   └── Technical memos/
+│       │       └── Issue - {{FURPS+ category}} - {{issue.name}}.md
 │       ├── 03 Design/
 │       │   ├── Design Model.md
 │       │   ├── SW Architecture Document.md
@@ -53,7 +55,7 @@ openspec/
 | Directory | Purpose | Current artifact allocation |
 |-----------|---------|----------------------------|
 | `01 Business Modeling` | Domain-level business concepts and relationships | `Domain Model.md` |
-| `02 Requirements` | Vision, use cases, supplementary requirements, glossary, and domain rules | `vision.md`, `supplementary-specification.md`, `glosary.md`, `domain-rules.md`, `Use Case Model.md`, `use-cases/`, `SSDs/SSD UC{{#}} {{use-case.name}}.md`, `Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md` |
+| `02 Requirements` | Vision, use cases, supplementary requirements, glossary, domain rules, and technical memos | `vision.md`, `supplementary-specification.md`, `glosary.md`, `domain-rules.md`, `Use Case Model.md`, `use-cases/`, `SSDs/SSD UC{{#}} {{use-case.name}}.md`, `Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md`, `Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` |
 | `03 Design` | Logical design and architecture artifacts | `Design Model.md`, `SW Architecture Document.md`, `Data Model.md`, `Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
 | `04 Implementation` | Implementation-level artifacts | Reserved |
 | `05 Test` | Test artifacts | `Test plan.md` |
@@ -77,6 +79,7 @@ openspec/
 | storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/use-cases/UC{{#}} {{use-case.name}}.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/SSDs/SSD UC{{#}} {{use-case.name}}.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/02 Requirements/Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Design Model.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/SW Architecture Document.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Data Model.md` |
@@ -100,6 +103,7 @@ use case model: openspec/artifacts/{domain}/02 Requirements/Use Case Model.md
 use case: openspec/artifacts/{domain}/02 Requirements/use-cases/UC{{#}} {{use-case.name}}.md
 system sequence diagram: openspec/artifacts/{domain}/02 Requirements/SSDs/SSD UC{{#}} {{use-case.name}}.md
 operation contracts: openspec/artifacts/{domain}/02 Requirements/Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md
+technical memo: openspec/artifacts/{domain}/02 Requirements/Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md
 domain model: openspec/artifacts/{domain}/01 Business Modeling/Domain Model.md
 design model: openspec/artifacts/{domain}/03 Design/Design Model.md
 SW architecture document: openspec/artifacts/{domain}/03 Design/SW Architecture Document.md

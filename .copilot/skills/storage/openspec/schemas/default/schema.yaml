@@ -13,7 +13,7 @@ artifacts:
     description: Stored under 02 Requirements; captures non-functional, cross-cutting, and constraint-oriented requirements.
     template: suplementary-specification.md
     instruction: INVOKE this link -> "./instructions/suplementary-specification.md"
-    requires: [vision]
+    requires: [vision, use-case-model]
   - id: Glossary
     generates: glosary.md
     description: Stored under 02 Requirements; captures key domain terminology and data dictionary entries.
@@ -68,6 +68,12 @@ artifacts:
     template: operation-contracts.md
     instruction: INVOKE this link -> "./instructions/operation-contracts.md"
     requires: [use-case-model]
+  - id: Technical Memo
+    generates: 'Issue - {{FURPS+ category}} - {{issue.name}}.md'
+    description: Stored under 02 Requirements/Technical memos; captures a technical decision for a specific quality-related issue.
+    template: technical-memo.md
+    instruction: INVOKE this link -> "./instructions/technical-memo.md"
+    requires: [supplementary-specification]
   - id: Use Case Realization
     generates: UCR UC{{#}} {{use-case.name}}.md
     description: Stored under 03 Design/Use Case Realization; maps each use case scenario to design sequence and design class diagrams with traceability to SSDs and operation contracts.
