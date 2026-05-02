@@ -159,8 +159,10 @@ The orchestrator will give you:
 
 10. (TBD) Refine if needed or elaborate if not exist the data model if there is data scope in the iteration.
 
-11. Reviewer pass for PASO 6 (Logical view quality gate) and PASO 9 (Use Case Realization quality gate).
-  - Artifacts in progress: `Use Case Realization`, `Logical View`
+11. (TBD) update class diagram master files using `/class-diagram-logical-view/SKILL.md` with the incremental changes for the current iteration, using the storage skill and following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.classDiagram.plantuml`.
+
+11. Reviewer pass for PASO 6 and PASO 11  (Logical view quality gate).
+  - Artifacts in progress: `Logical View`
   - Before reviewing, load the skill `/design-principles/SKILL.md` and `/architectural-design/SKILL.md` and re-load `use-case-realization.md` and `Logical View.md` to validate both design quality and artifact structure.
   - Review each realization scenario from PASO 9 and verify explicit evidence of:
     - responsibility assignment and object collaborations,
