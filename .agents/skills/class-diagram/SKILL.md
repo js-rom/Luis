@@ -17,6 +17,11 @@ Create UML class diagrams in PlantUML to model static structure: classifiers, me
 - Relationship semantics (inheritance, composition, dependency, multiplicities, roles)
 - Collaboration context between objects (visibility, temporality, versatility)
 
+## Design Concern Routing
+
+- Use [../design-principles/SKILL.md](../design-principles/SKILL.md) for design decisions and rationale.
+- Use this skill to realize those decisions into logical-view structure and diagrams.
+
 ## Mandatory workflow (Driver/Navigator)
 
 1. List classifiers and choose the correct type (class, interface, enum, etc.)
@@ -36,6 +41,17 @@ Create UML class diagrams in PlantUML to model static structure: classifiers, me
 - MUST NOT force layout as the primary objective (PlantUML autolayout first)
 - MUST NOT add implementation detail (SQL, internal framework concerns) at analysis level
 - MUST NOT overload the diagram with unnecessary members or decorative relationships
+- MUST draw class diagrams at one hierarchy level at a time.
+- MUST use separate diagrams for different packages to avoid clutter.
+- MUST include cross-references between diagrams and hierarchy levels.
+- MUST reference dependencies to external classes using fully qualified classes names directly.
+
+## File Naming Convention
+
+- Diagram files MUST use fully qualified names:
+	- `<fully.qualified.package>.classDiagram.plantuml`
+- Examples:
+	- `com.mycompany.sales.classDiagram.plantuml`
 
 ## Classifier syntax
 
