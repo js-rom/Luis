@@ -33,6 +33,8 @@ openspec/
 │       │   ├── Design Model.md
 │       │   ├── SW Architecture Document.md
 │       │   ├── Data Model.md
+│       │   ├── Logical View/
+│       │   │   └── {{fully.qualified.package}}.packageDiagram.plantuml
 │       │   └── Use Case Realization/
 │       │       └── UCR UC{{#}} {{use-case.name}}.md
 │       ├── 04 Implementation/
@@ -56,7 +58,7 @@ openspec/
 |-----------|---------|----------------------------|
 | `01 Business Modeling` | Domain-level business concepts and relationships | `Domain Model.md` |
 | `02 Requirements` | Vision, use cases, supplementary requirements, glossary, domain rules, and technical memos | `vision.md`, `supplementary-specification.md`, `glosary.md`, `domain-rules.md`, `Use Case Model.md`, `use-cases/`, `SSDs/SSD UC{{#}} {{use-case.name}}.md`, `Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md`, `Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` |
-| `03 Design` | Logical design and architecture artifacts | `Design Model.md`, `SW Architecture Document.md`, `Data Model.md`, `Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
+| `03 Design` | Logical design and architecture artifacts | `Design Model.md`, `SW Architecture Document.md`, `Data Model.md`, `Logical View/{{fully.qualified.package}}.packageDiagram.plantuml` (template: `plantuml.plantuml`), `Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
 | `04 Implementation` | Implementation-level artifacts | Reserved |
 | `05 Test` | Test artifacts | `Test plan.md` |
 | `06 Deployment` | Deployment artifacts | Reserved |
@@ -83,6 +85,7 @@ openspec/
 | storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Design Model.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/SW Architecture Document.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Data Model.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.packageDiagram.plantuml` (from template `openspec/schemas/default/templates/plantuml.plantuml`) |
 | storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/05 Test/{{#}} {Iteration} Test plan.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/08 Project Management/Requirements Ranking.md`, `openspec/artifacts/{domain}/08 Project Management/{{#}} {Iteration} Plan.md` |
@@ -91,6 +94,7 @@ openspec/
 ## Default artifacts
 
 - Use `openspec/schemas/default` as templates and rules for all artifacts you create or update.
+- Use `openspec/schemas/default/templates/plantuml.plantuml` for `03 Design/Logical View/{{fully.qualified.package}}.packageDiagram.plantuml`.
 
 ## Reading Artifacts
 
@@ -108,6 +112,7 @@ domain model: openspec/artifacts/{domain}/01 Business Modeling/Domain Model.md
 design model: openspec/artifacts/{domain}/03 Design/Design Model.md
 SW architecture document: openspec/artifacts/{domain}/03 Design/SW Architecture Document.md
 data model: openspec/artifacts/{domain}/03 Design/Data Model.md
+logical view package diagram: openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.packageDiagram.plantuml
 use case realization: openspec/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md
 requirements-ranking: openspec/artifacts/{domain}/08 Project Management/Requirements Ranking.md
 Iteration Plan: openspec/artifacts/{domain}/08 Project Management/{{#}} {Iteration} Plan.md

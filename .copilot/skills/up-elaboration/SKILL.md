@@ -111,6 +111,7 @@ The orchestrator will give you:
  - Before starting step 1, load the active schema instruction for glossary and the active schema template `glossary.md` to check if there are any specific rules or structure to follow.
  - if new additions are made, update the Glossary artifact using the storage skill, following the active Artifact Store Policy. It should be stored under `openspec/artifacts/{domain}/01 Business Modeling/Glossary.md`.
 1. Plan the iteration based on the Requirements Ranking, selecting the most risky, valuable and least covered use cases, use case scenarios or features (10% chosen in previous iterations from inception or elaboration). Refine it in collaboration with the user.
+  - early iterations focus on programing and testing architecturally significat concerns (such as security), and using, proving, devoloping ans stabilizing the key architectural elements (subsystems, interfaces, frameworks, wiring, and so on).
   - Artifacts in progress: `Requirements Ranking` and `Iteration Plan`
   - Before planning, load the active schema instruction Iteration Plan and the active schema template `Iteration Plan.md`.
   - Stop and request `OK PASO 1` before continuing.
@@ -132,10 +133,13 @@ The orchestrator will give you:
   - Stop and request `OK PASO 4` before continuing.
   - After approval, store the `Operation Contracts` artifacts using the storage skill, following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/02 Requirements/Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md`.
 
-5. Refine if needed or elaborate if not exist the architectural analysis using the `/architectural-analysis/SKILL.md`.
+5. Refine if needed or elaborate if not exist the architectural analysis using the `/architectural-analysis/SKILL.md` to add to the master files the incremental changes for the current iteration.
  - After approval, if new discoveries during architectural analysis require changes to supplementary specification or technical memos, update them in collaboration with the user. They should be stored under `openspec/artifacts/{domain}/02 Requirements/supplementary-specification.md` and `openspec/artifacts/{domain}/02 Requirements/Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` respectively, using the storage skill and following the active Artifact Store Policy.
 
-6. (TBD) Refine if needed or elaborate if not exist the logical view applying design principles.
+6. Refine if needed or elaborate if not exist the logical view for package using `/packages-logical-view/SKILL.md` to add to the master files the incremental changes for the current iteration.
+ - After approval, 
+  - update the `Logical View` artifact in the master files with the incremental changes for the current iteration, using the storage skill and following the active Artifact Store Policy. It should be stored under `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.packageDiagram.plantuml`.
+   - if new discoveries during logical view design require changes to supplementary specification or technical memos, update them in collaboration with the user. They should be stored under `openspec/artifacts/{domain}/02 Requirements/supplementary-specification.md` and `openspec/artifacts/{domain}/02 Requirements/Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` respectively, using the storage skill and following the active Artifact Store Policy.
 
 7. (TBD) UI Design if there is UI scope in the iteration.
 

@@ -80,6 +80,12 @@ artifacts:
     template: use-case-realization.md
     instruction: INVOKE this link -> "./instructions/use-case-realization.md", and load the skill "/design-principles/SKILL.md" and the instructions "class-diagram.md" before elaborating.
     requires: [use-case-model, system-sequence-diagram, operation-contracts, supplementary-specification, glosary, domain-model]
+  - id: Logical View Package Diagram
+    generates: '{{fully.qualified.package}}.packageDiagram.plantuml'
+    description: Stored under 03 Design/Logical View; captures package-level logical structure and dependencies using PlantUML.
+    template: plantuml.plantuml
+    instruction: 'INVOKE this link -> "./instructions/logical-view-package-diagram.md"'
+    requires: [supplementary-specification, technical-memo, use-case-model, domain-model]
   - id: Test Plan
     generates: Test plan.md
     description: Stored under 05 Test; captures the TDD Step 1 test planning output (factors, classes, boundaries, selected cases, and execution mode policy).
