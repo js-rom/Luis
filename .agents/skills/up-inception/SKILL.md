@@ -74,6 +74,67 @@ The orchestrator will give you:
 - After user approval of step 9 (`OK PASO 9`): persist artifacts using storage skill.
 - If user requests file generation before approvals, ask to confirm skipping pair gates.
 
+## State Tracking Contract (MANDATORY)
+
+You MUST maintain `openspec/state.yaml` as a live tracker of phase progress, step position, and artifact lifecycle. This file is the single source of truth for recovery after compaction.
+
+### Initialization (before PASO 1)
+
+1. Read `openspec/schemas/{schema}/schema.yaml` and map every artifact `id` to the structure expected by `state.yaml`.
+2. Initialize `openspec/state.yaml` with:
+   - `phase: inception`
+   - `iteration: I1`
+   - `domain` from the active domain context
+   - `status: in_progress`
+   - `date` set to today
+   - `current_step: 0`, `last_approved_step: 0`
+   - `approved_steps: []`
+   - `pending_steps: [1, 2, 3, 4, 5, 6, 7, 8, 9]` (chat-only steps; steps 10-12 are automatic/persistence)
+   - `scope` and `notes` set to appropriate placeholders
+   - `artifacts` populated from schema with `status: not_started`, `created_at_step: null`, `refined_at_steps: []`
+
+### Per-Step Updates
+
+**At the start of each step N:**
+- Update `current_step: N`
+- For every artifact that this step will work on, set `status: in_progress` (only if currently `not_started`)
+
+**After `OK PASO N` approval:**
+- Move N from `pending_steps` to `approved_steps`
+- Update `last_approved_step: N`
+- For artifacts completed in this step, set `status: approved`
+- For artifacts first created in this step, set `created_at_step: N`
+- For artifacts refined in this step, append N to `refined_at_steps`
+- Update `date` to today
+
+### After Storage Invocation (step 10)
+
+- For every artifact passed to storage, set `status: persisted`
+- Do NOT change artifacts that were not part of the storage batch
+
+### Phase Close (step 12)
+
+- Set `status: completed`
+- Update `date` to today
+- Confirm to user that `state.yaml` reflects completed inception phase
+
+### Artifact-Step Mapping for Inception
+
+| Step | Artifacts worked on |
+|------|---------------------|
+| 1 | `Vision and Business Case` (first draft) |
+| 2 | `Vision and Business Case` (refine goals, scope) |
+| 3 | `Use Case Model` (actor-goal table) |
+| 4 | `Use Case Model` (diagram + list) |
+| 5 | `Use Case brief` (one per use case) |
+| 6 | `Requirements Ranking`, `Use Case fully dressed` (10% selected) |
+| 7 | Deeper investigation on selected 10% (refines existing artifacts, no new artifact) |
+| 8 | `Supplementary Specification` (architectural analysis), Technical Memos |
+| 9 | `Vision and Business Case` (refined final version) |
+| 10 | Storage — persist all approved artifacts |
+| 11 | Development environment setup (no artifact tracked) |
+| 12 | Close inception — `status: completed` |
+
 | Artifact | Comment |
 |----------|------|
 | Vision and Business Case | provides an executive summary. Describes the high-level goals and constraints, the business case, and provides an executice sumary |

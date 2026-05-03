@@ -85,6 +85,96 @@ The orchestrator will give you:
   - `OK PASO 14 IMPLEMENTAR` authorizes real code/test edits and test execution in terminal.
 - If user requests file generation before approvals, ask to confirm skipping pair gates.
 
+## State Tracking Contract (MANDATORY)
+
+You MUST maintain `openspec/state.yaml` as a live tracker of phase progress, step position, and artifact lifecycle. This file is the single source of truth for recovery after compaction.
+
+### Initialization / Resume (before PASO 1)
+
+**First elaboration iteration (no prior state or phase=inception):**
+1. Read `openspec/schemas/{schema}/schema.yaml` and map every artifact `id` to the structure expected by `state.yaml`.
+2. Initialize `openspec/state.yaml` with:
+   - `phase: elaboration`
+   - `iteration: E1`
+   - `domain` from the active domain context
+   - `status: in_progress`
+   - `date` set to today
+   - `current_step: 0`, `last_approved_step: 0`
+   - `approved_steps: []`
+   - `pending_steps: [1, 2, 3, 4, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17]` (skip TBD steps 5, 6, 11; step 18 is phase-close marker)
+   - `scope` and `notes` set to appropriate placeholders
+   - `artifacts` populated from schema with `status: not_started`, `created_at_step: null`, `refined_at_steps: []`
+
+**Resume after cycle closure (phase=elaboration, status=in_progress):**
+1. Read existing `openspec/state.yaml`.
+2. Keep all artifact statuses (some may be `persisted` from prior cycles).
+3. Increment `iteration` (E1 → E2 → ... En).
+4. Reset `current_step: 0`, `last_approved_step: 0`, `approved_steps: []`.
+5. Populate `pending_steps` with the steps applicable to the new cycle scope.
+6. Update `scope`, `notes`, and `date`.
+
+### Per-Step Updates
+
+**At the start of each step N:**
+- Update `current_step: N`
+- For every artifact that this step will work on (see mapping below), set `status: in_progress` (only if currently `not_started`; leave `persisted`/`refined` artifacts as-is)
+
+**After `OK PASO N` approval:**
+- Move N from `pending_steps` to `approved_steps`
+- Update `last_approved_step: N`
+- For artifacts completed in this step, set `status: approved`
+- For artifacts first created in this step, set `created_at_step: N`
+- For artifacts refined in this step, append N to `refined_at_steps`
+- Update `date` to today
+
+**Exception — Step 14 (TDD):**
+- `OK PASO 14` marks the test-case slice as approved; update artifacts to `status: approved` but do NOT move step to `approved_steps` yet (the implementation phase follows)
+- `OK PASO 14 IMPLEMENTAR` authorizes code edits and test execution; keep `current_step: 14`
+- Report RED/GREEN evidence per cycle; no state.yaml change per cycle
+- On completion of step 14 (all TDD cycles done), request a final `OK PASO 14` and move it from `pending_steps` to `approved_steps`; update `last_approved_step: 14`
+
+### After Storage Invocation
+
+After each step that persists artifacts (steps 1, 2, 3, 4, 7, 8, 9, 10, 12, 13, 15, 16):
+- For every artifact passed to storage, set `status: persisted`
+- Do NOT change artifacts that were not part of the storage batch
+
+### Cycle Close (step 17)
+
+- Do NOT set `status: completed` — the Elaboration phase is not yet closed
+- Confirm to user that `state.yaml` reflects completed cycle and list updated artifacts
+- If requirements coverage < 100%, a new cycle starts from step 1; invoke the resume logic above
+
+### Phase Close (step 18)
+
+- Only when `status` is `in_progress` AND requirements coverage target is achieved AND user explicitly approves ending Elaboration
+- Set `status: completed`
+- Update `date` to today
+
+### Artifact-Step Mapping for Elaboration
+
+| Step | Artifacts worked on | Persist after approval? |
+|------|---------------------|-------------------------|
+| 0 | `Glossary` (anytime suggestion) | Yes, when updated |
+| 1 | `Requirements Ranking` (refine), `Iteration Plan` | Yes |
+| 2 | `Domain Model` | Yes |
+| 3 | `System Sequence Diagram` (per UC in scope) | Yes |
+| 4 | `Operation Contracts` (per UC in scope) | Yes |
+| 5 | (TBD) UI Design | N/A |
+| 6 | (TBD) Reports Design | N/A |
+| 7 | `Supplementary Specification` (refine), Technical Memos | Yes |
+| 8 | Logical View packages (`packageDiagram.plantuml`) | Yes |
+| 9 | `Design Sequence Diagram`, Design Class Diagrams (`classDiagram.plantuml`) | Yes |
+| 10 | `Use Case Realization` (per UC in scope) | Yes |
+| 11 | (TBD) Data Model | N/A |
+| 12 | Reviewer pass — refines artifacts from steps 8, 9, 10 (no new artifact) | Yes (refactored artifacts) |
+| 13 | `SW Architecture Document` | Yes |
+| 14 | Code + Unit/Integration Tests (TDD) | N/A (file-based) |
+| 15 | `Requirements Ranking` (refine) | Yes |
+| 16 | `Use Case fully dressed` (10% brief→detailed) | Yes |
+| 17 | Cycle close — lists updated artifacts; NO new artifacts | No |
+| 18 | Phase close marker — loop to step 1 or exit | N/A |
+
 | Artifact | Comment |
 |----------|------|
 | Vision and Business Case | provides an executive summary. Describes the high-level goals and constraints, the business case, and provides an executice sumary |
