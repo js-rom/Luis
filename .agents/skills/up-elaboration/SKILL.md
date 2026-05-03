@@ -141,9 +141,9 @@ The orchestrator will give you:
   - update the `Logical View` artifact in the master files with the incremental changes for the current iteration, using the storage skill and following the active Artifact Store Policy. It should be stored under `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.packageDiagram.plantuml`.
    - if new discoveries during logical view design require changes to supplementary specification or technical memos, update them in collaboration with the user. They should be stored under `openspec/artifacts/{domain}/02 Requirements/supplementary-specification.md` and `openspec/artifacts/{domain}/02 Requirements/Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` respectively, using the storage skill and following the active Artifact Store Policy.
 
-7. (TBD) UI Design if there is UI scope in the iteration.
+7. (TBD: go to next step) UI Design if there is UI scope in the iteration.
 
-8. (TBD) Reports design if there is report scope in the iteration.
+8. (TBD: go to next step) Reports design if there is report scope in the iteration.
 
 9. Elaborate Use Case Realization for each use case in scope for the iteration.
   - Artifacts in progress: `Use Case Realization`
