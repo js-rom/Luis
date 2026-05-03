@@ -25,10 +25,15 @@ Create UML class diagrams in PlantUML to model static structure: classifiers, me
 ## Mandatory workflow (Driver/Navigator)
 
 1. List classifiers and choose the correct type (class, interface, enum, etc.)
-2. Define members (attributes/operations) and visibility when relevant
-3. Add structural relationships with the correct connectors
-4. Decorate relationships with multiplicities, roles, and direction
-5. Run a final readability pass (remove noise, keep domain terminology)
+2. **Separate classifiers into two groups:**
+   - **Internal**: those belonging to the package being modeled — declare them INSIDE the `package { }` block.
+   - **External**: those belonging to other packages — declare them OUTSIDE the `package { }` block using the `class OuterClass as "externalPackage\n.OuterClass"` pattern.
+3. Define members (attributes/operations) and visibility when relevant
+4. Add structural relationships in this order:
+   - **Internal-only relationships** (both ends inside the same package): place them INSIDE the `package { }` block.
+   - **Cross-package relationships** (one end internal, the other external): place them OUTSIDE the `package { }` block, right after the external class declarations, using qualified names for internal classes (e.g., `domain.JornadaDiaria`) and alias names for external classes.
+5. Decorate relationships with multiplicities, roles, and direction
+6. Run a final readability pass (remove noise, keep domain terminology)
 
 ## Execution rules (MUST / MUST NOT)
 
@@ -41,29 +46,39 @@ Create UML class diagrams in PlantUML to model static structure: classifiers, me
 - MUST NOT force layout as the primary objective (PlantUML autolayout first)
 - MUST NOT add implementation detail (SQL, internal framework concerns) at analysis level
 - MUST NOT overload the diagram with unnecessary members or decorative relationships
+- MUST NOT declare external classes (from other packages) inside the `package { }` block — they must be declared outside with the `class OuterClass as "externalPackage\n.OuterClass"` pattern
+- MUST place cross-package relationships (between internal and external classes) OUTSIDE the `package { }` block, immediately after the external class declarations
 
 ## Per-Package Diagram Rule (MANDATORY)
 
 - MUST create ONE class diagram PER package being modeled
 - Each diagram file MUST be named: `<fully.qualified.package>.classDiagram.plantuml`
-- Cross-references to external classes MUST use fully qualified class names directly (no package nesting)
-- Example:
-  - Diagram: `com.jsrom.fichaje.domain.classDiagram.plantuml`
-  - Contains all classifiers in `com.jsrom.fichaje.domain`
-  - References to `com.jsrom.contract.correcciones.SolicitudCorreccion` shown as external fully qualified
+- Cross-references to external classes MUST use fully qualified class aliases (no package nesting), e.g: `class OuterClass as "externalPackage\n.OuterClass"`
+- MUST show collaborations/dependencies to external classes used by classes in this package
 
-## Package declaration syntax
+## Package Cross-references syntax
 
-Use package with alias to keep names concise:
+Use package with alias to keep names concise. **Internal-only relationships stay inside the `package { }` block. Cross-package relationships go OUTSIDE, after the external class declarations:**
 
 ```plantuml
-package "com.jsrom.fichaje.domain" as "fichaje.domain" {
-    class JornadaDiaria
+package currentPackageNotQualified as "currentPackageQualified" {
+    class InnerClassA {
+        - attribute
+        + operation()
+    }
+    class InnerClassB {
+        + anotherOperation()
+    }
+
+    currentPackageNotQualified.InnerClassA --> currentPackageNotQualified.InnerClassB
 }
+
+class OuterClass as "externalPackage\n.OuterClass"
+currentPackageNotQualified.InnerClassA --> OuterClass
 ```
 
 - Package member name: only the last node of the path (e.g., `domain`)
-- Alias: use only relevant path, not full classpath (e.g., `fichaje.domain`)
+- Alias: use only relevant path, not full classpath (e.g.,  `as fichaje.domain`)
 
 ## Member syntax
 
@@ -214,9 +229,10 @@ Sale ..> SalesRepository : save()
 
 1. Are classifier types correctly chosen?
 2. Are visibility/static/abstract markers used correctly?
-3. Does each relationship express the intended meaning?
-4. Are multiplicities and roles consistent with domain rules?
-5. Was relationship choice justified by visibility, temporality, and versatility?
-6. Are inheritance links real transmission (`is-a`/`implements`) and not disguised composition?
-7. Is the diagram readable without layout micromanagement?
-8. Was implementation noise avoided?
+3. **Are all external classes declared OUTSIDE the `package { }` block with the correct cross-reference alias pattern?**
+4. Does each relationship express the intended meaning?
+5. Are multiplicities and roles consistent with domain rules?
+6. Was relationship choice justified by visibility, temporality, and versatility?
+7. Are inheritance links real transmission (`is-a`/`implements`) and not disguised composition?
+8. Is the diagram readable without layout micromanagement?
+9. Was implementation noise avoided?
