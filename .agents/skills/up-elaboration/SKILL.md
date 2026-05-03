@@ -132,24 +132,28 @@ The orchestrator will give you:
   - Stop and request `OK PASO 4` before continuing.
   - After approval, store the `Operation Contracts` artifacts using the storage skill, following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/02 Requirements/Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md`.
 
-5. Refine if needed or elaborate if not exist the architectural analysis using the `/architectural-analysis/SKILL.md` to add to the master files the incremental changes for the current iteration.
-  - Stop and request `OK PASO 5` before continuing.
+5. (TBD) UI Design if there is UI scope in the iteration.
+
+6. (TBD) Reports design if there is report scope in the iteration.
+
+7. Refine if needed or elaborate if not exist the architectural analysis using the `/architectural-analysis/SKILL.md` to add to the master files the incremental changes for the current iteration.
+  - Stop and request `OK PASO 7` before continuing.
   - After approval, if new discoveries during architectural analysis require changes to supplementary specification or technical memos, update them in collaboration with the user. They should be stored under `openspec/artifacts/{domain}/02 Requirements/supplementary-specification.md` and `openspec/artifacts/{domain}/02 Requirements/Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` respectively, using the storage skill and following the active Artifact Store Policy.
 
-6. Refine if needed or elaborate if not exist the logical view for packages, subsystems, and layers using `/packages-logical-view/SKILL.md` to add to the master files the incremental changes for the current iteration.
+8. Refine if needed or elaborate if not exist the logical view for packages, subsystems, and layers using `/packages-logical-view/SKILL.md` to add to the master files the incremental changes for the current iteration.
   - Artifacts in progress: `Logical View` (packages, subsystems, and layers).
   - Before elaborating, load the skill `/packages-logical-view/SKILL.md`.
   - Define package structure, subsystem boundaries, layer definitions, and dependency direction rules.
   - Create UML package diagrams per package/subsystem using PlantUML.
-  - Stop and request `OK PASO 6` before continuing.
+  - Stop and request `OK PASO 8` before continuing.
   - After approval,
    - update the `Logical View` artifact in the master files with the incremental changes for the current iteration, using the storage skill and following the active Artifact Store Policy. It should be stored under `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.packageDiagram.plantuml`.
    - if new discoveries during logical view design require changes to supplementary specification or technical memos, update them in collaboration with the user. They should be stored under `openspec/artifacts/{domain}/02 Requirements/supplementary-specification.md` and `openspec/artifacts/{domain}/02 Requirements/Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` respectively, using the storage skill and following the active Artifact Store Policy.
 
-7. Design class diagrams and sequence diagrams for the Logical View, mapping each scenario in scope to object design.
+9. Design class diagrams and sequence diagrams for the Logical View, mapping each scenario in scope to object design.
   - Artifacts in progress: `Logical View` (design class diagrams and design sequence diagrams).
   - Before designing, load the skills `/design-principles/SKILL.md` and `/class-diagram/SKILL.md`.
-  - Required inputs: SSDs from step 3, Operation Contracts from step 4, Domain Model from step 2, Logical View packages from step 6, Supplementary Specification, and Glossary.
+  - Required inputs: SSDs from step 3, Operation Contracts from step 4, Domain Model from step 2, Logical View packages from step 8, Supplementary Specification, and Glossary.
   - For each scenario in scope:
     a. Design a Design Sequence Diagram (DSD) starting from the SSD system operations and the Operation Contract events/postconditions.
     b. Design a Design Class Diagram (DCD) per package, assigning responsibilities per `/design-principles/SKILL.md` (Information Expert, cohesion/coupling checks, controller/view separation, and pattern decisions when hotspots appear).
@@ -157,24 +161,20 @@ The orchestrator will give you:
     d. Document concise design rationale aligned with `/design-principles/SKILL.md` output/validation expectations.
     e. Reflect Supplementary Specification constraints and Glossary terminology in each scenario mapping.
   - Use Business Modeling as inspiration for software domain object names.
-  - Stop and request `OK PASO 7` before continuing.
+  - Stop and request `OK PASO 9` before continuing.
   - After approval, persist class and sequence diagrams using the storage skill, following the active Artifact Store Policy:
     - Design Sequence Diagrams under: `openspec/artifacts/{domain}/03 Design/Logical View/DSD UC{{#}} {{use-case.name}} - S{{scenario.#}}.sequenceDiagram.plantuml`
     - Design Class Diagrams under: `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.classDiagram.plantuml`
 
-8. (TBD) UI Design if there is UI scope in the iteration.
-
-9. (TBD) Reports design if there is report scope in the iteration.
-
-10. Assemble Use Case Realization documents for each use case in scope, referencing the designs already produced in step 7.
+10. Assemble Use Case Realization documents for each use case in scope, referencing the designs already produced in step 9.
   - Artifacts in progress: `Use Case Realization`
   - Before assembling, load the active schema instruction `use-case-realization.md`, the active schema template `use-case-realization.md`, and the skill `/design-principles/SKILL.md`.
-  - Required inputs (already designed in step 7; reference only):
+  - Required inputs (already designed in step 9; reference only):
     - Design Sequence Diagrams and Design Class Diagrams from Logical View
     - SSDs from step 3
     - Operation Contracts from step 4
   - For each use case:
-    a. Build the scenario mapping table (UC steps → SSD → OC → Design reference from step 7).
+    a. Build the scenario mapping table (UC steps → SSD → OC → Design reference from step 9).
     b. Reference (do not recreate) the design diagrams from Logical View.
     c. Fill the operation contract postcondition satisfaction checklist.
     d. Verify and document alignment with Supplementary Specification and Glossary.
@@ -184,10 +184,10 @@ The orchestrator will give you:
 
 11. (TBD) Refine if needed or elaborate if not exist the data model if there is data scope in the iteration.
 
-12. Reviewer pass for Logical View quality gate (steps 6, 7, and 10).
+12. Reviewer pass for Logical View quality gate (steps 8, 9, and 10).
   - Artifacts in progress: `Logical View` and `Use Case Realization`.
   - Before reviewing, load the skills `/design-principles/SKILL.md` and `/architectural-design/SKILL.md`, and re-load `use-case-realization.md` to validate both design quality and artifact structure.
-  - Review each scenario design from step 7 and verify explicit evidence of:
+  - Review each scenario design from step 9 and verify explicit evidence of:
     - responsibility assignment and object collaborations,
     - cohesion/coupling rationale and mitigation decisions,
     - controller/view separation and system-operation handling,
@@ -197,7 +197,7 @@ The orchestrator will give you:
     - complete scenario mapping with traceability to SSDs and Operation Contracts,
     - correct references to design diagrams from Logical View,
     - alignment with Supplementary Specification and Glossary.
-  - Review the overall logical design (steps 6 + 7) and verify explicit evidence of:
+  - Review the overall logical design (steps 8 + 9) and verify explicit evidence of:
     - architectural patterns and styles applied,
     - key design decisions and their rationale,
     - alignment with the domain model and use-case model,
