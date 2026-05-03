@@ -39,6 +39,7 @@ Create UML class diagrams in PlantUML to model static structure: classifiers, me
 
 - MUST use PlantUML class diagram syntax
 - MUST choose the correct classifier keyword for each concept
+- MUST use `class ClassName <<record>>` for Java records — the `record` keyword is NOT valid in PlantUML
 - MUST use relationship types that match meaning (inheritance is not dependency)
 - MUST choose relationships using collaboration context: visibility, temporality, and versatility
 - MUST keep names and labels in domain language
@@ -48,6 +49,7 @@ Create UML class diagrams in PlantUML to model static structure: classifiers, me
 - MUST NOT overload the diagram with unnecessary members or decorative relationships
 - MUST NOT declare external classes (from other packages) inside the `package { }` block — they must be declared outside with the `class OuterClass as "externalPackage\n.OuterClass"` pattern
 - MUST place cross-package relationships (between internal and external classes) OUTSIDE the `package { }` block, immediately after the external class declarations
+- MUST use left-to-right direction for generalization/realization arrows: `<|--` and `<|..` (NOT `--|>` or `..|>`). The parent/interface always appears on the left side of the arrow, the child/implementation on the right.
 
 ## Per-Package Diagram Rule (MANDATORY)
 

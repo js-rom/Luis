@@ -74,6 +74,7 @@ Key concepts from Larman:
 - MUST NOT overload a diagram with too many objects; for complex collaboration, split into sub-diagrams using `ref`.
 - MUST NOT use aliases that obscure domain meaning; prefer readable object names.
 - MUST NOT contradict the operation contracts or omit required postconditions.
+- MUST NOT use square brackets `[...]` as lifeline/participant names — `[` and `]` are reserved for PlantUML gate syntax (`[->`, `->]`). Use notes for exception types and self-calls for catch blocks.
 
 ## PlantUML Sequence Diagram Syntax
 
