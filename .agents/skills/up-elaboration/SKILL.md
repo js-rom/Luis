@@ -159,7 +159,7 @@ The orchestrator will give you:
 
 10. (TBD) Refine if needed or elaborate if not exist the data model if there is data scope in the iteration.
 
-11. Refine if needed or elaborate if not exist the class diagram master files using `/class-diagram-logical-view/SKILL.md` with the incremental changes for the current iteration, using the storage skill and following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.classDiagram.plantuml`.
+11A. Refine if needed or elaborate if not exist the class diagram master files using `/class-diagram/SKILL.md` with the incremental changes for the current iteration, using the storage skill and following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.classDiagram.plantuml`.
 
 11. Reviewer pass for PASO 6 and PASO 11  (Logical view quality gate).
   - Artifacts in progress: `Logical View`

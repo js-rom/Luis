@@ -41,35 +41,29 @@ Create UML class diagrams in PlantUML to model static structure: classifiers, me
 - MUST NOT force layout as the primary objective (PlantUML autolayout first)
 - MUST NOT add implementation detail (SQL, internal framework concerns) at analysis level
 - MUST NOT overload the diagram with unnecessary members or decorative relationships
-- MUST draw class diagrams at one hierarchy level at a time.
-- MUST use separate diagrams for different packages to avoid clutter.
-- MUST include cross-references between diagrams and hierarchy levels.
-- MUST reference dependencies to external classes using fully qualified classes names directly.
 
-## File Naming Convention
+## Per-Package Diagram Rule (MANDATORY)
 
-- Diagram files MUST use fully qualified names:
-	- `<fully.qualified.package>.classDiagram.plantuml`
-- Examples:
-	- `com.mycompany.sales.classDiagram.plantuml`
+- MUST create ONE class diagram PER package being modeled
+- Each diagram file MUST be named: `<fully.qualified.package>.classDiagram.plantuml`
+- Cross-references to external classes MUST use fully qualified class names directly (no package nesting)
+- Example:
+  - Diagram: `com.jsrom.fichaje.domain.classDiagram.plantuml`
+  - Contains all classifiers in `com.jsrom.fichaje.domain`
+  - References to `com.jsrom.contract.correcciones.SolicitudCorreccion` shown as external fully qualified
 
-## Classifier syntax
+## Package declaration syntax
 
-Use these declarations when applicable:
+Use package with alias to keep names concise:
 
 ```plantuml
-allow_mixing
-
-class ClassName
-class LongClass as "Class with long\nname or spaces"
-abstract class AbstractClass
-interface InterfaceType
-enum EnumType
-annotation AnnotationType
-entity EntityType
-boundary Boundary
-control Control
+package "com.jsrom.fichaje.domain" as "fichaje.domain" {
+    class JornadaDiaria
+}
 ```
+
+- Package member name: only the last node of the path (e.g., `domain`)
+- Alias: use only relevant path, not full classpath (e.g., `fichaje.domain`)
 
 ## Member syntax
 
