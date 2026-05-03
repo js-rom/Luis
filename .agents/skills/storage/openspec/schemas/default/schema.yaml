@@ -68,6 +68,12 @@ artifacts:
     template: operation-contracts.md
     instruction: INVOKE this link -> "./instructions/operation-contracts.md"
     requires: [use-case-model]
+  - id: Design Sequence Diagram
+    generates: DSD UC{{#}} {{use-case.name}} - S{{scenario.#}}.sequenceDiagram.plantuml
+    description: Stored under 03 Design/Logical View; models software object interactions for one use case scenario, satisfying operation contract postconditions. Bridges SSD (actor-system) to class design.
+    template: plantuml.plantuml
+    instruction: 
+    requires: [system-sequence-diagram, operation-contracts, glosary]
   - id: Technical Memo
     generates: 'Issue - {{FURPS+ category}} - {{issue.name}}.md'
     description: Stored under 02 Requirements/Technical memos; captures a technical decision for a specific quality-related issue.
@@ -79,19 +85,19 @@ artifacts:
     description: Stored under 03 Design/Use Case Realization; maps each use case scenario to design sequence and design class diagrams with traceability to SSDs and operation contracts.
     template: use-case-realization.md
     instruction: INVOKE this link -> "./instructions/use-case-realization.md", and load the skill "/design-principles/SKILL.md" and the instructions "class-diagram.md" before elaborating.
-    requires: [use-case-model, system-sequence-diagram, operation-contracts, supplementary-specification, glosary, domain-model]
+    requires: [use-case-model, system-sequence-diagram, operation-contracts, supplementary-specification, glosary, domain-model, design-sequence-diagram]
   - id: Logical View Package Diagram
     generates: '{{fully.qualified.package}}.packageDiagram.plantuml'
     description: Stored under 03 Design/Logical View; captures package-level logical structure and dependencies using PlantUML.
     template: plantuml.plantuml
     instruction:
-    requires: [supplementary-specification, technical-memo, use-case-model, domain-model]
+    requires: [supplementary-specification, technical-memo, use-case-model, domain-model, design-sequence-diagram]
   - id: Logical View Class Diagram
     generates: '{{fully.qualified.package}}.classDiagram.plantuml'
     description: Stored under 03 Design/Logical View; captures class-level static structure, members, and relationships using PlantUML.
     template: plantuml.plantuml
     instruction:
-    requires: [supplementary-specification, technical-memo, use-case-model, domain-model]
+    requires: [supplementary-specification, technical-memo, use-case-model, domain-model, design-sequence-diagram]
   - id: Test Plan
     generates: Test plan.md
     description: Stored under 05 Test; captures the TDD Step 1 test planning output (factors, classes, boundaries, selected cases, and execution mode policy).

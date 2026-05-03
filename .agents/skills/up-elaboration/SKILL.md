@@ -150,9 +150,9 @@ The orchestrator will give you:
    - update the `Logical View` artifact in the master files with the incremental changes for the current iteration, using the storage skill and following the active Artifact Store Policy. It should be stored under `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.packageDiagram.plantuml`.
    - if new discoveries during logical view design require changes to supplementary specification or technical memos, update them in collaboration with the user. They should be stored under `openspec/artifacts/{domain}/02 Requirements/supplementary-specification.md` and `openspec/artifacts/{domain}/02 Requirements/Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` respectively, using the storage skill and following the active Artifact Store Policy.
 
-9. Design class diagrams and sequence diagrams for the Logical View, mapping each scenario in scope to object design.
-  - Artifacts in progress: `Logical View` (design class diagrams and design sequence diagrams).
-  - Before designing, load the skills `/design-principles/SKILL.md` and `/class-diagram/SKILL.md`.
+9. Design sequence diagrams and class diagrams for the Logical View, mapping each scenario in scope to object design.
+  - Artifacts in progress: `Logical View` (design sequence diagrams and design class diagrams).
+  - Before designing, load the skills `/design-principles/SKILL.md`, `/sequence-diagram/SKILL.md` and `/class-diagram/SKILL.md`.
   - Required inputs: SSDs from step 3, Operation Contracts from step 4, Domain Model from step 2, Logical View packages from step 8, Supplementary Specification, and Glossary.
   - For each scenario in scope:
     a. Design a Design Sequence Diagram (DSD) starting from the SSD system operations and the Operation Contract events/postconditions.
