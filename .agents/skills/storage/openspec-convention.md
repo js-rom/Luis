@@ -33,6 +33,12 @@ openspec/
 │       │   ├── Design Model.md
 │       │   ├── SW Architecture Document.md
 │       │   ├── Data Model.md
+│       │   ├── UI/
+│       │   │   ├── Design System.md
+│       │   │   ├── Abstract DSL/
+│       │   │   │   └── UC{{#}} {{use-case.name}} - UI DSL.yaml
+│       │   │   └── Technology Mapping/
+│       │   │       └── UC{{#}} {{use-case.name}} - Vaadin Mapping.md
 │       │   ├── Logical View/
 │       │   │   ├── {{fully.qualified.package}}.packageDiagram.plantuml
 │       │   │   ├── {{fully.qualified.package}}.classDiagram.plantuml
@@ -60,7 +66,7 @@ openspec/
 |-----------|---------|----------------------------|
 | `01 Business Modeling` | Domain-level business concepts and relationships | `Domain Model.md` |
 | `02 Requirements` | Vision, use cases, supplementary requirements, glossary, domain rules, and technical memos | `vision.md`, `supplementary-specification.md`, `glosary.md`, `domain-rules.md`, `Use Case Model.md`, `use-cases/`, `SSDs/SSD UC{{#}} {{use-case.name}}.md`, `Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md`, `Technical memos/Issue - {{FURPS+ category}} - {{issue.name}}.md` |
-| `03 Design` | Logical design and architecture artifacts | `Design Model.md`, `SW Architecture Document.md`, `Data Model.md`, `Logical View/{{fully.qualified.package}}.packageDiagram.plantuml` (template: `plantuml.plantuml`), `Logical View/{{fully.qualified.package}}.classDiagram.plantuml` (template: `plantuml.plantuml`), `Logical View/DSD UC{{#}} {{use-case.name}} - S{{scenario.#}}.sequenceDiagram.plantuml` (template: `plantuml.plantuml`), `Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
+| `03 Design` | Logical design and architecture artifacts | `Design Model.md`, `SW Architecture Document.md`, `Data Model.md`, `UI/Design System.md`, `UI/Abstract DSL/UC{{#}} {{use-case.name}} - UI DSL.yaml`, `UI/Technology Mapping/UC{{#}} {{use-case.name}} - Vaadin Mapping.md`, `Logical View/{{fully.qualified.package}}.packageDiagram.plantuml` (template: `plantuml.plantuml`), `Logical View/{{fully.qualified.package}}.classDiagram.plantuml` (template: `plantuml.plantuml`), `Logical View/DSD UC{{#}} {{use-case.name}} - S{{scenario.#}}.sequenceDiagram.plantuml` (template: `plantuml.plantuml`), `Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
 | `04 Implementation` | Implementation-level artifacts | Reserved |
 | `05 Test` | Test artifacts | `Test plan.md` |
 | `06 Deployment` | Deployment artifacts | Reserved |
@@ -91,6 +97,9 @@ openspec/
 | storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.classDiagram.plantuml` (from template `openspec/schemas/default/templates/plantuml.plantuml`) |
 | storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Logical View/DSD UC{{#}} {{use-case.name}} - S{{scenario.#}}.sequenceDiagram.plantuml` (from template `openspec/schemas/default/templates/plantuml.plantuml`) |
 | storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/UI/Design System.md` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/UI/Abstract DSL/UC{{#}} {{use-case.name}} - UI DSL.yaml` |
+| storage | Creates (required) | `openspec/artifacts/{domain}/03 Design/UI/Technology Mapping/UC{{#}} {{use-case.name}} - Vaadin Mapping.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/05 Test/{{#}} {Iteration} Test plan.md` |
 | storage | Creates (required) | `openspec/artifacts/{domain}/08 Project Management/Requirements Ranking.md`, `openspec/artifacts/{domain}/08 Project Management/{{#}} {Iteration} Plan.md` |
 | storage | Updates | `openspec/artifacts/{domain}/{discipline}/...` (direct master update; no archive merge) |
@@ -122,6 +131,9 @@ logical view package diagram: openspec/artifacts/{domain}/03 Design/Logical View
 logical view class diagram: openspec/artifacts/{domain}/03 Design/Logical View/{{fully.qualified.package}}.classDiagram.plantuml
 logical view design sequence diagram: openspec/artifacts/{domain}/03 Design/Logical View/DSD UC{{#}} {{use-case.name}} - S{{scenario.#}}.sequenceDiagram.plantuml
 use case realization: openspec/artifacts/{domain}/03 Design/Use Case Realization/UCR UC{{#}} {{use-case.name}}.md
+design system: openspec/artifacts/{domain}/03 Design/UI/Design System.md
+ui abstract dsl: openspec/artifacts/{domain}/03 Design/UI/Abstract DSL/UC{{#}} {{use-case.name}} - UI DSL.yaml
+ui technology mapping: openspec/artifacts/{domain}/03 Design/UI/Technology Mapping/UC{{#}} {{use-case.name}} - Vaadin Mapping.md
 requirements-ranking: openspec/artifacts/{domain}/08 Project Management/Requirements Ranking.md
 Iteration Plan: openspec/artifacts/{domain}/08 Project Management/{{#}} {Iteration} Plan.md
 test plan: openspec/artifacts/{domain}/05 Test/{{#}} {Iteration} Test plan.md

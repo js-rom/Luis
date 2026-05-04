@@ -101,7 +101,7 @@ You MUST maintain `openspec/state.yaml` as a live tracker of phase progress, ste
    - `date` set to today
    - `current_step: 0`, `last_approved_step: 0`
    - `approved_steps: []`
-   - `pending_steps: [1, 2, 3, 4, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17]` (skip TBD steps 5, 6, 11; step 18 is phase-close marker)
+   - `pending_steps: [1, 2, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17]` (skip TBD steps 6, 11; step 18 is phase-close marker)
    - `scope` and `notes` set to appropriate placeholders
    - `artifacts` populated from schema with `status: not_started`, `created_at_step: null`, `refined_at_steps: []`
 
@@ -160,7 +160,7 @@ After each step that persists artifacts (steps 1, 2, 3, 4, 7, 8, 9, 10, 12, 13, 
 | 2 | `Domain Model` | Yes |
 | 3 | `System Sequence Diagram` (per UC in scope) | Yes |
 | 4 | `Operation Contracts` (per UC in scope) | Yes |
-| 5 | (TBD) UI Design | N/A |
+| 5 | `UI Abstract DSL`, `Design System`, `UI Technology Mapping` | Yes |
 | 6 | (TBD) Reports Design | N/A |
 | 7 | `Supplementary Specification` (refine), Technical Memos | Yes |
 | 8 | Logical View packages (`packageDiagram.plantuml`) | Yes |
@@ -191,9 +191,11 @@ After each step that persists artifacts (steps 1, 2, 3, 4, 7, 8, 9, 10, 12, 13, 
 |Software Architecture Document|A learning aid that summarizes the key architecturl issues and their resolution in the design. It is a summary of the outstanding design ideas and their motivation in the system|
 |Data Model|This includes the database schemas, and tha mapping strategy between objects and non-object representations|
 |Use Case Realization|One document per use case that maps each scenario to object design using design sequence diagrams and design class diagrams|
-|Use-Case Storyboards, UI Prototypes|A description of the user interface, paths of navigation, usability models, and so forth|
+|Use-Case Storyboards, UI Prototypes|A description of the user interface, paths of navigation, usability models, and so forth. Realized through `UI Abstract DSL` (technology-independent YAML with state transitions), `Design System` (tokens, rules, breakpoints), and `UI Technology Mapping` (concrete technology mapping, e.g. Vaadin).|
 |Requirements Ranking|A prioritized list of requirements based on risk, coverage, and criticality|
-
+|UI Abstract DSL|YAML document describing UI structure (regions, components, intent) and state transitions traceable to SSDs and Operation Contracts. Technology-independent.|
+|Design System|Project-level document defining design tokens (color, typography, spacing, elevation), component rules, responsive breakpoints, and accessibility constraints.|
+|UI Technology Mapping|Document mapping abstract DSL components and transitions to a concrete UI technology (e.g. Vaadin 25 Java/Flow). Produces structure and transition mapping tables plus Binder integration guidance.|
 # What you need to do (Pair Programming workflow)
 
 0. At any step, suggest to add relevant domain concepts to the Glossary.
@@ -222,7 +224,19 @@ After each step that persists artifacts (steps 1, 2, 3, 4, 7, 8, 9, 10, 12, 13, 
   - Stop and request `OK PASO 4` before continuing.
   - After approval, store the `Operation Contracts` artifacts using the storage skill, following the active Artifact Store Policy. They should be stored under `openspec/artifacts/{domain}/02 Requirements/Operation Contracts/UC{{#}} {{use-case.name}} - Operation Contracts.md`.
 
-5. (TBD) UI Design if there is UI scope in the iteration.
+5. UI Design if there is UI scope in the iteration.
+   - Artifacts in progress: `UI Abstract DSL`, `Design System`, `UI Technology Mapping`.
+   - Load the skill `/ui-dsl/SKILL.md` and follow its 3-phase (FASE A, FASE B, FASE C) pair-programming workflow.
+   - Required inputs: Use Cases in scope, SSDs from step 3, Operation Contracts from step 4, Supplementary Specification, Glossary, and a UI sketch/screenshot or description.
+   - For each use case with UI scope:
+     a. FASE A: Produce the Abstract UI DSL YAML with component structure and state transitions traceable to SSDs and Operation Contracts.
+     b. FASE B: Produce or refine the project-level Design System document (design tokens, component rules, responsive breakpoints, accessibility).
+     c. FASE C: Produce the Vaadin Technology Mapping document mapping abstract components and transitions to concrete Vaadin 25 mechanisms.
+   - Stop and request `OK PASO 5` before continuing.
+   - After approval, store artifacts using the storage skill:
+     - DSL: `openspec/artifacts/{domain}/03 Design/UI/Abstract DSL/UC{{#}} {{use-case.name}} - UI DSL.yaml`
+     - Design System: `openspec/artifacts/{domain}/03 Design/UI/Design System.md`
+     - Mapping: `openspec/artifacts/{domain}/03 Design/UI/Technology Mapping/UC{{#}} {{use-case.name}} - Vaadin Mapping.md`
 
 6. (TBD) Reports design if there is report scope in the iteration.
 
